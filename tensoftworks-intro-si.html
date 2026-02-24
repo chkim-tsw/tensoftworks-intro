@@ -2168,13 +2168,15 @@
     oldSlide.classList.remove('active');
     oldSlide.classList.add(direction === 'down' ? 'slide-out-up' : 'slide-out-down');
 
-    // 들어오는 슬라이드: 아래로 가면 아래에서 올라옴, 위로 가면 위에서 내려옴
+    // 들어오는 슬라이드: 시작 위치 세팅 후 애니메이션
+    newSlide.classList.add('active');
     newSlide.style.transition = 'none';
     newSlide.style.transform = direction === 'down' ? 'translateY(100%)' : 'translateY(-100%)';
     newSlide.style.opacity = '0';
     newSlide.offsetHeight; // reflow 강제
     newSlide.style.transition = '';
-    newSlide.classList.add('active');
+    newSlide.style.transform = '';
+    newSlide.style.opacity = '';
 
     dotsEl.children[current - 1].classList.remove('active');
     current = n;
