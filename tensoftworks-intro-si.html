@@ -37,13 +37,25 @@
     left: 0;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s ease;
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
   }
 
   .slide.active {
     opacity: 1;
     pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .slide.slide-out-up {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  .slide.slide-out-down {
+    opacity: 0;
+    transform: translateY(100%);
   }
 
   /* 공통 헤더 */
@@ -2143,13 +2155,36 @@
     dotsEl.appendChild(dot);
   }
 
+  let isAnimating = false;
+
   function goToSlide(n) {
-    document.getElementById('slide-' + current).classList.remove('active');
+    if (n === current || isAnimating) return;
+    isAnimating = true;
+    const direction = n > current ? 'down' : 'up';
+    const oldSlide = document.getElementById('slide-' + current);
+    const newSlide = document.getElementById('slide-' + n);
+
+    // 나가는 슬라이드: 아래로 가면 위로 밀려남, 위로 가면 아래로 밀려남
+    oldSlide.classList.remove('active');
+    oldSlide.classList.add(direction === 'down' ? 'slide-out-up' : 'slide-out-down');
+
+    // 들어오는 슬라이드: 아래로 가면 아래에서 올라옴, 위로 가면 위에서 내려옴
+    newSlide.style.transition = 'none';
+    newSlide.style.transform = direction === 'down' ? 'translateY(100%)' : 'translateY(-100%)';
+    newSlide.style.opacity = '0';
+    newSlide.offsetHeight; // reflow 강제
+    newSlide.style.transition = '';
+    newSlide.classList.add('active');
+
     dotsEl.children[current - 1].classList.remove('active');
     current = n;
-    document.getElementById('slide-' + current).classList.add('active');
     dotsEl.children[current - 1].classList.add('active');
     document.getElementById('pageNum').textContent = current + ' / ' + totalSlides;
+
+    setTimeout(function() {
+      oldSlide.classList.remove('slide-out-up', 'slide-out-down');
+      isAnimating = false;
+    }, 650);
   }
 
   function nextSlide() {
