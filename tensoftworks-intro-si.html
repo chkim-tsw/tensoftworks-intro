@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1440">
-<title>텐소프트웍스 회사소개서 — SI</title>
+<title>텐소프트웍스 기술사업분석보고서</title>
 <style>
   @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
@@ -16,7 +16,6 @@
     overflow: hidden;
   }
 
-  /* 슬라이드 래퍼 — JS가 위치/스케일 설정 */
   .slides-wrapper {
     width: 1440px;
     height: 810px;
@@ -26,9 +25,6 @@
     transform-origin: 0 0;
   }
 
-  /* ======================== */
-  /* 공통 슬라이드 구조        */
-  /* ======================== */
   .slide {
     width: 1440px;
     height: 810px;
@@ -58,12 +54,10 @@
     transform: translateY(100%);
   }
 
-  /* 공통 헤더 */
+  /* 공통 헤더/푸터 */
   .slide-header {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -83,11 +77,8 @@
     gap: 8px;
   }
 
-  .slide-header-right img {
-    height: 20px;
-  }
+  .slide-header-right img { height: 20px; }
 
-  /* 공통 푸터 */
   .slide-footer {
     position: absolute;
     bottom: 20px;
@@ -96,39 +87,19 @@
     z-index: 10;
   }
 
-  /* 배경 타입 */
-  .bg-blue {
-    background: linear-gradient(135deg, #4a7af7 0%, #6b8ef0 30%, #7e9df5 50%, #8fa8f8 70%, #b0bff8 100%);
-  }
+  /* 배경 */
+  .bg-blue { background: linear-gradient(135deg, #4a7af7 0%, #6b8ef0 30%, #7e9df5 50%, #8fa8f8 70%, #b0bff8 100%); }
+  .bg-blue-deep { background: linear-gradient(135deg, #2a4ecf 0%, #3565f2 40%, #5580f5 80%, #7a9af8 100%); }
+  .bg-dark-photo { background: linear-gradient(180deg, #1a2744 0%, #0f1a30 100%); }
+  .bg-white { background: #f8fafd; }
+  .bg-light { background: linear-gradient(180deg, #eef2fa 0%, #f8fafd 100%); }
+  .bg-dark { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); }
 
-  .bg-blue-deep {
-    background: linear-gradient(135deg, #2a4ecf 0%, #3565f2 40%, #5580f5 80%, #7a9af8 100%);
-  }
-
-  .bg-dark-photo {
-    background: linear-gradient(180deg, #1a2744 0%, #0f1a30 100%);
-  }
-
-  .bg-white {
-    background: #f8fafd;
-  }
-
-  .bg-light {
-    background: linear-gradient(180deg, #eef2fa 0%, #f8fafd 100%);
-  }
-
-  .bg-dark {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  }
-
-  /* 텍스트 색상 */
+  /* 텍스트 */
   .text-white { color: #fff; }
-  .text-dark { color: #222; }
   .text-blue { color: #3565f2; }
-  .text-muted-white { color: rgba(255,255,255,0.6); }
-  .text-muted { color: #888; }
 
-  /* 공통 카드 */
+  /* 카드 */
   .card {
     background: rgba(255,255,255,0.95);
     border-radius: 20px;
@@ -149,7 +120,7 @@
     border: 1px solid rgba(53,101,242,0.15);
   }
 
-  /* 공통 뱃지 */
+  /* 뱃지 */
   .badge {
     display: inline-flex;
     align-items: center;
@@ -160,42 +131,39 @@
     font-weight: 600;
   }
 
-  .badge-blue {
-    background: #3565f2;
-    color: #fff;
+  .badge-blue { background: #3565f2; color: #fff; }
+  .badge-outline { background: transparent; color: #3565f2; border: 1.5px solid #3565f2; }
+  .badge-white { background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+
+  .highlight { color: #3565f2; font-weight: 700; }
+
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
   }
 
-  .badge-outline {
-    background: transparent;
-    color: #3565f2;
-    border: 1.5px solid #3565f2;
+  .section-title {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
   }
 
-  .badge-white {
-    background: rgba(255,255,255,0.2);
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.3);
+  .section-desc {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 32px;
   }
 
-  .badge-yellow {
-    background: #fff8e1;
-    color: #e6a800;
-    border: 1px solid #ffe082;
-  }
-
-  /* 강조 텍스트 */
-  .highlight {
-    color: #3565f2;
-    font-weight: 700;
-  }
-
-  .highlight-yellow {
-    background: linear-gradient(transparent 60%, #ffeb80 60%);
-  }
-
-  /* ======================== */
-  /* 네비게이션              */
-  /* ======================== */
+  /* 네비게이션 */
   .nav {
     position: fixed;
     bottom: 20px;
@@ -211,15 +179,10 @@
     backdrop-filter: blur(10px);
   }
 
-  #dots {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-  }
+  #dots { display: flex; gap: 6px; align-items: center; }
 
   .nav-dot {
-    width: 8px;
-    height: 8px;
+    width: 8px; height: 8px;
     border-radius: 50%;
     background: rgba(255,255,255,0.25);
     cursor: pointer;
@@ -247,7 +210,7 @@
     color: rgba(255,255,255,0.4);
     font-size: 11px;
     margin: 0 6px;
-    min-width: 36px;
+    min-width: 46px;
     text-align: center;
     font-weight: 500;
   }
@@ -264,147 +227,62 @@
   .s1 .slide-header-left,
   .s1 .slide-footer { color: rgba(255,255,255,0.5); }
 
-  .s1-content {
-    z-index: 5;
-    max-width: 600px;
-  }
-
-  .s1-logo {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 32px;
-  }
-
+  .s1-content { z-index: 5; max-width: 620px; }
+  .s1-logo { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
   .s1-logo img { height: 40px; }
 
   .s1-title {
-    font-size: 52px;
+    font-size: 48px;
     font-weight: 900;
     color: #fff;
-    line-height: 1.25;
+    line-height: 1.3;
     letter-spacing: -1px;
     margin-bottom: 16px;
   }
 
   .s1-subtitle {
-    font-size: 18px;
+    font-size: 17px;
     color: rgba(255,255,255,0.75);
-    line-height: 1.6;
+    line-height: 1.7;
     margin-bottom: 40px;
   }
 
-  .s1-meta {
-    display: flex;
-    gap: 32px;
-  }
+  .s1-meta { display: flex; gap: 32px; }
 
-  .s1-meta-item {
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-  }
+  .s1-meta-item { font-size: 13px; color: rgba(255,255,255,0.5); }
+  .s1-meta-item strong { display: block; color: rgba(255,255,255,0.85); font-size: 14px; margin-top: 4px; }
 
-  .s1-meta-item strong {
-    display: block;
-    color: rgba(255,255,255,0.85);
-    font-size: 14px;
-    margin-top: 4px;
-  }
-
-  .s1-deco {
-    position: absolute;
-    right: 80px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
-  }
+  .s1-deco { position: absolute; right: 80px; top: 50%; transform: translateY(-50%); z-index: 2; }
 
   .s1-deco-circle {
-    width: 360px;
-    height: 360px;
+    width: 360px; height: 360px;
     border-radius: 50%;
     background: rgba(255,255,255,0.06);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    display: flex; align-items: center; justify-content: center;
   }
 
   .s1-deco-circle::before {
-    content: '';
-    width: 280px;
-    height: 280px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.1);
+    content: ''; width: 280px; height: 280px;
+    border-radius: 50%; border: 1px solid rgba(255,255,255,0.1);
     position: absolute;
   }
 
   .s1-deco-circle::after {
-    content: '';
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.04);
+    content: ''; width: 200px; height: 200px;
+    border-radius: 50%; background: rgba(255,255,255,0.04);
     position: absolute;
   }
 
-  .s1-deco-icon {
-    font-size: 80px;
-    z-index: 1;
-    filter: drop-shadow(0 4px 20px rgba(0,0,0,0.1));
-  }
+  .s1-deco-icon { font-size: 80px; z-index: 1; filter: drop-shadow(0 4px 20px rgba(0,0,0,0.1)); }
 
-  /* 글로우 */
-  .glow {
-    position: absolute;
-    border-radius: 50%;
-    z-index: 1;
-  }
-
-  .glow-1 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
-    top: -120px; right: 100px;
-  }
-
-  .glow-2 {
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
-    bottom: -80px; left: 200px;
-  }
+  .glow { position: absolute; border-radius: 50%; z-index: 1; }
+  .glow-1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%); top: -120px; right: 100px; }
+  .glow-2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%); bottom: -80px; left: 200px; }
 
   /* ======================== */
   /* SLIDE 2: 회사 개요        */
   /* ======================== */
-  .s2 {
-    padding: 80px 80px 60px;
-  }
-
-  .section-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 18px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
-
-  .section-title {
-    font-size: 32px;
-    font-weight: 800;
-    line-height: 1.4;
-    margin-bottom: 8px;
-    letter-spacing: -0.5px;
-  }
-
-  .section-desc {
-    font-size: 15px;
-    color: #666;
-    line-height: 1.7;
-    margin-bottom: 36px;
-  }
+  .s2 { padding: 80px 80px 60px; }
 
   .s2-grid {
     display: grid;
@@ -413,54 +291,19 @@
     margin-top: 24px;
   }
 
-  .s2-info-card {
-    padding: 32px;
-  }
+  .s2-info-card { padding: 32px; }
 
-  .s2-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+  .s2-table { width: 100%; border-collapse: collapse; }
+  .s2-table tr { border-bottom: 1px solid #f0f0f0; }
+  .s2-table tr:last-child { border-bottom: none; }
+  .s2-table th { text-align: left; padding: 11px 0; font-weight: 700; font-size: 14px; color: #333; width: 110px; vertical-align: top; }
+  .s2-table td { padding: 11px 0; font-size: 14px; color: #666; }
 
-  .s2-table tr {
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .s2-table tr:last-child {
-    border-bottom: none;
-  }
-
-  .s2-table th {
-    text-align: left;
-    padding: 11px 0;
-    font-weight: 700;
-    font-size: 14px;
-    color: #333;
-    width: 110px;
-    vertical-align: top;
-  }
-
-  .s2-table td {
-    padding: 11px 0;
-    font-size: 14px;
-    color: #666;
-  }
-
-  .s2-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 28px 32px;
-  }
+  .s2-badges { display: flex; flex-wrap: wrap; gap: 10px; padding: 28px 32px; }
 
   .s2-badge-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 600;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 12px; font-size: 13px; font-weight: 600;
   }
 
   .s2-badge-blue { background: #eef3ff; color: #3565f2; }
@@ -468,1682 +311,1472 @@
   .s2-badge-amber { background: #fef9ee; color: #d97706; }
 
   /* ======================== */
-  /* SLIDE 3: 비전 & 핵심역량  */
+  /* SLIDE 3: 핵심 기술 체계   */
   /* ======================== */
-  .s3 {
-    padding: 80px;
-  }
-
+  .s3 { padding: 70px 80px 60px; }
   .s3 .slide-header-left { color: rgba(255,255,255,0.5); }
-  .s3 .slide-header-right { color: rgba(255,255,255,0.6); }
   .s3 .slide-footer { color: rgba(255,255,255,0.3); }
 
-  .s3-top {
-    text-align: center;
-    margin-bottom: 48px;
+  .s3-roadmap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-top: 20px;
   }
 
-  .s3-title {
-    font-size: 30px;
+  .s3-root {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 16px;
+    padding: 20px 40px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .s3-root-title { font-size: 15px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+  .s3-root-desc { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+  .s3-arrow { color: rgba(255,255,255,0.4); font-size: 24px; margin: 6px 0; }
+
+  .s3-branches {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .s3-branch {
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .s3-branch-title {
+    font-size: 15px;
     font-weight: 800;
     color: #fff;
     margin-bottom: 12px;
-    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
-  .s3-subtitle {
-    font-size: 15px;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.7;
+  .s3-branch-list {
+    list-style: none;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.8;
   }
 
-  .s3-cards {
+  .s3-branch-list li::before { content: '• '; color: rgba(255,255,255,0.4); }
+
+  .s3-ai-detail {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
-    margin-top: 16px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    margin-top: 6px;
   }
 
-  .s3-card {
+  .s3-ai-card {
+    background: rgba(53,101,242,0.2);
+    border: 1px solid rgba(53,101,242,0.3);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .s3-ai-card-icon { font-size: 28px; margin-bottom: 6px; }
+  .s3-ai-card-name { font-size: 14px; font-weight: 800; color: #fff; }
+  .s3-ai-card-sub { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+  .s3-ai-card-desc { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+  /* ======================== */
+  /* SLIDE 4: 핵심 특허        */
+  /* ======================== */
+  .s4 { padding: 80px; }
+
+  .s4-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+  }
+
+  .s4-card {
     padding: 36px 28px;
     text-align: center;
   }
 
-  .s3-card-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
+  .s4-card-icon { font-size: 48px; margin-bottom: 16px; }
+  .s4-card-type { font-size: 12px; font-weight: 700; color: #3565f2; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+  .s4-card-number { font-size: 16px; font-weight: 800; color: #222; margin-bottom: 8px; }
+  .s4-card-name { font-size: 13px; color: #666; line-height: 1.6; }
+
+  /* ======================== */
+  /* SLIDE 5: CMS 솔루션      */
+  /* ======================== */
+  .s5 { padding: 80px; }
+
+  .s5-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-top: 28px;
+  }
+
+  .s5-card { padding: 36px; }
+  .s5-card-title { font-size: 20px; font-weight: 800; color: #222; margin-bottom: 8px; }
+  .s5-card-sub { font-size: 13px; color: #888; margin-bottom: 20px; line-height: 1.6; }
+
+  .s5-feature {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+
+  .s5-feature-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: #eef3ff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .s5-feature-title { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 2px; }
+  .s5-feature-desc { font-size: 12px; color: #888; line-height: 1.5; }
+
+  /* ======================== */
+  /* SLIDE 6: 이커머스 솔루션   */
+  /* ======================== */
+  .s6 { padding: 80px; }
+
+  .s6-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 28px;
+  }
+
+  .s6-card { padding: 32px; }
+  .s6-card-title { font-size: 18px; font-weight: 800; color: #222; margin-bottom: 6px; }
+  .s6-card-sub { font-size: 13px; color: #888; margin-bottom: 16px; line-height: 1.6; }
+
+  .s6-list {
+    list-style: none;
+    font-size: 13px;
+    color: #555;
+    line-height: 2;
+  }
+
+  .s6-list li::before { content: '✓ '; color: #3565f2; font-weight: 700; }
+
+  /* ======================== */
+  /* SLIDE 7: AI 솔루션 개요   */
+  /* ======================== */
+  .s7 { padding: 70px 80px; }
+  .s7 .slide-header-left { color: rgba(255,255,255,0.5); }
+  .s7 .slide-footer { color: rgba(255,255,255,0.3); }
+
+  .s7-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin-top: 32px;
+  }
+
+  .s7-flow-card {
+    flex: 1;
+    padding: 32px 28px;
+    text-align: center;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .s7-flow-card:first-child { border-radius: 20px 0 0 20px; }
+  .s7-flow-card:last-child { border-radius: 0 20px 20px 0; }
+
+  .s7-flow-arrow {
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    margin: 0 auto 20px;
-    background: rgba(53,101,242,0.15);
+    color: rgba(255,255,255,0.3);
+    font-size: 24px;
+    padding: 0 4px;
   }
 
-  .s3-card h4 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 10px;
+  .s7-flow-icon { font-size: 36px; margin-bottom: 12px; }
+  .s7-flow-name { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+  .s7-flow-en { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+  .s7-flow-desc { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.7; text-align: left; }
+
+  /* ======================== */
+  /* SLIDE 8: Biblo           */
+  /* ======================== */
+  .s8 { padding: 80px; }
+
+  .s8-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 36px;
+    margin-top: 24px;
   }
 
-  .s3-card p {
-    font-size: 13px;
-    color: #777;
-    line-height: 1.7;
-  }
+  .s8-feature-list { list-style: none; }
 
-  .s3-card-tags {
+  .s8-feature-item {
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    justify-content: center;
-    margin-top: 14px;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+    align-items: flex-start;
   }
 
-  .s3-card-tag {
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 11px;
+  .s8-feature-item:last-child { border-bottom: none; }
+
+  .s8-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
     background: #eef3ff;
-    color: #3565f2;
-    font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
   }
 
-  /* 하단 Goal 영역 */
-  .s3-goal {
-    margin-top: 32px;
-    text-align: center;
-    padding: 24px;
-    border-radius: 16px;
+  .s8-feature-title { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 2px; }
+  .s8-feature-desc { font-size: 12px; color: #888; line-height: 1.5; }
+
+  .s8-case {
+    padding: 28px;
+  }
+
+  .s8-case-label { font-size: 12px; font-weight: 700; color: #3565f2; margin-bottom: 8px; letter-spacing: 1px; }
+  .s8-case-title { font-size: 18px; font-weight: 800; color: #222; margin-bottom: 12px; }
+  .s8-case-desc { font-size: 13px; color: #666; line-height: 1.8; }
+
+  /* ======================== */
+  /* SLIDE 9: Text-to-Video   */
+  /* ======================== */
+  .s9 { padding: 80px; }
+  .s9 .slide-header-left { color: rgba(255,255,255,0.5); }
+  .s9 .slide-footer { color: rgba(255,255,255,0.3); }
+
+  .s9-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-top: 28px;
+  }
+
+  .s9-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .s9-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
     background: rgba(255,255,255,0.08);
     border: 1px solid rgba(255,255,255,0.12);
-  }
-
-  .s3-goal p {
-    font-size: 20px;
-    font-weight: 700;
-    color: #fff;
-  }
-
-  .s3-goal span {
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-    display: block;
-    margin-top: 6px;
-  }
-
-  /* ======================== */
-  /* SLIDE 4: 조직 및 인원     */
-  /* ======================== */
-  .s4 {
-    padding: 80px 80px 60px;
-  }
-
-  .s4-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 36px;
-    margin-top: 28px;
-  }
-
-  .s4-org-card {
-    padding: 28px;
-  }
-
-  .s4-org-title {
-    font-size: 16px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #3565f2;
-    display: inline-block;
-  }
-
-  .org-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-
-  .org-table thead th {
-    background: #f0f4ff;
-    padding: 10px 12px;
-    font-weight: 700;
-    color: #333;
-    text-align: center;
-    border-bottom: 2px solid #3565f2;
-  }
-
-  .org-table thead th:first-child {
-    border-radius: 8px 0 0 0;
-  }
-
-  .org-table thead th:last-child {
-    border-radius: 0 8px 0 0;
-  }
-
-  .org-table tbody td {
-    padding: 9px 12px;
-    text-align: center;
-    color: #555;
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .org-table tbody tr:last-child td {
-    font-weight: 700;
-    color: #3565f2;
-    border-bottom: none;
-  }
-
-  .s4-team-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .s4-team-card {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 16px 20px;
     border-radius: 14px;
-    background: #fff;
-    border: 1px solid #eef0f5;
   }
 
-  .s4-team-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
+  .s9-step-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(53,101,242,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; color: #fff;
     flex-shrink: 0;
   }
 
-  .s4-team-icon-blue { background: #eef3ff; }
-  .s4-team-icon-green { background: #eefbf3; }
-  .s4-team-icon-purple { background: #f3eeff; }
-  .s4-team-icon-amber { background: #fef9ee; }
+  .s9-step-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .s9-step-desc { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.5; }
 
-  .s4-team-info h5 {
-    font-size: 14px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 3px;
-  }
-
-  .s4-team-info p {
-    font-size: 12px;
-    color: #888;
-    line-height: 1.5;
-  }
-
-  /* ======================== */
-  /* SLIDE 5: 주요 사업       */
-  /* ======================== */
-  .s5 {
-    padding: 80px;
-  }
-
-  .s5 .slide-header-left { color: rgba(255,255,255,0.5); }
-  .s5 .slide-footer { color: rgba(255,255,255,0.3); }
-
-  .s5-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    margin-top: 32px;
-  }
-
-  .s5-card {
-    padding: 28px 24px;
-    transition: transform 0.2s;
-  }
-
-  .s5-card-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 14px;
-  }
-
-  .s5-card-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    background: rgba(53,101,242,0.12);
-  }
-
-  .s5-card h4 {
-    font-size: 16px;
-    font-weight: 700;
-    color: #222;
-  }
-
-  .s5-card p {
-    font-size: 13px;
-    color: #777;
-    line-height: 1.7;
-    margin-bottom: 12px;
-  }
-
-  .s5-card ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .s5-card ul li {
-    font-size: 12px;
-    color: #888;
-    line-height: 1.8;
-    padding-left: 12px;
-    position: relative;
-  }
-
-  .s5-card ul li::before {
-    content: "·";
-    position: absolute;
-    left: 0;
-    color: #3565f2;
-    font-weight: 700;
-  }
-
-  /* ======================== */
-  /* 구축사례 공통 스타일      */
-  /* ======================== */
-  .case-slide {
-    padding: 80px;
-  }
-
-  .case-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 24px;
-    align-items: start;
-  }
-
-  .case-info h3 {
-    font-size: 26px;
-    font-weight: 800;
-    color: #222;
-    margin-bottom: 12px;
-    line-height: 1.4;
-  }
-
-  .case-info .case-client {
-    font-size: 14px;
-    color: #3565f2;
-    font-weight: 600;
-    margin-bottom: 16px;
-  }
-
-  .case-info .case-desc {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.8;
-    margin-bottom: 20px;
-  }
-
-  .case-features {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .case-feature {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 12px 16px;
-    border-radius: 12px;
-    background: #f8faff;
-    border: 1px solid #eef2fa;
-  }
-
-  .case-feature-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    background: #eef3ff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .case-feature h5 {
-    font-size: 13px;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 2px;
-  }
-
-  .case-feature p {
-    font-size: 12px;
-    color: #888;
-    line-height: 1.5;
-  }
-
-  .case-visual {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .case-mockup {
-    width: 100%;
-    height: 420px;
+  .s9-case-card {
+    padding: 32px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
     border-radius: 20px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .case-mockup-blue {
-    background: linear-gradient(135deg, #3565f2 0%, #5580f5 100%);
-  }
-
-  .case-mockup-green {
-    background: linear-gradient(135deg, #16a34a 0%, #4ade80 100%);
-  }
-
-  .case-mockup-purple {
-    background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
-  }
-
-  .case-mockup-orange {
-    background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
-  }
-
-  .case-mockup-dark {
-    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-  }
-
-  .case-mockup-inner {
-    text-align: center;
-    color: #fff;
-    z-index: 1;
-  }
-
-  .case-mockup-title {
-    font-size: 32px;
-    font-weight: 800;
-    margin-bottom: 8px;
-  }
-
-  .case-mockup-sub {
-    font-size: 14px;
-    opacity: 0.7;
-  }
-
-  .case-mockup-stats {
-    display: flex;
-    gap: 24px;
-    margin-top: 24px;
-    justify-content: center;
-  }
-
-  .case-mockup-stat {
-    background: rgba(255,255,255,0.15);
-    border-radius: 12px;
-    padding: 12px 18px;
-    text-align: center;
-  }
-
-  .case-mockup-stat .num {
-    font-size: 20px;
-    font-weight: 800;
-  }
-
-  .case-mockup-stat .label {
-    font-size: 10px;
-    opacity: 0.6;
-    margin-top: 2px;
-  }
-
-  .case-mockup::before {
-    content: '';
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-    top: -80px;
-    right: -60px;
-  }
-
-  .case-mockup::after {
-    content: '';
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.04);
-    bottom: -60px;
-    left: -40px;
-  }
-
-  .case-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 16px;
-  }
-
-  .case-tag {
-    padding: 4px 12px;
-    border-radius: 10px;
-    font-size: 11px;
-    font-weight: 500;
-    background: #eef3ff;
-    color: #3565f2;
-  }
-
-  /* ======================== */
-  /* SLIDE 10: 비블로 제품     */
-  /* ======================== */
-  .s10 {
-    display: flex;
-  }
-
-  .s10 .slide-header-left { color: rgba(255,255,255,0.5); }
-
-  .s10-visual {
-    flex: 0 0 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .s10-visual-inner {
-    text-align: center;
-    color: #fff;
-    z-index: 1;
-  }
-
-  .s10-logo {
-    height: 48px;
-    margin-bottom: 16px;
-    filter: brightness(0) invert(1);
-  }
-
-  .s10-visual-sub {
-    font-size: 16px;
-    opacity: 0.7;
-    margin-bottom: 28px;
-  }
-
-  .s10-stats {
-    display: flex;
-    gap: 20px;
-  }
-
-  .s10-stat {
-    background: rgba(255,255,255,0.12);
-    border-radius: 14px;
-    padding: 14px 20px;
-    text-align: center;
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .s10-stat .num {
-    font-size: 24px;
-    font-weight: 800;
-  }
-
-  .s10-stat .label {
-    font-size: 11px;
-    opacity: 0.6;
-    margin-top: 2px;
-  }
-
-  .s10-info {
-    flex: 1;
-    padding: 80px 56px;
-    background: #fff;
-    display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
-  .s10-info .tagline {
-    font-size: 14px;
-    color: #3565f2;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-
-  .s10-info h2 {
-    font-size: 36px;
-    font-weight: 800;
-    color: #111;
-    margin-bottom: 28px;
-    letter-spacing: -0.5px;
-  }
-
-  .s10-detail {
-    margin-bottom: 20px;
-  }
-
-  .s10-detail h4 {
-    font-size: 15px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 8px;
-  }
-
-  .s10-detail ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .s10-detail ul li {
-    font-size: 13px;
-    color: #666;
-    line-height: 1.8;
-    padding-left: 14px;
-    position: relative;
-  }
-
-  .s10-detail ul li::before {
-    content: "—";
-    position: absolute;
-    left: 0;
-    color: #bbb;
-    font-size: 11px;
-  }
+  .s9-case-label { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.5); margin-bottom: 12px; letter-spacing: 1px; }
+  .s9-case-title { font-size: 20px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+  .s9-case-desc { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.8; }
 
   /* ======================== */
-  /* SLIDE 11: 수상 & 실적     */
+  /* SLIDE 10: Ragso          */
   /* ======================== */
-  .s11 {
-    padding: 80px;
-  }
+  .s10 { padding: 80px; }
 
-  .s11-grid {
+  .s10-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 36px;
     margin-top: 28px;
   }
 
-  .s11-section {
-    padding: 28px;
-  }
-
-  .s11-section-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #3565f2;
-    display: inline-block;
-  }
-
-  .s11-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 16px;
-  }
-
-  .s11-item:last-child {
-    margin-bottom: 0;
-  }
-
-  .s11-icon {
-    flex: 0 0 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-  }
-
-  .s11-icon-gold { background: #fef3c7; }
-  .s11-icon-blue { background: #dbeafe; }
-  .s11-icon-green { background: #dcfce7; }
-
-  .s11-item h5 {
-    font-size: 14px;
-    font-weight: 700;
-    color: #222;
-    margin-bottom: 3px;
-  }
-
-  .s11-item p {
-    font-size: 12px;
-    color: #888;
-    line-height: 1.5;
-  }
-
-  /* ======================== */
-  /* SLIDE 12: 기술 역량       */
-  /* ======================== */
-  .s12 {
-    padding: 80px;
-  }
-
-  .s12 .slide-header-left { color: rgba(255,255,255,0.5); }
-  .s12 .slide-footer { color: rgba(255,255,255,0.3); }
-
-  .s12-grid {
+  .s10-features {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    margin-top: 32px;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 
-  .s12-card {
-    padding: 28px 24px;
+  .s10-feat {
+    padding: 24px;
+    border-radius: 16px;
+    background: rgba(53,101,242,0.06);
+    border: 1px solid rgba(53,101,242,0.12);
   }
 
-  .s12-card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-bottom: 16px;
+  .s10-feat-icon { font-size: 28px; margin-bottom: 10px; }
+  .s10-feat-title { font-size: 13px; font-weight: 700; color: #333; margin-bottom: 4px; }
+  .s10-feat-desc { font-size: 11px; color: #888; line-height: 1.5; }
+
+  .s10-right-card {
+    padding: 32px;
   }
 
-  .s12-card h4 {
-    font-size: 16px;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-
-  .s12-card p {
+  .s10-code {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 20px;
+    font-family: 'Courier New', monospace;
     font-size: 12px;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.7;
+    color: #94a3b8;
+    margin-bottom: 20px;
+    line-height: 1.6;
   }
+
+  .s10-code .tag { color: #7dd3fc; }
+  .s10-code .attr { color: #fbbf24; }
+
+  .s10-use-cases { list-style: none; }
+  .s10-use-cases li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 13px;
+    color: #555;
+  }
+  .s10-use-cases li:last-child { border-bottom: none; }
+  .s10-use-cases li::before { content: '🔹 '; }
 
   /* ======================== */
-  /* SLIDE 13: 마무리          */
+  /* SLIDE 11: AI 레퍼런스     */
   /* ======================== */
-  .s13 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
+  .ref-slide { padding: 80px; }
 
-  .s13-content {
-    z-index: 5;
-  }
-
-  .s13-logo {
-    height: 36px;
-    margin-bottom: 24px;
-  }
-
-  .s13-title {
-    font-size: 48px;
-    font-weight: 900;
-    color: #fff;
-    margin-bottom: 12px;
-    letter-spacing: -1px;
-  }
-
-  .s13-tagline {
-    font-size: 18px;
-    color: rgba(255,255,255,0.65);
-    margin-bottom: 48px;
-  }
-
-  .s13-divider {
-    width: 60px;
-    height: 3px;
-    background: rgba(255,255,255,0.3);
-    margin: 0 auto 40px;
-    border-radius: 2px;
-  }
-
-  .s13-contacts {
-    display: flex;
-    gap: 48px;
-    justify-content: center;
-  }
-
-  .s13-contact {
-    text-align: center;
-  }
-
-  .s13-contact .label {
-    font-size: 10px;
-    color: rgba(255,255,255,0.35);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  .s13-contact .value {
-    font-size: 14px;
-    color: rgba(255,255,255,0.85);
-    font-weight: 500;
-  }
-
-  .s13-contact .value a {
-    color: rgba(255,255,255,0.85);
-    text-decoration: none;
-  }
-
-  /* 실적 테이블 (slide 2 하단 등에 활용) */
-  .performance-table {
+  .ref-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 13px;
-    margin-top: 16px;
+    margin-top: 28px;
   }
 
-  .performance-table thead th {
-    background: #f0f4ff;
-    padding: 10px 14px;
+  .ref-table thead th {
+    padding: 14px 16px;
+    font-size: 13px;
     font-weight: 700;
-    color: #333;
     text-align: left;
     border-bottom: 2px solid #3565f2;
   }
 
-  .performance-table thead th:first-child {
-    border-radius: 8px 0 0 0;
-  }
-
-  .performance-table thead th:last-child {
-    border-radius: 0 8px 0 0;
-  }
-
-  .performance-table tbody td {
-    padding: 10px 14px;
+  .ref-table tbody td {
+    padding: 16px;
+    font-size: 13px;
     color: #555;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #eee;
     vertical-align: top;
   }
 
-  .performance-table tbody tr:hover {
-    background: #fafbff;
+  .ref-table tbody tr:hover { background: rgba(53,101,242,0.03); }
+
+  .ref-client {
+    font-weight: 700;
+    color: #222;
   }
+
+  .ref-type-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .ref-type-ai { background: #eef3ff; color: #3565f2; }
+  .ref-type-ec { background: #fef9ee; color: #d97706; }
+  .ref-type-cms { background: #eefbf3; color: #16a34a; }
+  .ref-type-3d { background: #fce7f3; color: #db2777; }
+
+  /* ======================== */
+  /* SLIDE 13: 연혁            */
+  /* ======================== */
+  .s13 { padding: 70px 80px 60px; }
+
+  .s13-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 24px;
+    position: relative;
+    padding-left: 120px;
+  }
+
+  .s13-timeline::before {
+    content: '';
+    position: absolute;
+    left: 100px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #dde4f0;
+  }
+
+  .s13-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 12px 0;
+    position: relative;
+  }
+
+  .s13-year {
+    position: absolute;
+    left: -120px;
+    width: 80px;
+    text-align: right;
+    font-size: 16px;
+    font-weight: 800;
+    color: #3565f2;
+    padding-top: 2px;
+  }
+
+  .s13-dot {
+    position: absolute;
+    left: -24px;
+    top: 16px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #3565f2;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #3565f2;
+  }
+
+  .s13-content { font-size: 14px; color: #444; line-height: 1.7; }
+  .s13-content strong { color: #222; }
+
+  .s13-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  .s13-tag-cms { background: #eefbf3; color: #16a34a; }
+  .s13-tag-ec { background: #fef9ee; color: #d97706; }
+  .s13-tag-patent { background: #fce7f3; color: #db2777; }
+  .s13-tag-ai { background: #eef3ff; color: #3565f2; }
+
+  /* ======================== */
+  /* SLIDE 14: 핵심 역량       */
+  /* ======================== */
+  .s14 { padding: 70px 80px 60px; }
+
+  .s14-top {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 24px;
+    margin-bottom: 28px;
+  }
+
+  .s14-strength {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .s14-strength-icon { font-size: 28px; margin-bottom: 8px; }
+  .s14-strength-title { font-size: 13px; font-weight: 700; color: #222; margin-bottom: 4px; }
+  .s14-strength-desc { font-size: 11px; color: #888; line-height: 1.5; }
+
+  .s14-people-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #222;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #3565f2;
+  }
+
+  .s14-people {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .s14-person {
+    padding: 24px;
+  }
+
+  .s14-person-role { font-size: 12px; font-weight: 700; color: #3565f2; margin-bottom: 6px; }
+  .s14-person-name { font-size: 18px; font-weight: 800; color: #222; margin-bottom: 10px; }
+  .s14-person-desc { font-size: 12px; color: #888; line-height: 1.7; }
+  .s14-person-highlight { font-size: 11px; font-weight: 700; color: #3565f2; margin-top: 8px; }
+
+  /* ======================== */
+  /* SLIDE 15: 인증 및 수상    */
+  /* ======================== */
+  .s15 { padding: 80px; }
+
+  .s15-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+  .s15-card {
+    padding: 28px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .s15-card-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    background: #eef3ff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .s15-card-title { font-size: 15px; font-weight: 700; color: #222; margin-bottom: 6px; }
+  .s15-card-desc { font-size: 12px; color: #888; line-height: 1.6; }
+
+  /* ======================== */
+  /* SLIDE 16: 기술 스택       */
+  /* ======================== */
+  .s16 { padding: 80px; }
+  .s16 .slide-header-left { color: rgba(255,255,255,0.5); }
+  .s16 .slide-footer { color: rgba(255,255,255,0.3); }
+
+  .s16-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+  .s16-card {
+    padding: 28px;
+    transition: transform 0.2s;
+  }
+
+  .s16-card:hover { transform: translateY(-4px); }
+  .s16-card-icon { font-size: 32px; margin-bottom: 12px; }
+  .s16-card-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .s16-card-desc { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  /* ======================== */
+  /* SLIDE 17: 비전 & 클로징   */
+  /* ======================== */
+  .s17 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .s17 .slide-header-left,
+  .s17 .slide-footer { color: rgba(255,255,255,0.5); }
+
+  .s17-logo { height: 44px; margin-bottom: 32px; }
+  .s17-quote { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 12px; font-weight: 500; }
+
+  .s17-title {
+    font-size: 38px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.4;
+    letter-spacing: -1px;
+    margin-bottom: 32px;
+  }
+
+  .s17-directions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+    max-width: 1000px;
+  }
+
+  .s17-dir {
+    padding: 20px 16px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px;
+    text-align: center;
+  }
+
+  .s17-dir-icon { font-size: 24px; margin-bottom: 8px; }
+  .s17-dir-text { font-size: 12px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+
+  .s17-contact {
+    display: flex;
+    gap: 40px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .s17-contact span { color: rgba(255,255,255,0.8); font-weight: 600; }
 </style>
 </head>
 <body>
 
 <div class="slides-wrapper" id="slidesWrapper">
 
-<!-- ========== SLIDE 1: 표지 ========== -->
+<!-- ============================== -->
+<!-- SLIDE 1: 표지                   -->
+<!-- ============================== -->
 <div class="slide bg-blue-deep s1 active" id="slide-1">
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
   <div class="slide-header">
     <div class="slide-header-left">TENSOFTWORKS</div>
-    <div class="slide-header-right" style="color:rgba(255,255,255,0.5);">회사소개서</div>
+    <div class="slide-header-right"><img src="images/tensw_white.png" alt="TENSW"></div>
   </div>
-
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
   <div class="s1-content">
     <div class="s1-logo">
-      <img src="images/tensw_white.png" alt="TENSW" style="height:36px;">
+      <img src="images/tensw_ci.png" alt="TENSW CI" style="width:64px;height:64px;z-index:1;opacity:0.9;">
     </div>
-    <div class="s1-title">
-      AI 플랫폼, 커머스,<br>
-      CMS 서비스의<br>
-      혁신을 주도합니다
-    </div>
-    <div class="s1-subtitle">
-      Empowering E-Commerce Innovation:<br>
-      Simplify, Customize, and Succeed with Tensoftworks.
-    </div>
+    <div class="s1-title">데이터를 가장 잘<br>이해하는 회사</div>
+    <div class="s1-subtitle">기술 및 사업 분석 보고서<br>CMS 특허 기술 기반 — 이커머스 &amp; AI 솔루션</div>
     <div class="s1-meta">
-      <div class="s1-meta-item">
-        Since
-        <strong>2019</strong>
-      </div>
-      <div class="s1-meta-item">
-        Team
-        <strong>24명+</strong>
-      </div>
-      <div class="s1-meta-item">
-        Type
-        <strong>혁신성장형 벤처기업</strong>
-      </div>
+      <div class="s1-meta-item">기준일<strong>2024년 12월</strong></div>
+      <div class="s1-meta-item">대표이사<strong>김철형</strong></div>
+      <div class="s1-meta-item">기업유형<strong>혁신성장형 벤처기업</strong></div>
     </div>
   </div>
-
   <div class="s1-deco">
     <div class="s1-deco-circle">
-      <img src="images/tensw_ci.png" alt="TENSW CI" style="width:80px;height:80px;z-index:1;position:relative;opacity:0.9;">
+      <div class="s1-deco-icon">📊</div>
     </div>
   </div>
-
-  <div class="slide-footer" style="color:rgba(255,255,255,0.3);">
-    &copy; 2025 Ten Softworks Inc.
-  </div>
+  <div class="slide-footer" style="color:rgba(255,255,255,0.3);">CONFIDENTIAL</div>
 </div>
 
-<!-- ========== SLIDE 2: 회사 개요 ========== -->
+<!-- ============================== -->
+<!-- SLIDE 2: 회사 개요              -->
+<!-- ============================== -->
 <div class="slide bg-white s2" id="slide-2">
   <div class="slide-header">
-    <div class="slide-header-left text-blue">TENSOFTWORKS</div>
-    <div class="slide-header-right text-muted">회사소개서</div>
+    <div class="slide-header-left" style="color:#3565f2;">COMPANY OVERVIEW</div>
+    <div class="slide-header-right"><img src="images/tensw_black.png" alt="TENSW" style="height:18px;"></div>
   </div>
-
-  <div style="padding:80px 80px 40px;">
-    <div class="section-badge badge-blue">Company Overview</div>
-    <div class="section-title text-dark">
-      <span class="highlight">AI</span>와 특허 <span class="highlight">CMS</span> 기술을 활용한 전문 기업
+  <div style="padding-top:16px;">
+    <div class="section-badge badge-outline">🏢 회사 개요</div>
+    <div class="section-title">1. 회사 개요</div>
+    <div class="section-desc">(주)텐소프트웍스 — CMS 특허 기술 기반 이커머스 &amp; AI 솔루션 전문 기업</div>
+  </div>
+  <div class="s2-grid">
+    <div class="card s2-info-card">
+      <table class="s2-table">
+        <tr><th>회사명</th><td>(주)텐소프트웍스 (Ten Softworks Inc.)</td></tr>
+        <tr><th>설립일</th><td>2018년 4월 26일</td></tr>
+        <tr><th>대표이사</th><td>김철형</td></tr>
+        <tr><th>본사 위치</th><td>서울특별시 강남구 영동대로118길 3, 3층 (삼성동)</td></tr>
+        <tr><th>기업유형</th><td>혁신성장유형 벤처기업, 기술등급 T-3</td></tr>
+        <tr><th>홈페이지</th><td>tsw.im / biblo.ai</td></tr>
+      </table>
     </div>
-    <div class="section-desc">
-      텐소프트웍스는 AI와 특허 CMS 기술을 활용하여 확장 가능한 플랫폼과 서비스를 개발하는 전문 기업입니다.
-    </div>
-
-    <div class="s2-grid">
-      <div class="card s2-info-card">
-        <table class="s2-table">
-          <tr><th>회사명</th><td>(주)텐소프트웍스 / Ten Softworks Inc.</td></tr>
-          <tr><th>설립</th><td>2019년</td></tr>
-          <tr><th>대표이사</th><td>김철형</td></tr>
-          <tr><th>소재지</th><td>서울시 강남구 봉은사로105길 54-5, 4층</td></tr>
-          <tr><th>인원</th><td>약 24명</td></tr>
-          <tr><th>기업유형</th><td>혁신성장형 벤처기업</td></tr>
-        </table>
-      </div>
-      <div class="card s2-info-card">
-        <table class="s2-table">
-          <tr><th>전화</th><td>02-563-1271</td></tr>
-          <tr><th>이메일</th><td>contact@tensoftworks.com</td></tr>
-          <tr><th>웹사이트</th><td>tensoftworks.com</td></tr>
-          <tr><th>사업자등록</th><td>828-88-00992</td></tr>
-          <tr><th>특허</th><td>CMS 기술 (제10-2358855호) 외 AI 검색 특허 보유</td></tr>
-        </table>
-      </div>
+    <div class="card s2-badges">
+      <div class="s2-badge-item s2-badge-blue">🔬 CMS 특허 기술 (국내/미국)</div>
+      <div class="s2-badge-item s2-badge-blue">🤖 AI 시맨틱 검색 엔진</div>
+      <div class="s2-badge-item s2-badge-green">🏪 이커머스 플랫폼</div>
+      <div class="s2-badge-item s2-badge-green">📦 B2B 판촉몰/입점형 쇼핑몰</div>
+      <div class="s2-badge-item s2-badge-amber">🏆 R&amp;D 혁신대상 2년 연속 수상</div>
+      <div class="s2-badge-item s2-badge-amber">📜 혁신성장형 벤처기업 인증</div>
     </div>
   </div>
-
-  <div class="card" style="margin:0 80px;border-radius:16px;">
-    <div class="s2-badges">
-      <div class="s2-badge-item s2-badge-blue">🏢 혁신성장형 벤처기업</div>
-      <div class="s2-badge-item s2-badge-green">🏆 문체부 장관상 2025</div>
-      <div class="s2-badge-item s2-badge-amber">🔬 CMS·AI 검색 특허 보유</div>
-      <div class="s2-badge-item s2-badge-blue">📊 R&D 혁신상 2년 연속 수상</div>
-      <div class="s2-badge-item s2-badge-green">🧪 기술평가 우수기업 T3</div>
-      <div class="s2-badge-item s2-badge-amber">🏛️ 기업부설연구소 보유</div>
-    </div>
-  </div>
-
-  <div class="slide-footer text-muted">&copy; Ten Softworks Inc.</div>
+  <div class="slide-footer" style="color:#ccc;">02</div>
 </div>
 
-<!-- ========== SLIDE 3: 핵심 사업 역량 ========== -->
+<!-- ============================== -->
+<!-- SLIDE 3: 핵심 기술 체계          -->
+<!-- ============================== -->
 <div class="slide bg-dark-photo s3" id="slide-3">
   <div class="slide-header">
-    <div class="slide-header-left">TENSOFTWORKS</div>
-    <div class="slide-header-right" style="color:rgba(255,255,255,0.5);">회사소개서</div>
+    <div class="slide-header-left">CORE TECHNOLOGY</div>
+    <div class="slide-header-right" style="color:rgba(255,255,255,0.6);">기술 진화 로드맵</div>
   </div>
-
-  <div class="s3-top">
-    <div class="section-badge badge-white">Core Competency</div>
-    <div class="s3-title">
-      <span style="color:#7eb3ff;">CMS 특허 기술</span>과 <span style="color:#7eb3ff;">AI</span> 기반의<br>확장 가능한 플랫폼 구축 역량
-    </div>
-    <div class="s3-subtitle">
-      텐소프트웍스는 CMS와 AI 기반 기술을 바탕으로, 맞춤형 인쇄 시스템, 지능형 학습 플랫폼,<br>
-      관광 및 학술정보 서비스까지 다양한 분야의 자동화·지능화를 지원합니다.
-    </div>
+  <div style="text-align:center;margin-bottom:8px;padding-top:16px;">
+    <div class="section-badge badge-white">⚙️ 핵심 기술</div>
+    <div style="font-size:28px;font-weight:800;color:#fff;margin-bottom:6px;">2. 핵심 기술 체계: CMS 기반 기술 진화</div>
+    <div style="font-size:14px;color:rgba(255,255,255,0.6);">모든 기술은 CMS 특허 기술을 뿌리로, 이커머스와 AI 솔루션으로 확장됩니다</div>
   </div>
-
-  <div class="s3-cards">
-    <div class="card s3-card">
-      <div class="s3-card-icon">🛒</div>
-      <h4>커머스 & CMS 솔루션</h4>
-      <p>CMS 특허 기술 기반의 웹 에디터, 주문형 상품 제작몰, 외부 커머스 연동 시스템을 구축합니다.</p>
-      <div class="s3-card-tags">
-        <span class="s3-card-tag">E-Commerce</span>
-        <span class="s3-card-tag">CMS 에디터</span>
-        <span class="s3-card-tag">주문 연동</span>
+  <div class="s3-roadmap">
+    <div class="s3-root">
+      <div class="s3-root-title">🌱 기술의 뿌리 — CMS 특허 기술 (2020~2022)</div>
+      <div class="s3-root-desc">코드블록(CODBLOCK) — 블록 기반 웹페이지 생성 솔루션<br>특허 제10-2358855호 (국내) / US 12,045,305 B2 (미국)</div>
+    </div>
+    <div class="s3-arrow">▼</div>
+    <div class="s3-branches">
+      <div class="s3-branch">
+        <div class="s3-branch-title">🛒 Branch 1 — 이커머스</div>
+        <ul class="s3-branch-list">
+          <li>셀렉트(SELEC7) 쇼핑 플랫폼</li>
+          <li>입점형 쇼핑몰 (KFA, KT알파)</li>
+          <li>전자결제시스템(PG) 연동</li>
+          <li>B2B 판촉몰 플랫폼</li>
+        </ul>
+      </div>
+      <div class="s3-branch">
+        <div class="s3-branch-title">🤖 Branch 2 — AI 솔루션</div>
+        <ul class="s3-branch-list">
+          <li>AI 시맨틱 검색엔진</li>
+          <li>AI 영상 생성 (Text-to-Video)</li>
+          <li>RAG 기반 문서 챗봇</li>
+          <li>학술정보 자동화 시스템</li>
+        </ul>
       </div>
     </div>
-    <div class="card s3-card">
-      <div class="s3-card-icon">🤖</div>
-      <h4>AI 학습·검색 플랫폼</h4>
-      <p>온톨로지 기반 지식 구조화와 하이브리드 검색 엔진으로 학술·도서관 AI 서비스를 제공합니다.</p>
-      <div class="s3-card-tags">
-        <span class="s3-card-tag">Biblo</span>
-        <span class="s3-card-tag">하이브리드 검색</span>
-        <span class="s3-card-tag">LLM</span>
+    <div class="s3-arrow">▼ AI 솔루션 상세 진화</div>
+    <div class="s3-ai-detail">
+      <div class="s3-ai-card">
+        <div class="s3-ai-card-icon">🔍</div>
+        <div class="s3-ai-card-name">Biblo (비블로)</div>
+        <div class="s3-ai-card-sub">AI 검색</div>
+        <div class="s3-ai-card-desc">시맨틱 도서 검색</div>
       </div>
-    </div>
-    <div class="card s3-card">
-      <div class="s3-card-icon">🎯</div>
-      <h4>리워드·캠페인 플랫폼</h4>
-      <p>포인트 기반 미션 시스템, 사용자 참여형 리워드 캠페인, 클라우드형 CMS 운영 체계를 구축합니다.</p>
-      <div class="s3-card-tags">
-        <span class="s3-card-tag">리워드</span>
-        <span class="s3-card-tag">캠페인</span>
-        <span class="s3-card-tag">포인트 적립</span>
+      <div class="s3-ai-card">
+        <div class="s3-ai-card-icon">🎬</div>
+        <div class="s3-ai-card-name">Text-to-Video</div>
+        <div class="s3-ai-card-sub">AI 영상</div>
+        <div class="s3-ai-card-desc">PDF→영상 · 논문 홍보</div>
+      </div>
+      <div class="s3-ai-card">
+        <div class="s3-ai-card-icon">💬</div>
+        <div class="s3-ai-card-name">Ragso (랙쏘)</div>
+        <div class="s3-ai-card-sub">AI 챗봇</div>
+        <div class="s3-ai-card-desc">RAG 문서 챗봇</div>
       </div>
     </div>
   </div>
-
-  <div class="s3-goal">
-    <p>"특허 CMS 기반의 플랫폼 오픈 및 API 중심 서비스 구축 전문 기업"</p>
-    <span>사용자 참여를 유도하는 리워드 기반 플랫폼과 외부 커머스 시스템 연동 역량 보유</span>
-  </div>
-
-  <div class="slide-footer" style="color:rgba(255,255,255,0.3);">&copy; Ten Softworks Inc.</div>
+  <div class="slide-footer" style="color:rgba(255,255,255,0.3);">03</div>
 </div>
 
-<!-- ========== SLIDE 4: 조직 및 인원 ========== -->
-<div class="slide bg-white s4" id="slide-4">
+<!-- ============================== -->
+<!-- SLIDE 4: 핵심 특허              -->
+<!-- ============================== -->
+<div class="slide bg-light s4" id="slide-4">
   <div class="slide-header">
-    <div class="slide-header-left text-blue">TENSOFTWORKS</div>
-    <div class="slide-header-right text-muted">회사소개서</div>
+    <div class="slide-header-left" style="color:#3565f2;">PATENTS</div>
+    <div class="slide-header-right"><img src="images/tensw_black.png" alt="TENSW" style="height:18px;"></div>
   </div>
-
-  <div style="padding:80px 80px 0;">
-    <div class="section-badge badge-outline">Organization</div>
-    <div class="section-title text-dark">
-      리더급 평균 <span class="highlight">23년 경력</span>의 기획능력과<br>
-      박사 학위 이상의 AI 사업 수행 능력
+  <div style="padding:16px 0 0;">
+    <div class="section-badge badge-outline">📜 특허</div>
+    <div class="section-title">2.2 핵심 특허 — 기술의 뿌리</div>
+    <div class="section-desc">CMS 특허 기술을 기반으로 국내·미국 특허를 보유하고 있으며, AI 분야 특허도 출원 중입니다</div>
+  </div>
+  <div class="s4-cards">
+    <div class="card s4-card">
+      <div class="s4-card-icon">🇰🇷</div>
+      <div class="s4-card-type">국내 특허 (2022)</div>
+      <div class="s4-card-number">제10-2358855호</div>
+      <div class="s4-card-name">웹 페이지를 생성하는<br>방법 및 장치</div>
+    </div>
+    <div class="card s4-card">
+      <div class="s4-card-icon">🇺🇸</div>
+      <div class="s4-card-type">미국 특허 (2024)</div>
+      <div class="s4-card-number">US 12,045,305 B2</div>
+      <div class="s4-card-name">Method and Apparatus for<br>Generating Web Page Using Blocks</div>
+    </div>
+    <div class="card s4-card">
+      <div class="s4-card-icon">🤖</div>
+      <div class="s4-card-type">AI 특허 (출원중)</div>
+      <div class="s4-card-number">2건 출원 진행 중</div>
+      <div class="s4-card-name">AI 연구자 매칭 등<br>AI 기술 관련 특허</div>
     </div>
   </div>
-
-  <div class="s4-layout" style="padding:0 80px;">
-    <div class="card s4-org-card">
-      <div class="s4-org-title">인원 구성</div>
-      <table class="org-table">
-        <thead>
-          <tr>
-            <th>구분</th>
-            <th>계</th>
-            <th>SI 개발</th>
-            <th>AI 개발</th>
-            <th>기획/관리</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>특급</td><td>5</td><td>2</td><td>2</td><td>1</td></tr>
-          <tr><td>고급</td><td>3</td><td>0</td><td>2</td><td>1</td></tr>
-          <tr><td>중급</td><td>6</td><td>5</td><td>0</td><td>1</td></tr>
-          <tr><td>초급</td><td>8</td><td>6</td><td>0</td><td>2</td></tr>
-          <tr><td>기타</td><td>2</td><td>0</td><td>0</td><td>2</td></tr>
-          <tr><td style="font-weight:700;">합계</td><td>24</td><td>13</td><td>4</td><td>7</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div>
-      <div class="s4-team-cards">
-        <div class="s4-team-card">
-          <div class="s4-team-icon s4-team-icon-blue">👤</div>
-          <div class="s4-team-info">
-            <h5>SI사업 사업부</h5>
-            <p>SI사업 1팀 · SI사업 2팀 — 커머스, CMS, 플랫폼 구축</p>
-          </div>
-        </div>
-        <div class="s4-team-card">
-          <div class="s4-team-icon s4-team-icon-purple">🔬</div>
-          <div class="s4-team-info">
-            <h5>AI 검색연구소</h5>
-            <p>온톨로지 구축, 하이브리드 검색, LLM 기반 AI 서비스</p>
-          </div>
-        </div>
-        <div class="s4-team-card">
-          <div class="s4-team-icon s4-team-icon-green">🎓</div>
-          <div class="s4-team-info">
-            <h5>산학협력본부 (성균관대학교)</h5>
-            <p>학술정보 서비스 연구 및 기술 협력</p>
-          </div>
-        </div>
-        <div class="s4-team-card">
-          <div class="s4-team-icon s4-team-icon-amber">📊</div>
-          <div class="s4-team-info">
-            <h5>투자·경영관리본부</h5>
-            <p>사업감리, 경영관리, 투자전략 수립</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide-footer text-muted">&copy; Ten Softworks Inc.</div>
+  <div class="slide-footer" style="color:#ccc;">04</div>
 </div>
 
-<!-- ========== SLIDE 5: 주요 수행 실적 목록 ========== -->
-<div class="slide bg-blue s5" id="slide-5">
+<!-- ============================== -->
+<!-- SLIDE 5: CMS 솔루션             -->
+<!-- ============================== -->
+<div class="slide bg-white s5" id="slide-5">
   <div class="slide-header">
-    <div class="slide-header-left" style="color:rgba(255,255,255,0.6);">TENSOFTWORKS</div>
-    <div class="slide-header-right" style="color:rgba(255,255,255,0.5);">회사소개서</div>
+    <div class="slide-header-left" style="color:#3565f2;">CMS SOLUTION</div>
+    <div class="slide-header-right"><img src="images/tensw_black.png" alt="TENSW" style="height:18px;"></div>
   </div>
-
-  <div style="padding:80px 80px 0;">
-    <div class="section-badge badge-white">Portfolio Overview</div>
-    <div class="section-title" style="color:#fff;">
-      '20~25 <span style="color:#ffd166;">AI · CMS</span> 기반 서비스 개발 실적
+  <div style="padding-top:16px;">
+    <div class="section-badge badge-outline">🧩 CMS</div>
+    <div class="section-title">3.1 CMS 기반 솔루션 — 코드블록(CODBLOCK)</div>
+    <div class="section-desc">페이지 디자인을 블록 리스트 형태로 제공하여 사용자가 자유롭게 조합하여 웹페이지를 구성할 수 있는 특허 기반 솔루션</div>
+  </div>
+  <div class="s5-layout">
+    <div class="card s5-card">
+      <div class="s5-card-title">핵심 기능</div>
+      <div class="s5-card-sub">블록 기반 웹페이지 생성의 3가지 핵심 기능</div>
+      <div class="s5-feature">
+        <div class="s5-feature-icon">🎨</div>
+        <div>
+          <div class="s5-feature-title">디자인 + 코드</div>
+          <div class="s5-feature-desc">코드로 작성된 디자인 블록과 결합하여 빠른 콘텐츠 편집</div>
+        </div>
+      </div>
+      <div class="s5-feature">
+        <div class="s5-feature-icon">⚙️</div>
+        <div>
+          <div class="s5-feature-title">커스텀 블록</div>
+          <div class="s5-feature-desc">사용자별 디자인 블록 설정으로 맞춤형 콘텐츠 편집/저장</div>
+        </div>
+      </div>
+      <div class="s5-feature">
+        <div class="s5-feature-icon">🚀</div>
+        <div>
+          <div class="s5-feature-title">자동 배포</div>
+          <div class="s5-feature-desc">별도 배포 과정 없이 바로 반응형 웹사이트로 동작</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-blue" style="padding:36px;display:flex;flex-direction:column;justify-content:center;">
+      <div style="font-size:48px;text-align:center;margin-bottom:20px;">🧱</div>
+      <div style="font-size:22px;font-weight:800;color:#3565f2;text-align:center;margin-bottom:12px;">CODBLOCK</div>
+      <div style="font-size:13px;color:#666;text-align:center;line-height:1.8;">
+        블록 리스트에서 원하는 디자인을 선택<br>
+        드래그 &amp; 드롭으로 자유롭게 조합<br>
+        즉시 반응형 웹사이트로 배포<br>
+        <br>
+        <span style="font-weight:700;color:#3565f2;">특허 제10-2358855호</span><br>
+        <span style="font-weight:700;color:#3565f2;">US 12,045,305 B2</span>
+      </div>
     </div>
   </div>
-
-  <div style="padding:16px 80px 0;">
-    <div class="card" style="padding:24px 28px;overflow:auto;">
-      <table class="performance-table">
-        <thead>
-          <tr>
-            <th style="width:240px;">사업명</th>
-            <th style="width:140px;">발주처</th>
-            <th style="width:160px;">개발 품목</th>
-            <th>주요 내용</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="font-weight:600;color:#333;">KT알파 Giftishow Biz 판촉몰</td>
-            <td>KTalpha</td>
-            <td><span class="case-tag" style="font-size:10px;">E-COMMERCE/CMS</span></td>
-            <td>CMS 기반 인쇄 편집기, 주문형 상품 제작몰 개발</td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#333;">배민 서빙로봇 CMS</td>
-            <td>(주)우아한형제들</td>
-            <td><span class="case-tag" style="font-size:10px;">CMS</span></td>
-            <td>서빙로봇 화면 관리 시스템, CMS 특허 기술 활용</td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#333;">크리에이터 굿즈 서비스</td>
-            <td>네이버 OGQ</td>
-            <td><span class="case-tag" style="font-size:10px;">E-COMMERCE/CMS</span></td>
-            <td>크리에이터 IP 기반 굿즈 제작/판매 플랫폼</td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#333;">배지콕콕 (대한민국 구석구석)</td>
-            <td>한국관광공사</td>
-            <td><span class="case-tag" style="font-size:10px;">DESIGN/GAME</span></td>
-            <td>미션 기반 관광 리워드 앱, 게이미피케이션</td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#333;">대한축구협회 입점형 쇼핑몰</td>
-            <td>(주)인터파크</td>
-            <td><span class="case-tag" style="font-size:10px;">E-COMMERCE</span></td>
-            <td>100만 동시접속 처리, B2B 입점형 쇼핑몰</td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#333;">갤럭시 스토어 광고 시스템</td>
-            <td>삼성전자</td>
-            <td><span class="case-tag" style="font-size:10px;">AD SYSTEM</span></td>
-            <td>CPI/CPC/CPM 광고 시스템 운영</td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#333;">네이버 포토앨범</td>
-            <td>네이버</td>
-            <td><span class="case-tag" style="font-size:10px;">CMS/EDITOR</span></td>
-            <td>사진 편집 및 PDF 변환 포토앨범 플랫폼</td>
-          </tr>
-          <tr>
-            <td style="font-weight:600;color:#333;">성균관대 비블로(Biblo) 도입</td>
-            <td>성균관대학교</td>
-            <td><span class="case-tag" style="font-size:10px;">AI PLATFORM</span></td>
-            <td>FRBR 기반 도서 온톨로지 AI 검색 플랫폼</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="slide-footer" style="color:rgba(255,255,255,0.3);">&copy; Ten Softworks Inc.</div>
+  <div class="slide-footer" style="color:#ccc;">05</div>
 </div>
 
-<!-- ========== SLIDE 6: 구축사례 - KT알파 ========== -->
-<div class="slide bg-white case-slide" id="slide-6">
+<!-- ============================== -->
+<!-- SLIDE 6: 이커머스 솔루션         -->
+<!-- ============================== -->
+<div class="slide bg-light s6" id="slide-6">
   <div class="slide-header">
-    <div class="slide-header-left text-blue">TENSOFTWORKS</div>
-    <div class="slide-header-right text-muted">구축사례</div>
+    <div class="slide-header-left" style="color:#3565f2;">E-COMMERCE</div>
+    <div class="slide-header-right"><img src="images/tensw_black.png" alt="TENSW" style="height:18px;"></div>
   </div>
-
-  <div style="padding:80px 80px 0;">
-    <div class="section-badge badge-outline">Case Study 01</div>
+  <div style="padding-top:16px;">
+    <div class="section-badge badge-outline">🛒 이커머스</div>
+    <div class="section-title">3.2 이커머스 솔루션</div>
+    <div class="section-desc">CMS 특허 기술을 기반으로 확장된 이커머스 플랫폼 — 셀렉트(SELEC7) &amp; B2B 입점형 쇼핑몰</div>
   </div>
-
-  <div class="case-layout" style="padding:16px 80px 0;">
-    <div class="case-info">
-      <div class="case-client">KTalpha — Giftishow Biz</div>
-      <h3>KT알파 기프티쇼비즈<br>판촉몰 개발</h3>
-      <p class="case-desc">
-        주문형 인쇄물 상품의 제작과정을 온라인에서 처리할 수 있는 CMS 기반 편집기 및 주문 시스템을 개발하였습니다.
-      </p>
-      <div class="case-features">
-        <div class="case-feature">
-          <div class="case-feature-icon">✏️</div>
-          <div>
-            <h5>CMS 기반 인쇄 편집기</h5>
-            <p>HTML5 기반 Fabric.js 커스터마이징 에디터, 텍스트·이미지·도형 삽입/정렬, 레이어 관리</p>
-          </div>
-        </div>
-        <div class="case-feature">
-          <div class="case-feature-icon">📦</div>
-          <div>
-            <h5>상품 주문 프로세스 연동</h5>
-            <p>편집 완료 → 제작 요청 → 발송 준비, PDF/PNG 서버 저장 후 주문 DB 매핑</p>
-          </div>
-        </div>
-        <div class="case-feature">
-          <div class="case-feature-icon">⚙️</div>
-          <div>
-            <h5>관리자 시스템</h5>
-            <p>주문 디자인 확인 및 출력용 파일 검수, 주문 상태별 관리 기능</p>
-          </div>
-        </div>
-      </div>
-      <div class="case-tags">
-        <span class="case-tag">E-Commerce</span>
-        <span class="case-tag">CMS 특허</span>
-        <span class="case-tag">Fabric.js</span>
-        <span class="case-tag">React</span>
-      </div>
-    </div>
-
-    <div class="case-visual">
-      <div class="case-mockup case-mockup-blue">
-        <div class="case-mockup-inner">
-          <div class="case-mockup-title">KT alpha</div>
-          <div class="case-mockup-sub">Giftishow Biz 판촉몰</div>
-          <div class="case-mockup-stats">
-            <div class="case-mockup-stat">
-              <div class="num">CMS</div>
-              <div class="label">특허 기술 적용</div>
-            </div>
-            <div class="case-mockup-stat">
-              <div class="num">B2B</div>
-              <div class="label">기업 판촉몰</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide-footer text-muted">&copy; Ten Softworks Inc.</div>
-</div>
-
-<!-- ========== SLIDE 7: 구축사례 - 배민 서빙로봇 ========== -->
-<div class="slide bg-light case-slide" id="slide-7">
-  <div class="slide-header">
-    <div class="slide-header-left text-blue">TENSOFTWORKS</div>
-    <div class="slide-header-right text-muted">구축사례</div>
-  </div>
-
-  <div style="padding:80px 80px 0;">
-    <div class="section-badge badge-outline">Case Study 02</div>
-  </div>
-
-  <div class="case-layout" style="padding:16px 80px 0;">
-    <div class="case-visual">
-      <div class="case-mockup case-mockup-dark">
-        <div class="case-mockup-inner">
-          <div class="case-mockup-title">배민 서빙로봇</div>
-          <div class="case-mockup-sub">CMS 프로그램 개발</div>
-          <div class="case-mockup-stats">
-            <div class="case-mockup-stat">
-              <div class="num">CMS</div>
-              <div class="label">특허기술 활용</div>
-            </div>
-            <div class="case-mockup-stat">
-              <div class="num">Cloud</div>
-              <div class="label">클라우드 기반</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-info">
-      <div class="case-client">(주)우아한형제들</div>
-      <h3>배민 서빙로봇<br>CMS 프로그램 개발</h3>
-      <p class="case-desc">
-        배달의 민족 서빙 로봇의 화면을 꾸미는 시스템을 구축하였습니다. CMS 특허 기술과 클라우드 기술을 활용하여 대규모 트래픽에도 안정적인 시스템을 구현했습니다.
-      </p>
-      <div class="case-features">
-        <div class="case-feature">
-          <div class="case-feature-icon">🤖</div>
-          <div>
-            <h5>CMS 특허기술 활용</h5>
-            <p>미디어 파일 웹 캐싱 기술, 로컬 캐시 로드로 빠른 속도 구현</p>
-          </div>
-        </div>
-        <div class="case-feature">
-          <div class="case-feature-icon">🎨</div>
-          <div>
-            <h5>UI/UX 최적화</h5>
-            <p>사용자 빈도 높은 기능 중심 인터페이스, 사용자 경험 최적화</p>
-          </div>
-        </div>
-        <div class="case-feature">
-          <div class="case-feature-icon">☁️</div>
-          <div>
-            <h5>클라우드 기술</h5>
-            <p>대규모 트래픽 처리, 시스템 안정성·확장성 확보</p>
-          </div>
-        </div>
-      </div>
-      <div class="case-tags">
-        <span class="case-tag">CMS 특허</span>
-        <span class="case-tag">Cloud</span>
-        <span class="case-tag">IoT</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide-footer text-muted">&copy; Ten Softworks Inc.</div>
-</div>
-
-<!-- ========== SLIDE 8: 구축사례 - 한국관광공사 ========== -->
-<div class="slide bg-white case-slide" id="slide-8">
-  <div class="slide-header">
-    <div class="slide-header-left text-blue">TENSOFTWORKS</div>
-    <div class="slide-header-right text-muted">구축사례</div>
-  </div>
-
-  <div style="padding:80px 80px 0;">
-    <div class="section-badge badge-outline">Case Study 03</div>
-  </div>
-
-  <div class="case-layout" style="padding:16px 80px 0;">
-    <div class="case-info">
-      <div class="case-client">한국관광공사 — 대한민국 구석구석</div>
-      <h3>배지콕콕<br>관광 리워드 플랫폼</h3>
-      <p class="case-desc">
-        "대한민국 곳곳이 게임 필드로 변신했습니다! 대한민국을 누비며 미션을 완료하고, 친구들에게 아이템을 과시하세요. 게임처럼 즐기는 여행, 지금 시작하세요!"
-      </p>
-      <div class="case-features">
-        <div class="case-feature">
-          <div class="case-feature-icon">🏅</div>
-          <div>
-            <h5>미션 기반 배지 수집</h5>
-            <p>테마여행지 방문 시 발도장(배지) 적립, 구석구석 이벤트 도전</p>
-          </div>
-        </div>
-        <div class="case-feature">
-          <div class="case-feature-icon">🎮</div>
-          <div>
-            <h5>게이미피케이션</h5>
-            <p>퀘스트 참여 시 자동 포인트 적립, 스탬프 생성, 보상 교환</p>
-          </div>
-        </div>
-        <div class="case-feature">
-          <div class="case-feature-icon">📬</div>
-          <div>
-            <h5>여행구독 서비스</h5>
-            <p>테마이벤트 구독, 캠페인 기반 클라우드형 CMS 운영</p>
-          </div>
-        </div>
-      </div>
-      <div class="case-tags">
-        <span class="case-tag">Gamification</span>
-        <span class="case-tag">Reward</span>
-        <span class="case-tag">Tourism</span>
-        <span class="case-tag">Campaign CMS</span>
-      </div>
-    </div>
-
-    <div class="case-visual">
-      <div class="case-mockup case-mockup-green">
-        <div class="case-mockup-inner">
-          <div class="case-mockup-title">배지콕콕</div>
-          <div class="case-mockup-sub">대한민국 구석구석</div>
-          <div class="case-mockup-stats">
-            <div class="case-mockup-stat">
-              <div class="num">미션</div>
-              <div class="label">퀘스트 기반</div>
-            </div>
-            <div class="case-mockup-stat">
-              <div class="num">리워드</div>
-              <div class="label">포인트 적립</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide-footer text-muted">&copy; Ten Softworks Inc.</div>
-</div>
-
-<!-- ========== SLIDE 9: 구축사례 - 대한축구협회 ========== -->
-<div class="slide bg-light case-slide" id="slide-9">
-  <div class="slide-header">
-    <div class="slide-header-left text-blue">TENSOFTWORKS</div>
-    <div class="slide-header-right text-muted">구축사례</div>
-  </div>
-
-  <div style="padding:80px 80px 0;">
-    <div class="section-badge badge-outline">Case Study 04</div>
-  </div>
-
-  <div class="case-layout" style="padding:16px 80px 0;">
-    <div class="case-visual">
-      <div class="case-mockup case-mockup-orange">
-        <div class="case-mockup-inner">
-          <div class="case-mockup-title">KFA SHOP</div>
-          <div class="case-mockup-sub">대한축구협회 입점형 쇼핑몰</div>
-          <div class="case-mockup-stats">
-            <div class="case-mockup-stat">
-              <div class="num">100만+</div>
-              <div class="label">동시 접속</div>
-            </div>
-            <div class="case-mockup-stat">
-              <div class="num">B2B</div>
-              <div class="label">입점형 몰</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-info">
-      <div class="case-client">(주)인터파크 — 대한축구협회</div>
-      <h3>100만 동시접속<br>입점형 쇼핑몰 구축</h3>
-      <p class="case-desc">
-        코로나 이후 첫 현장경기이자 국가대표 경기의 예매사이트에 100만명 동시 접속자 처리가 가능한 입점형 쇼핑몰을 구축하였습니다.
-      </p>
-      <div class="case-features">
-        <div class="case-feature">
-          <div class="case-feature-icon">🏪</div>
-          <div>
-            <h5>입점사 관리 기능</h5>
-            <p>신청서 심사, 승인/거절 결정, 회사 정보 자동 업데이트</p>
-          </div>
-        </div>
-        <div class="case-feature">
-          <div class="case-feature-icon">💰</div>
-          <div>
-            <h5>견적·주문·결제 시스템</h5>
-            <p>견적 주고받기/확정, 후불제, 배송 API 연동, 명함 등록</p>
-          </div>
-        </div>
-        <div class="case-feature">
-          <div class="case-feature-icon">🔍</div>
-          <div>
-            <h5>SEO & 대규모 트래픽</h5>
-            <p>검색엔진 최적화, 100만 동시접속 안정 처리</p>
-          </div>
-        </div>
-      </div>
-      <div class="case-tags">
-        <span class="case-tag">E-Commerce</span>
-        <span class="case-tag">B2B</span>
-        <span class="case-tag">High Traffic</span>
-        <span class="case-tag">SEO</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="slide-footer text-muted">&copy; Ten Softworks Inc.</div>
-</div>
-
-<!-- ========== SLIDE 10: 대표 제품 - 비블로 ========== -->
-<div class="slide s10" id="slide-10">
-  <div class="slide-header" style="z-index:20;">
-    <div class="slide-header-left" style="color:rgba(255,255,255,0.5);">TENSOFTWORKS</div>
-    <div class="slide-header-right text-muted">대표 제품</div>
-  </div>
-
-  <div class="s10-visual bg-blue-deep">
-    <div class="s10-visual-inner">
-      <img src="images/biblo_white.png" alt="Biblo" class="s10-logo">
-      <div class="s10-visual-sub">FRBR 기반 도서 온톨로지 AI 검색 플랫폼</div>
-      <div class="s10-stats">
-        <div class="s10-stat">
-          <div class="num">34만+</div>
-          <div class="label">도서 수</div>
-        </div>
-        <div class="s10-stat">
-          <div class="num">32만+</div>
-          <div class="label">작품 수</div>
-        </div>
-        <div class="s10-stat">
-          <div class="num">415만+</div>
-          <div class="label">의미 관계</div>
-        </div>
-      </div>
-    </div>
-    <div style="position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,0.04);top:-80px;right:-60px;"></div>
-    <div style="position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.03);bottom:-50px;left:-40px;"></div>
-  </div>
-
-  <div class="s10-info">
-    <div class="tagline">대표 제품 — 도서관의 미래를 바꾸다</div>
-    <h2>비블로(Biblo)</h2>
-    <div class="s10-detail">
-      <h4>서비스 특징</h4>
-      <ul>
-        <li>FRBR 국제 표준 기반 도서 온톨로지 구축</li>
-        <li>약 34만 권 도서를 32만 개 작품으로 체계적 구조화</li>
-        <li>약 415만 개 의미 관계를 통한 지식 그래프 검색</li>
+  <div class="s6-grid">
+    <div class="card s6-card">
+      <div style="display:inline-block;padding:4px 12px;border-radius:8px;background:#3565f2;color:#fff;font-size:11px;font-weight:700;margin-bottom:12px;">SELEC7</div>
+      <div class="s6-card-title">셀렉트(SELEC7) 쇼핑 커뮤니티 플랫폼</div>
+      <div class="s6-card-sub">큐레이터가 자신의 채널에 추천 상품을 등록하고, 운영사가 판매 오퍼레이션을 대행하는 플랫폼</div>
+      <ul class="s6-list">
+        <li>사용자별 웹사이트 자동생성</li>
+        <li>판매상품 정보 등록 및 관리</li>
+        <li>장바구니, 결제 및 주문관리</li>
+        <li>SNS 스타일 상품피드</li>
       </ul>
     </div>
-    <div class="s10-detail">
-      <h4>주요 기능</h4>
-      <ul>
-        <li>AI 학술 검색 — 의미 기반 정밀 도서 탐색</li>
-        <li>논문 요약 — AI 자동 분석 및 핵심 요약</li>
-        <li>다국어 MCP 챗봇 — 음성 인식 AI 어시스턴트</li>
-        <li>메타데이터 자동 생성 — LLM 기반 의미 태깅</li>
-      </ul>
-    </div>
-    <div class="s10-detail">
-      <h4>도입 사례</h4>
-      <ul>
-        <li>성균관대학교 학술정보관 (2025)</li>
+    <div class="card s6-card">
+      <div style="display:inline-block;padding:4px 12px;border-radius:8px;background:#d97706;color:#fff;font-size:11px;font-weight:700;margin-bottom:12px;">B2B</div>
+      <div class="s6-card-title">B2B 입점형 쇼핑몰/판촉몰</div>
+      <div class="s6-card-sub">기업 고객 대상 입점형 플랫폼 — KT알파, 대한축구협회 등 대형 고객사 구축 완료</div>
+      <ul class="s6-list">
+        <li>셀러시스템(SCM), 관리자시스템(BO), 사용자시스템(FO)</li>
+        <li>PG 연동 및 자동수익정산 시스템</li>
+        <li>시안 편집용 CMS 기능 탑재</li>
       </ul>
     </div>
   </div>
-
-  <div class="slide-footer text-muted">&copy; Ten Softworks Inc.</div>
+  <div class="slide-footer" style="color:#ccc;">06</div>
 </div>
 
-<!-- ========== SLIDE 11: 수상 및 인증 ========== -->
-<div class="slide bg-white s11" id="slide-11">
+<!-- ============================== -->
+<!-- SLIDE 7: AI 솔루션 개요          -->
+<!-- ============================== -->
+<div class="slide bg-dark-photo s7" id="slide-7">
   <div class="slide-header">
-    <div class="slide-header-left text-blue">TENSOFTWORKS</div>
-    <div class="slide-header-right text-muted">회사소개서</div>
+    <div class="slide-header-left">AI SOLUTIONS</div>
+    <div class="slide-header-right" style="color:rgba(255,255,255,0.6);">3.3 AI 솔루션</div>
   </div>
-
-  <div style="padding:80px 80px 0;">
-    <div class="section-badge badge-outline">Achievements</div>
-    <div class="section-title text-dark">
-      수상 및 <span class="highlight">주요 인증</span>
+  <div style="text-align:center;padding-top:20px;">
+    <div class="section-badge badge-white">🤖 AI</div>
+    <div style="font-size:30px;font-weight:800;color:#fff;margin-bottom:6px;">3.3 AI 솔루션 — 3가지 핵심 영역</div>
+    <div style="font-size:14px;color:rgba(255,255,255,0.6);">검색 → 영상 → 챗봇으로 이어지는 End-to-End AI 솔루션</div>
+  </div>
+  <div class="s7-flow">
+    <div class="s7-flow-card">
+      <div class="s7-flow-icon">🔍</div>
+      <div class="s7-flow-name">AI 검색</div>
+      <div class="s7-flow-en">Biblo (비블로)</div>
+      <div class="s7-flow-desc">시맨틱 검색과 AI 챗봇을 결합한 통합 도서관 솔루션. 국내 최초 대학 학술정보관에 실제 적용. 질문의 맥락을 이해하는 시맨틱 검색 제공.</div>
+    </div>
+    <div class="s7-flow-arrow">→</div>
+    <div class="s7-flow-card">
+      <div class="s7-flow-icon">🎬</div>
+      <div class="s7-flow-name">AI 영상</div>
+      <div class="s7-flow-en">Text-to-Video</div>
+      <div class="s7-flow-desc">PDF 문서에서 텍스트를 추출하여 AI가 영상을 자동 생성. 논문·보고서를 기반으로 요약·자막·시각 자료가 포함된 홍보 영상 제작.</div>
+    </div>
+    <div class="s7-flow-arrow">→</div>
+    <div class="s7-flow-card">
+      <div class="s7-flow-icon">💬</div>
+      <div class="s7-flow-name">AI 챗봇</div>
+      <div class="s7-flow-en">Ragso (랙쏘)</div>
+      <div class="s7-flow-desc">스크립트 한 줄로 웹사이트에 삽입 가능한 RAG 기반 챗봇. 문서 업로드 시 AI가 자동 학습하고 답변을 제공.</div>
     </div>
   </div>
-
-  <div class="s11-grid" style="padding:0 80px;">
-    <div class="card s11-section">
-      <div class="s11-section-title">수상 & 인증</div>
-      <div class="s11-item">
-        <div class="s11-icon s11-icon-gold">🏆</div>
-        <div>
-          <h5>문화체육관광부 장관상 (2025)</h5>
-          <p>제19회 도서관 혁신 아이디어 공모전 수상</p>
-        </div>
-      </div>
-      <div class="s11-item">
-        <div class="s11-icon s11-icon-gold">🏅</div>
-        <div>
-          <h5>R&D 혁신상 2년 연속 대상</h5>
-          <p>2023년, 2024년 대한민국 리딩 기업 R&D혁신 대상</p>
-        </div>
-      </div>
-      <div class="s11-item">
-        <div class="s11-icon s11-icon-blue">✅</div>
-        <div>
-          <h5>혁신성장형 벤처기업 인증</h5>
-          <p>기술 혁신 기반 성장 기업 인증 (2025~2028)</p>
-        </div>
-      </div>
-      <div class="s11-item">
-        <div class="s11-icon s11-icon-green">🧪</div>
-        <div>
-          <h5>기술평가 우수기업 T3</h5>
-          <p>기술등급 T3 인증, 기업부설연구소 보유</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="card s11-section">
-      <div class="s11-section-title">특허 & 지적재산</div>
-      <div class="s11-item">
-        <div class="s11-icon s11-icon-blue">📋</div>
-        <div>
-          <h5>CMS 기술 특허 (등록)</h5>
-          <p>웹페이지를 생성하는 방법 및 장치 — 제10-2358855호</p>
-        </div>
-      </div>
-      <div class="s11-item">
-        <div class="s11-icon s11-icon-green">📋</div>
-        <div>
-          <h5>AI 에이전트 질의응답 특허 (출원)</h5>
-          <p>AI 에이전트 질의응답 기반 서비스 제공 장치, 방법 및 프로그램</p>
-        </div>
-      </div>
-      <div class="s11-item">
-        <div class="s11-icon s11-icon-blue">📋</div>
-        <div>
-          <h5>AI 검색·온톨로지 특허 (출원)</h5>
-          <p>도서 온톨로지 기반 하이브리드 AI 검색 기술</p>
-        </div>
-      </div>
-      <div class="s11-item">
-        <div class="s11-icon s11-icon-green">🌐</div>
-        <div>
-          <h5>미국 특허 등록</h5>
-          <p>해외 특허 등록 완료 — 글로벌 IP 확보</p>
-        </div>
-      </div>
+  <div style="text-align:center;margin-top:28px;">
+    <div style="display:inline-flex;gap:24px;">
+      <div class="badge badge-white">✅ 온프레미스 / SaaS 모두 지원</div>
+      <div class="badge badge-white">✅ End-to-End 통합 솔루션</div>
+      <div class="badge badge-white">✅ 성균관대 학술정보관 적용</div>
     </div>
   </div>
-
-  <div class="slide-footer text-muted">&copy; Ten Softworks Inc.</div>
+  <div class="slide-footer" style="color:rgba(255,255,255,0.3);">07</div>
 </div>
 
-<!-- ========== SLIDE 12: 기술 역량 ========== -->
-<div class="slide bg-dark s12" id="slide-12">
+<!-- ============================== -->
+<!-- SLIDE 8: AI 검색 — Biblo        -->
+<!-- ============================== -->
+<div class="slide bg-white s8" id="slide-8">
   <div class="slide-header">
-    <div class="slide-header-left" style="color:rgba(255,255,255,0.5);">TENSOFTWORKS</div>
-    <div class="slide-header-right" style="color:rgba(255,255,255,0.4);">회사소개서</div>
+    <div class="slide-header-left" style="color:#3565f2;">AI SEARCH — BIBLO</div>
+    <div class="slide-header-right"><img src="images/biblo_black.png" alt="Biblo" style="height:22px;"></div>
   </div>
-
-  <div style="padding:80px 80px 0;">
-    <div class="section-badge badge-white">Tech Stack</div>
-    <div class="section-title" style="color:#fff;">
-      기술 <span style="color:#7eb3ff;">역량</span>
-    </div>
-    <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">
-      특허 CMS 기술과 AI를 결합한 텐소프트웍스의 핵심 기술
-    </div>
+  <div style="padding-top:16px;">
+    <div class="section-badge badge-blue" style="color:#fff;">🔍 AI 검색</div>
+    <div class="section-title">① Biblo (비블로)</div>
+    <div class="section-desc">시맨틱 검색과 AI 챗봇을 결합한 통합 도서관 솔루션 — 국내 최초 대학 학술정보관 실적용</div>
   </div>
-
-  <div class="s12-grid" style="padding:0 80px;margin-top:32px;">
-    <div class="card-glass s12-card">
-      <div class="s12-card-icon" style="background:rgba(99,102,241,0.25);color:#818cf8;">🏗️</div>
-      <h4>CMS 특허 기술</h4>
-      <p>웹페이지 생성 특허(제10-2358855호) 기반 CMS 솔루션. Fabric.js 에디터, 미디어 캐싱, PDF 렌더링.</p>
-    </div>
-    <div class="card-glass s12-card">
-      <div class="s12-card-icon" style="background:rgba(34,197,94,0.25);color:#4ade80;">🤖</div>
-      <h4>LLM 기반 AI 분석</h4>
-      <p>대규모 언어 모델 활용 자동 분석, 요약, 의미 메타데이터 생성. 도메인 특화 sLLM 훈련.</p>
-    </div>
-    <div class="card-glass s12-card">
-      <div class="s12-card-icon" style="background:rgba(59,130,246,0.25);color:#60a5fa;">🔍</div>
-      <h4>하이브리드 검색 엔진</h4>
-      <p>논리 기반 검색(Logic)과 벡터 유사도 검색(Vector)의 결합으로 최적의 검색 품질 구현.</p>
-    </div>
-    <div class="card-glass s12-card">
-      <div class="s12-card-icon" style="background:rgba(244,63,94,0.25);color:#fb7185;">💬</div>
-      <h4>MCP 기반 AI 챗봇</h4>
-      <p>MCP 프로토콜 기반 다국어 AI 챗봇. 음성 인식 연동 및 도메인 맞춤 대화 시스템.</p>
-    </div>
-    <div class="card-glass s12-card">
-      <div class="s12-card-icon" style="background:rgba(245,158,11,0.25);color:#fbbf24;">🌐</div>
-      <h4>웹 풀스택 개발</h4>
-      <p>React, Node.js, Java 기반 풀스택 개발. 기획-디자인-프론트-백엔드 전체 라이프사이클.</p>
-    </div>
-    <div class="card-glass s12-card">
-      <div class="s12-card-icon" style="background:rgba(168,85,247,0.25);color:#c084fc;">⚙️</div>
-      <h4>데이터 파이프라인</h4>
-      <p>대규모 데이터 수집, 전처리, 변환, 적재. 온톨로지 기반 지식 구조화 자동화.</p>
+  <div class="s8-layout">
+    <ul class="s8-feature-list">
+      <li class="s8-feature-item">
+        <div class="s8-icon">🧠</div>
+        <div>
+          <div class="s8-feature-title">시맨틱 검색</div>
+          <div class="s8-feature-desc">질문의 맥락을 이해하는 시맨틱 검색 — 기존 키워드 검색과 병행 가능</div>
+        </div>
+      </li>
+      <li class="s8-feature-item">
+        <div class="s8-icon">⚡</div>
+        <div>
+          <div class="s8-feature-title">자동화된 메타데이터 파이프라인</div>
+          <div class="s8-feature-desc">도서·학술자료의 메타데이터를 자동으로 생성하고 관리하는 파이프라인</div>
+        </div>
+      </li>
+      <li class="s8-feature-item">
+        <div class="s8-icon">🔗</div>
+        <div>
+          <div class="s8-feature-title">외부 API 연계 확장성</div>
+          <div class="s8-feature-desc">다양한 외부 서비스와 연동하여 기능을 확장할 수 있는 유연한 아키텍처</div>
+        </div>
+      </li>
+    </ul>
+    <div class="card s8-case">
+      <div class="s8-case-label">CASE STUDY</div>
+      <div class="s8-case-title">성균관대학교 학술정보관</div>
+      <div class="s8-case-desc">
+        국내 최초로 대학 학술정보관에 AI 시맨틱 검색을 실적용한 사례입니다.<br><br>
+        기존 키워드 기반 검색의 한계를 넘어, 질문의 의미를 파악하여 관련 도서·학술자료를 정확하게 추천합니다.<br><br>
+        <span style="color:#3565f2;font-weight:700;">AI 기반 학술정보관 웹사이트 개선 프로젝트</span>
+      </div>
     </div>
   </div>
-
-  <div class="slide-footer" style="color:rgba(255,255,255,0.2);">&copy; Ten Softworks Inc.</div>
+  <div class="slide-footer" style="color:#ccc;">08</div>
 </div>
 
-<!-- ========== SLIDE 13: 마무리 ========== -->
-<div class="slide bg-blue-deep s13" id="slide-13">
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
+<!-- ============================== -->
+<!-- SLIDE 9: AI 영상 — Text-to-Video -->
+<!-- ============================== -->
+<div class="slide bg-dark-photo s9" id="slide-9">
   <div class="slide-header">
-    <div class="slide-header-left" style="color:rgba(255,255,255,0.4);">TENSOFTWORKS</div>
+    <div class="slide-header-left">AI VIDEO — TEXT-TO-VIDEO</div>
+    <div class="slide-header-right" style="color:rgba(255,255,255,0.6);"><img src="images/tensw_white.png" alt="TENSW" style="height:18px;"></div>
   </div>
-
-  <div class="s13-content">
-    <img src="images/tensw_white.png" alt="TENSW" class="s13-logo">
-    <div class="s13-title">텐소프트웍스</div>
-    <div class="s13-tagline">AI 플랫폼, 커머스, CMS 서비스의 혁신을 주도합니다</div>
-    <div class="s13-divider"></div>
-    <div class="s13-contacts">
-      <div class="s13-contact">
-        <div class="label">Address</div>
-        <div class="value">서울시 강남구 봉은사로105길 54-5, 4층</div>
+  <div style="padding-top:16px;">
+    <div class="section-badge badge-white">🎬 AI 영상</div>
+    <div style="font-size:30px;font-weight:800;color:#fff;margin-bottom:6px;">② Text-to-Video</div>
+    <div style="font-size:14px;color:rgba(255,255,255,0.6);">PDF 문서에서 텍스트를 추출하여 AI가 영상을 자동 생성하는 솔루션</div>
+  </div>
+  <div class="s9-layout">
+    <div class="s9-steps">
+      <div class="s9-step">
+        <div class="s9-step-num">1</div>
+        <div>
+          <div class="s9-step-title">PDF 기반 자동 영상화</div>
+          <div class="s9-step-desc">논문·보고서 PDF에서 핵심 내용을 자동으로 추출하여 영상 시나리오를 생성합니다</div>
+        </div>
       </div>
-      <div class="s13-contact">
-        <div class="label">Phone</div>
-        <div class="value">02-563-1271</div>
+      <div class="s9-step">
+        <div class="s9-step-num">2</div>
+        <div>
+          <div class="s9-step-title">요약·자막·시각 자료 자동 생성</div>
+          <div class="s9-step-desc">AI가 핵심 요약, 자막, 시각적 자료를 자동으로 생성하여 전문적인 홍보 영상을 제작합니다</div>
+        </div>
       </div>
-      <div class="s13-contact">
-        <div class="label">Email</div>
-        <div class="value"><a href="mailto:contact@tensoftworks.com">contact@tensoftworks.com</a></div>
+      <div class="s9-step">
+        <div class="s9-step-num">3</div>
+        <div>
+          <div class="s9-step-title">전문 홍보 영상 완성</div>
+          <div class="s9-step-desc">연구 성과를 효과적으로 알릴 수 있는 고품질 영상 콘텐츠가 자동으로 완성됩니다</div>
+        </div>
       </div>
-      <div class="s13-contact">
-        <div class="label">Web</div>
-        <div class="value"><a href="https://tensoftworks.com">tensoftworks.com</a></div>
+    </div>
+    <div class="s9-case-card">
+      <div class="s9-case-label">CASE STUDY</div>
+      <div class="s9-case-title">성균관대학교<br>AI 연구논문홍보시스템</div>
+      <div class="s9-case-desc">
+        연구자가 논문 PDF를 업로드하면, AI가 자동으로 핵심 내용을 분석하여 홍보 영상을 생성합니다.<br><br>
+        연구 성과의 확산과 홍보를 자동화하여 연구자의 부담을 대폭 줄여줍니다.
       </div>
     </div>
   </div>
+  <div class="slide-footer" style="color:rgba(255,255,255,0.3);">09</div>
+</div>
 
-  <div class="slide-footer" style="color:rgba(255,255,255,0.25);">
-    &copy; 2025 Ten Softworks Inc. All rights reserved.
+<!-- ============================== -->
+<!-- SLIDE 10: AI 챗봇 — Ragso       -->
+<!-- ============================== -->
+<div class="slide bg-white s10" id="slide-10">
+  <div class="slide-header">
+    <div class="slide-header-left" style="color:#3565f2;">AI CHATBOT — RAGSO</div>
+    <div class="slide-header-right"><img src="images/tensw_black.png" alt="TENSW" style="height:18px;"></div>
   </div>
+  <div style="padding-top:16px;">
+    <div class="section-badge badge-blue" style="color:#fff;">💬 AI 챗봇</div>
+    <div class="section-title">③ Ragso (랙쏘)</div>
+    <div class="section-desc">스크립트 한 줄로 웹사이트에 삽입할 수 있는 RAG(Retrieval-Augmented Generation) 기반 챗봇</div>
+  </div>
+  <div class="s10-layout">
+    <div class="s10-features">
+      <div class="s10-feat">
+        <div class="s10-feat-icon">📄</div>
+        <div class="s10-feat-title">자동 학습</div>
+        <div class="s10-feat-desc">문서 업로드 시 AI가 자동으로 내용을 학습하고 답변 제공</div>
+      </div>
+      <div class="s10-feat">
+        <div class="s10-feat-icon">🔄</div>
+        <div class="s10-feat-title">최신 정보 반영</div>
+        <div class="s10-feat-desc">별도 학습 없이 최신 정보를 실시간으로 반영 가능</div>
+      </div>
+      <div class="s10-feat">
+        <div class="s10-feat-icon">🤝</div>
+        <div class="s10-feat-title">고객 응대 자동화</div>
+        <div class="s10-feat-desc">고객 응대, 내부 지식 검색을 자동화하여 업무 효율 향상</div>
+      </div>
+      <div class="s10-feat">
+        <div class="s10-feat-icon">🏛️</div>
+        <div class="s10-feat-title">도서관 서비스</div>
+        <div class="s10-feat-desc">좌석 예약, 도서 대출, 이용시간 안내 등 서비스 자동화</div>
+      </div>
+    </div>
+    <div class="card s10-right-card">
+      <div style="font-size:14px;font-weight:700;color:#222;margin-bottom:12px;">간편한 설치 — 스크립트 한 줄</div>
+      <div class="s10-code">
+        <span class="tag">&lt;script</span> <span class="attr">src</span>=<span style="color:#a5d6a7;">"ragso.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+      </div>
+      <div style="font-size:14px;font-weight:700;color:#222;margin-bottom:12px;">활용 사례</div>
+      <ul class="s10-use-cases">
+        <li>고객 문의 자동 응대</li>
+        <li>내부 지식 검색 자동화</li>
+        <li>도서관 좌석 예약·대출 안내</li>
+        <li>기업 FAQ 및 매뉴얼 질의응답</li>
+      </ul>
+    </div>
+  </div>
+  <div class="slide-footer" style="color:#ccc;">10</div>
+</div>
+
+<!-- ============================== -->
+<!-- SLIDE 11: 기술 레퍼런스 - AI     -->
+<!-- ============================== -->
+<div class="slide bg-white ref-slide" id="slide-11">
+  <div class="slide-header">
+    <div class="slide-header-left" style="color:#3565f2;">REFERENCES — AI</div>
+    <div class="slide-header-right"><img src="images/tensw_black.png" alt="TENSW" style="height:18px;"></div>
+  </div>
+  <div style="padding-top:16px;">
+    <div class="section-badge badge-blue" style="color:#fff;">📋 레퍼런스</div>
+    <div class="section-title">4.1 기술 레퍼런스 — AI 솔루션 프로젝트</div>
+    <div class="section-desc">AI 기술 기반으로 수행한 주요 프로젝트 실적입니다</div>
+  </div>
+  <table class="ref-table">
+    <thead>
+      <tr style="color:#333;">
+        <th style="width:180px;">고객사</th>
+        <th>프로젝트명</th>
+        <th style="width:200px;">AI 기술 유형</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ref-client">성균관대 학술정보관</td>
+        <td>AI 기반 학술정보관 웹사이트 개선</td>
+        <td><span class="ref-type-badge ref-type-ai">AI 검색</span> <span class="ref-type-badge ref-type-ai">챗봇</span></td>
+      </tr>
+      <tr>
+        <td class="ref-client">성균관대학교</td>
+        <td>AI 연구논문홍보시스템 구축</td>
+        <td><span class="ref-type-badge ref-type-ai">AI 영상 생성</span></td>
+      </tr>
+      <tr>
+        <td class="ref-client">중소벤처기업부</td>
+        <td>생성형 AI 기반 관광퀴즈 게임플랫폼 R&amp;D</td>
+        <td><span class="ref-type-badge ref-type-ai">생성형 AI</span></td>
+      </tr>
+      <tr>
+        <td class="ref-client">대치 KNS어학원</td>
+        <td>AI 교육플랫폼(LMS) 개발</td>
+        <td><span class="ref-type-badge ref-type-ai">AI 학습평가</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:24px;display:flex;gap:16px;">
+    <div class="badge badge-outline">총 4건의 AI 프로젝트</div>
+    <div class="badge badge-outline">검색 · 영상 · 챗봇 · 교육 등 다양한 AI 적용</div>
+  </div>
+  <div class="slide-footer" style="color:#ccc;">11</div>
+</div>
+
+<!-- ============================== -->
+<!-- SLIDE 12: 기술 레퍼런스 - 이커머스 -->
+<!-- ============================== -->
+<div class="slide bg-light ref-slide" id="slide-12">
+  <div class="slide-header">
+    <div class="slide-header-left" style="color:#3565f2;">REFERENCES — E-COMMERCE / CMS</div>
+    <div class="slide-header-right"><img src="images/tensw_black.png" alt="TENSW" style="height:18px;"></div>
+  </div>
+  <div style="padding-top:16px;">
+    <div class="section-badge badge-outline">📋 레퍼런스</div>
+    <div class="section-title">4.2 기술 레퍼런스 — 이커머스/CMS 프로젝트</div>
+    <div class="section-desc">CMS 특허 기술과 이커머스 플랫폼을 기반으로 수행한 주요 프로젝트 실적입니다</div>
+  </div>
+  <table class="ref-table">
+    <thead>
+      <tr style="color:#333;">
+        <th style="width:180px;">고객사</th>
+        <th>프로젝트명</th>
+        <th style="width:200px;">기술 유형</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ref-client">KT알파</td>
+        <td>기프티쇼 비즈 B2B 판촉몰 플랫폼</td>
+        <td><span class="ref-type-badge ref-type-ec">이커머스</span> <span class="ref-type-badge ref-type-cms">CMS</span></td>
+      </tr>
+      <tr>
+        <td class="ref-client">대한축구협회 KFA</td>
+        <td>PLAY KFA 입점형 쇼핑몰 플랫폼</td>
+        <td><span class="ref-type-badge ref-type-ec">이커머스</span></td>
+      </tr>
+      <tr>
+        <td class="ref-client">우아한형제들</td>
+        <td>배민로봇 콘텐츠관리시스템(CMS)</td>
+        <td><span class="ref-type-badge ref-type-cms">CMS</span></td>
+      </tr>
+      <tr>
+        <td class="ref-client">독립기념관</td>
+        <td>소장자료 아카이브 구축</td>
+        <td><span class="ref-type-badge ref-type-cms">CMS</span></td>
+      </tr>
+      <tr>
+        <td class="ref-client">한국고전번역원</td>
+        <td>국가 고전번역 종합정보망 개편</td>
+        <td><span class="ref-type-badge ref-type-cms">CMS</span></td>
+      </tr>
+      <tr>
+        <td class="ref-client">고려대 의과대학</td>
+        <td>3D 의료교육 솔루션</td>
+        <td><span class="ref-type-badge ref-type-3d">3D 콘텐츠</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:16px;display:flex;gap:16px;">
+    <div class="badge badge-outline">총 6건의 이커머스/CMS 프로젝트</div>
+    <div class="badge badge-outline">대기업 · 공공기관 · 교육기관 다수 수행</div>
+  </div>
+  <div class="slide-footer" style="color:#ccc;">12</div>
+</div>
+
+<!-- ============================== -->
+<!-- SLIDE 13: 회사 연혁              -->
+<!-- ============================== -->
+<div class="slide bg-white s13" id="slide-13">
+  <div class="slide-header">
+    <div class="slide-header-left" style="color:#3565f2;">HISTORY</div>
+    <div class="slide-header-right"><img src="images/tensw_black.png" alt="TENSW" style="height:18px;"></div>
+  </div>
+  <div style="padding-top:16px;">
+    <div class="section-badge badge-outline">📅 연혁</div>
+    <div class="section-title">5. 회사 연혁 (기술 중심)</div>
+  </div>
+  <div class="s13-timeline">
+    <div class="s13-item">
+      <div class="s13-year">2018</div>
+      <div class="s13-dot"></div>
+      <div class="s13-content">㈜텐스 설립 — 이커머스 &amp; 웹 솔루션 전문 개발사로 출발</div>
+    </div>
+    <div class="s13-item">
+      <div class="s13-year">2020</div>
+      <div class="s13-dot"></div>
+      <div class="s13-content"><span class="s13-tag s13-tag-cms">CMS</span> <strong>코드블록(CODBLOCK)</strong> 솔루션 개발</div>
+    </div>
+    <div class="s13-item">
+      <div class="s13-year">2021</div>
+      <div class="s13-dot"></div>
+      <div class="s13-content"><span class="s13-tag s13-tag-ec">이커머스</span> <strong>셀렉트(SELEC7)</strong> 쇼핑 커뮤니티 플랫폼 오픈</div>
+    </div>
+    <div class="s13-item">
+      <div class="s13-year">2022</div>
+      <div class="s13-dot"></div>
+      <div class="s13-content"><span class="s13-tag s13-tag-patent">특허</span> 국내 CMS 특허 취득 (제10-2358855호) · 기술등급 T-3</div>
+    </div>
+    <div class="s13-item">
+      <div class="s13-year">2023</div>
+      <div class="s13-dot"></div>
+      <div class="s13-content">㈜텐소프트웍스 사명 변경 · R&amp;D혁신대상 수상 · 연구개발전담부서 인정</div>
+    </div>
+    <div class="s13-item">
+      <div class="s13-year">2024</div>
+      <div class="s13-dot"></div>
+      <div class="s13-content">
+        <span class="s13-tag s13-tag-ai">AI</span> <strong>AI 솔루션 본격화</strong><br>
+        • 미국 특허 등록 (US 12,045,305 B2)<br>
+        • 성균관대 학술정보관 AI 검색 시스템 구축<br>
+        • 성균관대 AI 연구논문홍보시스템 구축<br>
+        • KT알파 기프티쇼 비즈 판촉몰 개발<br>
+        • R&amp;D혁신대상 2년 연속 수상
+      </div>
+    </div>
+    <div class="s13-item">
+      <div class="s13-year">2025~</div>
+      <div class="s13-dot"></div>
+      <div class="s13-content"><strong>AI 시맨틱 검색, 생성형 AI 영상, RAG 챗봇 사업 확대</strong></div>
+    </div>
+  </div>
+  <div class="slide-footer" style="color:#ccc;">13</div>
+</div>
+
+<!-- ============================== -->
+<!-- SLIDE 14: 핵심 역량 & 인력       -->
+<!-- ============================== -->
+<div class="slide bg-light s14" id="slide-14">
+  <div class="slide-header">
+    <div class="slide-header-left" style="color:#3565f2;">COMPETENCY</div>
+    <div class="slide-header-right"><img src="images/tensw_black.png" alt="TENSW" style="height:18px;"></div>
+  </div>
+  <div style="padding-top:16px;">
+    <div class="section-badge badge-outline">💪 핵심 역량</div>
+    <div class="section-title">6. 핵심 역량 및 경쟁 우위</div>
+  </div>
+  <div class="s14-top">
+    <div class="card s14-strength">
+      <div class="s14-strength-icon">📜</div>
+      <div class="s14-strength-title">CMS 특허 기반</div>
+      <div class="s14-strength-desc">국내/미국 특허 보유<br>확장 가능한 기술 체계</div>
+    </div>
+    <div class="card s14-strength">
+      <div class="s14-strength-icon">🏆</div>
+      <div class="s14-strength-title">국내 최초 실적용</div>
+      <div class="s14-strength-desc">AI 시맨틱 도서 검색<br>성균관대 학술정보관</div>
+    </div>
+    <div class="card s14-strength">
+      <div class="s14-strength-icon">🔄</div>
+      <div class="s14-strength-title">End-to-End AI</div>
+      <div class="s14-strength-desc">검색→영상→챗봇<br>통합 제공 가능</div>
+    </div>
+    <div class="card s14-strength">
+      <div class="s14-strength-icon">☁️</div>
+      <div class="s14-strength-title">유연한 구축</div>
+      <div class="s14-strength-desc">온프레미스/SaaS<br>모두 지원</div>
+    </div>
+  </div>
+  <div class="s14-people-title">6.2 인력 역량 — 핵심인력 평균 23년 경력</div>
+  <div class="s14-people">
+    <div class="card s14-person">
+      <div class="s14-person-role">CEO</div>
+      <div class="s14-person-name">김철형</div>
+      <div class="s14-person-desc">IT 기획 개발 24년 경력<br>IBK/KT 등 대기업 PM 수행</div>
+      <div class="s14-person-highlight">대기업 PM 20회 이상</div>
+    </div>
+    <div class="card s14-person">
+      <div class="s14-person-role">CTO</div>
+      <div class="s14-person-name">강희운</div>
+      <div class="s14-person-desc">게임/시스템 개발 26년 경력<br>언리얼 엔진 전문가</div>
+      <div class="s14-person-highlight">26년 개발 경력</div>
+    </div>
+    <div class="card s14-person">
+      <div class="s14-person-role">AI 연구소장</div>
+      <div class="s14-person-name">석박사급 고급인력</div>
+      <div class="s14-person-desc">딥러닝/AI 전문<br>AI 연구 및 솔루션 개발 리드</div>
+      <div class="s14-person-highlight">석박사급 AI 전문 인력</div>
+    </div>
+  </div>
+  <div class="slide-footer" style="color:#ccc;">14</div>
+</div>
+
+<!-- ============================== -->
+<!-- SLIDE 15: 인증 및 수상           -->
+<!-- ============================== -->
+<div class="slide bg-white s15" id="slide-15">
+  <div class="slide-header">
+    <div class="slide-header-left" style="color:#3565f2;">CERTIFICATIONS</div>
+    <div class="slide-header-right"><img src="images/tensw_black.png" alt="TENSW" style="height:18px;"></div>
+  </div>
+  <div style="padding-top:16px;">
+    <div class="section-badge badge-outline">🏅 인증</div>
+    <div class="section-title">6.3 인증 및 수상</div>
+    <div class="section-desc">기술력과 혁신성을 공인받은 주요 인증 및 수상 실적</div>
+  </div>
+  <div class="s15-grid">
+    <div class="card s15-card">
+      <div class="s15-card-icon">🏆</div>
+      <div>
+        <div class="s15-card-title">2025년 혁신기술기업 인증</div>
+        <div class="s15-card-desc">혁신적인 기술력을 보유한 기업으로 공식 인증</div>
+      </div>
+    </div>
+    <div class="card s15-card">
+      <div class="s15-card-icon">📊</div>
+      <div>
+        <div class="s15-card-title">기술등급 T-3</div>
+        <div class="s15-card-desc">나이스디앤비(NICE D&amp;B) 기술신용평가 T-3 등급 획득</div>
+      </div>
+    </div>
+    <div class="card s15-card">
+      <div class="s15-card-icon">🚀</div>
+      <div>
+        <div class="s15-card-title">벤처기업 / 연구전담개발부서</div>
+        <div class="s15-card-desc">혁신성장유형 벤처기업 인증 및 연구개발전담부서 공식 인정</div>
+      </div>
+    </div>
+    <div class="card s15-card">
+      <div class="s15-card-icon">🥇</div>
+      <div>
+        <div class="s15-card-title">R&amp;D 혁신대상 2년 연속 수상</div>
+        <div class="s15-card-desc">2023~2024 대한민국 리딩기업대상 R&amp;D 혁신대상 연속 수상</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer" style="color:#ccc;">15</div>
+</div>
+
+<!-- ============================== -->
+<!-- SLIDE 16: 기술 스택              -->
+<!-- ============================== -->
+<div class="slide bg-dark s16" id="slide-16">
+  <div class="slide-header">
+    <div class="slide-header-left">TECH STACK</div>
+    <div class="slide-header-right"><img src="images/tensw_white.png" alt="TENSW" style="height:18px;"></div>
+  </div>
+  <div style="text-align:center;padding-top:16px;">
+    <div class="section-badge badge-white">🛠️ 기술 스택</div>
+    <div style="font-size:30px;font-weight:800;color:#fff;margin-bottom:6px;">Technology Stack</div>
+    <div style="font-size:14px;color:rgba(255,255,255,0.6);">CMS 특허 기술을 뿌리로 이커머스와 AI 솔루션을 지탱하는 기술 체계</div>
+  </div>
+  <div class="s16-grid">
+    <div class="card-glass s16-card">
+      <div class="s16-card-icon">🧩</div>
+      <div class="s16-card-title">CMS 특허 기술</div>
+      <div class="s16-card-desc">코드블록(CODBLOCK) 블록 기반 웹페이지 생성 · 국내/미국 특허 보유</div>
+    </div>
+    <div class="card-glass s16-card">
+      <div class="s16-card-icon">🤖</div>
+      <div class="s16-card-title">AI / ML</div>
+      <div class="s16-card-desc">시맨틱 검색 엔진 · RAG 챗봇 · Text-to-Video · 딥러닝 모델 훈련</div>
+    </div>
+    <div class="card-glass s16-card">
+      <div class="s16-card-icon">🛒</div>
+      <div class="s16-card-title">이커머스 플랫폼</div>
+      <div class="s16-card-desc">SCM/BO/FO 시스템 · PG 연동 · 자동수익정산 · 입점형 쇼핑몰</div>
+    </div>
+    <div class="card-glass s16-card">
+      <div class="s16-card-icon">🔗</div>
+      <div class="s16-card-title">API &amp; 연동</div>
+      <div class="s16-card-desc">외부 API 연계 · 메타데이터 파이프라인 · 자동화 시스템</div>
+    </div>
+    <div class="card-glass s16-card">
+      <div class="s16-card-icon">🌐</div>
+      <div class="s16-card-title">웹 풀스택</div>
+      <div class="s16-card-desc">프론트엔드/백엔드 · 반응형 웹 · 3D 콘텐츠 · 모바일 대응</div>
+    </div>
+    <div class="card-glass s16-card">
+      <div class="s16-card-icon">☁️</div>
+      <div class="s16-card-title">인프라 &amp; 배포</div>
+      <div class="s16-card-desc">온프레미스/SaaS 지원 · 클라우드 인프라 · CI/CD 자동화</div>
+    </div>
+  </div>
+  <div class="slide-footer" style="color:rgba(255,255,255,0.3);">16</div>
+</div>
+
+<!-- ============================== -->
+<!-- SLIDE 17: 비전 & 클로징          -->
+<!-- ============================== -->
+<div class="slide bg-blue-deep s17" id="slide-17">
+  <div class="slide-header">
+    <div class="slide-header-left">VISION &amp; FUTURE</div>
+    <div class="slide-header-right"><img src="images/tensw_white.png" alt="TENSW" style="height:18px;"></div>
+  </div>
+  <img src="images/tensw_white.png" alt="TENSW" class="s17-logo">
+  <div class="s17-quote">"데이터를 가장 잘 이해하는 회사"</div>
+  <div class="s17-title">데이터, 이제 성과가 된다</div>
+  <div class="s17-directions">
+    <div class="s17-dir">
+      <div class="s17-dir-icon">🔍</div>
+      <div class="s17-dir-text">AI 시맨틱 검색<br>도서관/학술기관 확대</div>
+    </div>
+    <div class="s17-dir">
+      <div class="s17-dir-icon">🎬</div>
+      <div class="s17-dir-text">생성형 AI 콘텐츠<br>자동화 서비스 고도화</div>
+    </div>
+    <div class="s17-dir">
+      <div class="s17-dir-icon">💬</div>
+      <div class="s17-dir-text">RAG 챗봇<br>기업 SaaS 서비스화</div>
+    </div>
+    <div class="s17-dir">
+      <div class="s17-dir-icon">📜</div>
+      <div class="s17-dir-text">AI 특허 추가 확보<br>기술 경쟁력 강화</div>
+    </div>
+  </div>
+  <div class="s17-contact">
+    <div>📞 <span>02-563-1271</span></div>
+    <div>✉️ <span>contact@tensoftworks.com</span></div>
+    <div>🌐 <span>tsw.im / biblo.ai</span></div>
+  </div>
+  <div class="slide-footer" style="color:rgba(255,255,255,0.3);">17</div>
 </div>
 
 </div><!-- /slides-wrapper -->
 
-<!-- ========== NAVIGATION ========== -->
+<!-- 네비게이션 -->
 <div class="nav">
   <div class="nav-arrow" onclick="prevSlide()">◀</div>
-  <div class="page-num" id="pageNum">1 / 13</div>
   <div id="dots"></div>
+  <span class="page-num" id="pageNum">1 / 17</span>
   <div class="nav-arrow" onclick="nextSlide()">▶</div>
 </div>
 
 <script>
-  const totalSlides = 13;
+  const totalSlides = 17;
   let current = 1;
 
   const dotsEl = document.getElementById('dots');
@@ -2164,16 +1797,14 @@
     const oldSlide = document.getElementById('slide-' + current);
     const newSlide = document.getElementById('slide-' + n);
 
-    // 나가는 슬라이드: 아래로 가면 위로 밀려남, 위로 가면 아래로 밀려남
     oldSlide.classList.remove('active');
     oldSlide.classList.add(direction === 'down' ? 'slide-out-up' : 'slide-out-down');
 
-    // 들어오는 슬라이드: 시작 위치 세팅 후 애니메이션
     newSlide.classList.add('active');
     newSlide.style.transition = 'none';
     newSlide.style.transform = direction === 'down' ? 'translateY(100%)' : 'translateY(-100%)';
     newSlide.style.opacity = '0';
-    newSlide.offsetHeight; // reflow 강제
+    newSlide.offsetHeight;
     newSlide.style.transition = '';
     newSlide.style.transform = '';
     newSlide.style.opacity = '';
@@ -2210,7 +1841,6 @@
     if (e.key === 'End') goToSlide(totalSlides);
   });
 
-  // 마우스 휠 스크롤로 슬라이드 이동
   var wheelTimer = null;
   document.addEventListener('wheel', function(e) {
     e.preventDefault();
@@ -2220,7 +1850,6 @@
     wheelTimer = setTimeout(function() { wheelTimer = null; }, 500);
   }, { passive: false });
 
-  // 뷰포트에 맞게 슬라이드 스케일링
   function scaleSlides() {
     var w = document.getElementById('slidesWrapper');
     var sx = window.innerWidth / 1440;
