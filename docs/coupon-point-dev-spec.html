@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[개발정의서] 쇼핑몰 쿠폰 & 포인트 시스템 상세 기능 개발정의서</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: A4 portrait; margin: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #e8e8e8;
+    color: #1a1a2e;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  @media print {
+    body { background: none; }
+    .page { margin: 0; box-shadow: none; page-break-after: always; }
+  }
+
+  :root {
+    --amber: #D97706;
+    --amber-light: #FEF3C7;
+    --blue: #2563EB;
+    --blue-light: #EFF6FF;
+    --navy: #0F172A;
+    --navy-mid: #1E3A5F;
+    --green: #16A34A;
+    --green-light: #F0FDF4;
+    --red: #DC2626;
+    --red-light: #FEF2F2;
+    --accent: #F59E0B;
+    --bg: #F7F9FC;
+    --border: #E0E6ED;
+    --text: #1a1a2e;
+    --text-sub: #4a5568;
+    --text-muted: #718096;
+  }
+
+  /* ══════════════════════════════════════
+     PAGE 1: 표지
+     ══════════════════════════════════════ */
+  .page-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 297mm;
+    background: linear-gradient(160deg, var(--navy) 0%, #1a3550 40%, var(--navy-mid) 100%);
+    color: #fff;
+  }
+
+  .cover-top { padding: 48px 52px 0; }
+
+  .cover-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 30px;
+    padding: 7px 18px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+
+  .cover-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  .cover-main {
+    padding: 0 52px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cover-tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .cover-main h1 {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .cover-main h1 .h1-accent {
+    display: block;
+    color: var(--accent);
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 6px;
+  }
+
+  .cover-divider {
+    width: 60px; height: 3px;
+    background: var(--accent);
+    margin: 22px 0;
+    border-radius: 2px;
+  }
+
+  .cover-desc {
+    font-size: 12.5px;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    font-weight: 300;
+  }
+
+  .cover-desc strong { color: rgba(255,255,255,0.95); font-weight: 600; }
+
+  .cover-highlights {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 28px;
+    max-width: 520px;
+  }
+
+  .cover-hl {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 13px 12px;
+    text-align: center;
+  }
+
+  .cover-hl.hl-amber {
+    border-color: rgba(245,158,11,0.3);
+    background: rgba(245,158,11,0.08);
+  }
+
+  .cover-hl.hl-blue {
+    border-color: rgba(37,99,235,0.3);
+    background: rgba(37,99,235,0.08);
+  }
+
+  .cover-hl-icon { font-size: 18px; margin-bottom: 6px; }
+
+  .cover-hl-value {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .cover-bottom {
+    padding: 0 52px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .cover-bottom-meta {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.8;
+  }
+
+  .cover-bottom-meta strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+
+  .cover-logo { text-align: right; }
+
+  .cover-logo-text {
+    font-size: 16px; font-weight: 900;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .cover-logo-sub {
+    font-size: 8px; letter-spacing: 4px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ══════════════════════════════════════
+     공통 본문 스타일
+     ══════════════════════════════════════ */
+  .page-body { padding: 36px 44px 32px; min-height: 297mm; position: relative; }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--navy);
+  }
+
+  .page-header-title {
+    font-size: 9px; font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .page-header-num {
+    font-size: 9px; color: var(--text-muted); font-weight: 500;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    margin-top: 16px;
+  }
+
+  .page-header + .section-title { margin-top: 0; }
+
+  .section-num {
+    background: var(--navy);
+    color: #fff;
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .section-num.sn-amber { background: var(--amber); }
+  .section-num.sn-blue { background: var(--blue); }
+
+  .section-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .body-text {
+    font-size: 9.5px;
+    line-height: 1.75;
+    color: var(--text-sub);
+    margin-bottom: 10px;
+  }
+
+  .body-text strong { color: var(--text); font-weight: 600; }
+
+  /* 기능 테이블 */
+  .func-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+    font-size: 8.5px;
+  }
+
+  .func-table thead th {
+    background: var(--navy);
+    color: #fff;
+    padding: 6px 7px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 8px;
+  }
+
+  .func-table thead th:first-child { border-radius: 6px 0 0 0; }
+  .func-table thead th:last-child { border-radius: 0 6px 0 0; }
+
+  .func-table tbody td {
+    padding: 5px 7px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-sub);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+
+  .func-table tbody tr:nth-child(even) { background: var(--bg); }
+  .func-table tbody td:first-child { font-weight: 700; color: var(--navy); white-space: nowrap; }
+
+  .func-table .cat-row td {
+    background: var(--amber-light) !important;
+    font-weight: 700;
+    color: var(--amber);
+    font-size: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .func-table .cat-row.cat-blue td {
+    background: var(--blue-light) !important;
+    color: var(--blue);
+  }
+
+  .func-table .cat-row.cat-green td {
+    background: var(--green-light) !important;
+    color: var(--green);
+  }
+
+  .func-table .cat-row.cat-red td {
+    background: var(--red-light) !important;
+    color: var(--red);
+  }
+
+  /* 우선순위 뱃지 */
+  .pri { display: inline-block; padding: 1px 7px; border-radius: 8px; font-size: 7.5px; font-weight: 700; white-space: nowrap; }
+  .pri-must { background: #FEE2E2; color: #DC2626; }
+  .pri-high { background: #FEF3C7; color: #D97706; }
+  .pri-mid { background: #DBEAFE; color: #2563EB; }
+  .pri-low { background: #F1F5F9; color: #64748B; }
+
+  /* 노트 박스 */
+  .note-box {
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 8.5px;
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .note-box.note-amber { background: var(--amber-light); border-left: 3px solid var(--amber); }
+  .note-box.note-blue { background: var(--blue-light); border-left: 3px solid var(--blue); }
+  .note-box.note-green { background: var(--green-light); border-left: 3px solid var(--green); }
+
+  .note-box strong { color: var(--text); font-weight: 700; }
+
+  /* API 카드 */
+  .api-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .api-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .api-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .api-card.api-amber::before { background: var(--amber); }
+  .api-card.api-blue::before { background: var(--blue); }
+  .api-card.api-green::before { background: linear-gradient(90deg, var(--green), #66BB6A); }
+
+  .api-title { font-size: 10px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+  .api-method { font-size: 7.5px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .api-method .m-post { color: var(--green); }
+  .api-method .m-get { color: var(--blue); }
+  .api-method .m-put { color: var(--amber); }
+  .api-method .m-del { color: var(--red); }
+
+  .api-item {
+    font-size: 8.5px;
+    color: var(--text-sub);
+    line-height: 1.5;
+    padding-left: 10px;
+    position: relative;
+    margin-bottom: 2px;
+  }
+
+  .api-item::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent); font-weight: 700; font-size: 8px;
+  }
+
+  /* 견적서 스타일 */
+  .estimate-header { text-align: center; margin-bottom: 16px; }
+
+  .estimate-header h2 {
+    font-size: 20px; font-weight: 900;
+    color: var(--navy); letter-spacing: 6px; margin-bottom: 4px;
+  }
+
+  .estimate-header .est-divider {
+    width: 44px; height: 3px;
+    background: var(--accent);
+    margin: 10px auto; border-radius: 2px;
+  }
+
+  .estimate-header .est-sub {
+    font-size: 10px; color: var(--text-muted); font-weight: 400;
+  }
+
+  .total-box {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 14px 20px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .total-box .total-label { font-size: 12px; font-weight: 600; }
+  .total-box .total-label small { display: block; font-size: 9px; font-weight: 400; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .total-box .total-amount { font-size: 22px; font-weight: 900; letter-spacing: 1px; }
+  .total-box .total-amount small { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.65); margin-left: 3px; }
+
+  .est-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+    font-size: 9px;
+  }
+
+  .est-table thead th {
+    background: var(--navy);
+    color: #fff;
+    padding: 6px 7px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 8.5px;
+  }
+
+  .est-table thead th:first-child { border-radius: 7px 0 0 0; text-align: left; }
+  .est-table thead th:last-child { border-radius: 0 7px 0 0; }
+
+  .est-table tbody td {
+    padding: 5px 7px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-sub);
+    line-height: 1.45;
+    vertical-align: top;
+  }
+
+  .est-table tbody tr:nth-child(even) { background: var(--bg); }
+  .est-table tbody td:first-child { font-weight: 700; color: var(--navy); white-space: nowrap; }
+  .est-table tbody td.tc { text-align: center; }
+  .est-table tbody td.tr { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .est-table tfoot td {
+    padding: 8px 7px;
+    font-weight: 700;
+    color: var(--navy);
+    border-top: 2px solid var(--navy);
+    font-size: 10px;
+  }
+
+  .est-table tfoot td.tr { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .est-section-row td {
+    background: var(--navy) !important;
+    color: #fff;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 5px 8px;
+  }
+
+  .est-section-row .section-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 8px;
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  .badge-required { background: #13A8BD; color: #fff; }
+  .badge-optional { background: var(--amber); color: #fff; }
+
+  .est-subtotal td {
+    font-weight: 700;
+    color: var(--navy);
+    border-top: 1.5px solid #90A4AE;
+    font-size: 9px;
+    background: var(--bg) !important;
+  }
+
+  .grade-badge {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 8px;
+    font-size: 8px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .grade-top { background: #E8EAF6; color: #283593; }
+  .grade-high { background: #E0F2F1; color: #00695C; }
+
+  .opt-check {
+    width: 15px; height: 15px;
+    accent-color: var(--amber);
+    cursor: pointer;
+    vertical-align: middle;
+    margin-right: 4px;
+  }
+
+  .opt-row { transition: opacity 0.25s ease; }
+  .opt-row.unchecked td { opacity: 0.3; text-decoration: line-through; }
+  .opt-row.unchecked td:first-child { text-decoration: none; }
+
+  @media print {
+    .opt-check { display: none; }
+    .opt-row.unchecked { display: none; }
+  }
+
+  .terms-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px; margin-bottom: 10px;
+  }
+
+  .term-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+
+  .term-card .tc-label {
+    font-size: 8px; font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .term-card .tc-value {
+    font-size: 9.5px; font-weight: 500;
+    color: var(--text-sub); line-height: 1.55;
+  }
+
+  .term-card .tc-value strong { color: var(--text); font-weight: 600; }
+
+  .roi-footer {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #fff;
+  }
+
+  .roi-footer .rf-title { font-size: 10px; font-weight: 700; margin-bottom: 4px; color: var(--accent); }
+
+  .roi-footer p {
+    font-size: 9px; line-height: 1.7;
+    color: rgba(255,255,255,0.82); font-weight: 300;
+  }
+
+  .roi-footer .rfh { color: #fff; font-weight: 600; }
+
+  /* 푸터 */
+  .page-footer {
+    position: absolute;
+    bottom: 24px; left: 44px; right: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+
+  .page-footer span { font-size: 8px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 1: 표지 ═══════════ -->
+<div class="page page-cover">
+  <div class="cover-top">
+    <div class="cover-badge">Development Specification &middot; 2026</div>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-tag">개발정의서</div>
+    <h1>
+      쇼핑몰 쿠폰 & 포인트 시스템
+      <span class="h1-accent">상세 기능 개발정의서 및 견적서</span>
+    </h1>
+    <div class="cover-divider"></div>
+    <p class="cover-desc">
+      <strong>쿠폰 시스템</strong>과 <strong>포인트 시스템</strong>의 독립적 설계 구조, 정책 엔진, 이맥스(Emax) 연동 사항을 기반으로<br>
+      각 모듈별 <strong style="color:#F59E0B;">상세 기능 정의, API 명세, DB 설계, 개발 로드맵</strong>을 정리한 개발정의서입니다.
+    </p>
+
+    <div class="cover-highlights">
+      <div class="cover-hl hl-amber">
+        <div class="cover-hl-icon">C</div>
+        <div class="cover-hl-value">쿠폰 시스템<br>4개 유형 · 전주기</div>
+      </div>
+      <div class="cover-hl hl-blue">
+        <div class="cover-hl-icon">P</div>
+        <div class="cover-hl-value">포인트 시스템<br>적립 · 차감 · 소멸</div>
+      </div>
+      <div class="cover-hl">
+        <div class="cover-hl-icon">E</div>
+        <div class="cover-hl-value">정책 엔진<br>중첩 · 캡 · 보호</div>
+      </div>
+      <div class="cover-hl">
+        <div class="cover-hl-icon">A</div>
+        <div class="cover-hl-value">이맥스 연동<br>API · 정산 · 어드민</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-bottom-meta">
+      <strong>Confidential</strong><br>
+      2026. 03<br>
+      제안: (주)텐소프트웍스 &middot; tsw.im
+    </div>
+    <div class="cover-logo">
+      <div class="cover-logo-text">COUPON &amp; POINT</div>
+      <div class="cover-logo-sub">Development Specification</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 2: 쿠폰 시스템 기능 정의 ═══════════ -->
+<div class="page page-body">
+  <div class="page-header">
+    <span class="page-header-title">쿠폰 & 포인트 시스템 — 상세 기능 개발정의서</span>
+    <span class="page-header-num">02 / 07</span>
+  </div>
+
+  <div class="section-title">
+    <div class="section-num sn-amber">1</div>
+    <div class="section-label">쿠폰 시스템 기능 정의</div>
+  </div>
+
+  <p class="body-text">쿠폰 시스템은 <strong>발행 → 배포 → 사용 → 소멸</strong>의 4단계 수명 주기를 가지며, 정액/비율/무료배송/사은품 4개 유형을 지원합니다. 각 기능은 독립 모듈로 설계하여 정책 엔진과 연동됩니다.</p>
+
+  <table class="func-table">
+    <thead>
+      <tr><th style="width:55px;">기능 ID</th><th style="width:100px;">기능명</th><th>상세 설명</th><th style="width:55px;">우선순위</th></tr>
+    </thead>
+    <tbody>
+      <tr class="cat-row"><td colspan="4">쿠폰 발행 · 관리</td></tr>
+      <tr><td>CPN-001</td><td>쿠폰 생성</td><td>유형(정액/비율/무료배송/사은품), 할인값, 유효기간, 사용조건 설정</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>CPN-002</td><td>발행 한도 관리</td><td>총 발행 수량 상한, 1인당 최대 보유 수량 제한</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>CPN-003</td><td>쿠폰 배포</td><td>자동 다운로드, 코드 입력, 관리자 수동 지급 3가지 채널</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>CPN-004</td><td>쿠폰 유효기간</td><td>발행일 기준 / 다운로드일 기준 택1, 만료 시 자동 소멸</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>CPN-005</td><td>사용 조건 설정</td><td>최소 주문금액, 적용 카테고리/상품 지정, 회원등급 제한</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr class="cat-row"><td colspan="4">쿠폰 적용 · 결제</td></tr>
+      <tr><td>CPN-006</td><td>쿠폰 적용</td><td>결제 시 사용 가능 쿠폰 자동 조회, 최적 쿠폰 추천</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>CPN-007</td><td>중복 사용 정책</td><td>1주문 1쿠폰 원칙, 정책 엔진 연동하여 중첩 여부 판단</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>CPN-008</td><td>비용 부담 구분</td><td>쿠폰별 비용 부담 주체(운영사/공급사) 필드 설계 및 정산 반영</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr class="cat-row"><td colspan="4">취소 · 환불</td></tr>
+      <tr><td>CPN-009</td><td>전체 취소 시 복원</td><td>유효기간 내 쿠폰 자동 복원, 만료 시 소멸 처리</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>CPN-010</td><td>부분 취소 처리</td><td>부분 취소 시 쿠폰 미복원(기사용), 할인 혜택 유지</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>CPN-011</td><td>관리자 수동 환불</td><td>어드민에서 건별 쿠폰 복원 여부 선택 가능</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr class="cat-row"><td colspan="4">어드민 관리</td></tr>
+      <tr><td>CPN-012</td><td>쿠폰 현황 대시보드</td><td>발행/사용/소멸 통계, 비용 분석, 기간별 조회</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr><td>CPN-013</td><td>쿠폰 코드 체계</td><td>이맥스 연동용 고유 접두사(EMX-CPNXXXX) 코드 생성</td><td><span class="pri pri-high">높음</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-box note-amber">
+    <strong>설계 원칙:</strong> 쿠폰은 "1주문 1쿠폰" 원칙을 기본으로 하되, 정책 엔진 설정에 따라 쇼핑몰 자체 할인과의 중첩은 최대 할인율 제한 내에서 허용합니다.
+  </div>
+
+  <div class="page-footer">
+    <span>Confidential &nbsp;|&nbsp; 제안: (주)텐소프트웍스 tsw.im</span>
+    <span>Page 2</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 3: 포인트 시스템 기능 정의 ═══════════ -->
+<div class="page page-body">
+  <div class="page-header">
+    <span class="page-header-title">쿠폰 & 포인트 시스템 — 상세 기능 개발정의서</span>
+    <span class="page-header-num">03 / 07</span>
+  </div>
+
+  <div class="section-title">
+    <div class="section-num sn-blue">2</div>
+    <div class="section-label">포인트 시스템 기능 정의</div>
+  </div>
+
+  <p class="body-text">포인트는 <strong>현금성 자산</strong>이므로 운영사 손해 방지를 위한 마이너스 발행(차감) 트리거와 발행 한도 설계가 핵심입니다. <strong>FIFO(선입선출)</strong> 원칙으로 먼저 적립된 포인트부터 사용·소멸됩니다.</p>
+
+  <table class="func-table">
+    <thead>
+      <tr><th style="width:55px;">기능 ID</th><th style="width:100px;">기능명</th><th>상세 설명</th><th style="width:55px;">우선순위</th></tr>
+    </thead>
+    <tbody>
+      <tr class="cat-row cat-blue"><td colspan="4">포인트 적립</td></tr>
+      <tr><td>PNT-001</td><td>구매 적립</td><td>결제금액 기준 비율 적립, 구매 확정 시(취소 기간 경과 후) 지급</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>PNT-002</td><td>이벤트 적립</td><td>프로모션, 출석체크, 리뷰 작성 등 조건 충족 시 즉시 적립</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr><td>PNT-003</td><td>관리자 수동 지급</td><td>CS 보상, 프로모션 등 관리자 승인 후 수동 지급</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>PNT-004</td><td>삼성 연동 적립</td><td>삼성 구독 서비스 확정 데이터 기반 후적립 (CSV/수동)</td><td><span class="pri pri-mid">중간</span></td></tr>
+      <tr class="cat-row cat-blue"><td colspan="4">포인트 사용 · 결제</td></tr>
+      <tr><td>PNT-005</td><td>포인트 결제</td><td>결제 수단에 "포인트" 항목 추가, 실결제금액과 분리 표기</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>PNT-006</td><td>최소 결제 비율</td><td>포인트 전액 결제 방지, 최소 현금 결제 비율 강제 (예: 30%)</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>PNT-007</td><td>잔액 실시간 조회</td><td>마이페이지 및 어드민에서 API 기반 실시간 잔액 확인</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr class="cat-row cat-red"><td colspan="4">차감 · 마이너스 발행</td></tr>
+      <tr><td>PNT-008</td><td>주문 취소 차감</td><td>구매 적립 포인트 자동 회수 (주문 취소 이벤트 트리거)</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>PNT-009</td><td>부분 반품 차감</td><td>반품 금액 비례 포인트 자동 차감</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>PNT-010</td><td>오적립 보정</td><td>시스템 오류 과다 적립 시 관리자 수동 차감 (사유 입력 필수)</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr><td>PNT-011</td><td>부정 사용 적발</td><td>어뷰징/다중 계정 감지 시 전액 차감 + 계정 제재</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr class="cat-row cat-blue"><td colspan="4">소멸 · 관리</td></tr>
+      <tr><td>PNT-012</td><td>자동 소멸</td><td>적립일 기준 12개월(운영사 설정 가능), FIFO 순서 적용</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>PNT-013</td><td>소멸 예고 알림</td><td>소멸 30일 전 / 7일 전 자동 안내 (SMS/푸시)</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr><td>PNT-014</td><td>포인트 대시보드</td><td>적립/사용/차감/소멸 통계, 월간 발행량 모니터링, 한도 관리</td><td><span class="pri pri-high">높음</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-box note-blue">
+    <strong>핵심 원칙:</strong> 포인트는 현금성 자산이므로 일일 적립 한도, 월간 발행 한도를 설정하고, 한도 초과 시 자동 중단 + 관리자 알림이 반드시 구현되어야 합니다.
+  </div>
+
+  <div class="page-footer">
+    <span>Confidential &nbsp;|&nbsp; 제안: (주)텐소프트웍스 tsw.im</span>
+    <span>Page 3</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 4: 정책 엔진 & 연동 ═══════════ -->
+<div class="page page-body">
+  <div class="page-header">
+    <span class="page-header-title">쿠폰 & 포인트 시스템 — 상세 기능 개발정의서</span>
+    <span class="page-header-num">04 / 07</span>
+  </div>
+
+  <div class="section-title">
+    <div class="section-num">3</div>
+    <div class="section-label">정책 엔진 기능 정의</div>
+  </div>
+
+  <p class="body-text">정책 엔진은 쿠폰·포인트·쇼핑몰 자체 할인 간의 <strong>중첩 규칙, 최대 할인 캡, 운영사 보호 트리거</strong>를 통합 관리합니다. 결제 시점에 6단계 우선순위로 정책이 순차 적용됩니다.</p>
+
+  <table class="func-table">
+    <thead>
+      <tr><th style="width:55px;">기능 ID</th><th style="width:110px;">기능명</th><th>상세 설명</th><th style="width:55px;">우선순위</th></tr>
+    </thead>
+    <tbody>
+      <tr class="cat-row cat-green"><td colspan="4">할인 중첩 정책</td></tr>
+      <tr><td>POL-001</td><td>쇼핑몰 할인 + 쿠폰</td><td>허용 (최대 할인율 제한 적용)</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>POL-002</td><td>쇼핑몰 할인 + 포인트</td><td>불가 (현재 정책, 운영사 설정 변경 가능)</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>POL-003</td><td>쿠폰 + 포인트</td><td>정책 설정에 따라 결정 (어드민에서 ON/OFF)</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>POL-004</td><td>쿠폰 + 쿠폰</td><td>불가 (1주문 1쿠폰 원칙)</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr class="cat-row cat-green"><td colspan="4">손해 방지 트리거</td></tr>
+      <tr><td>POL-005</td><td>최대 할인율 캡</td><td>상품 원가 대비 총 할인이 설정 비율 초과 시 자동 차단</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>POL-006</td><td>일일 포인트 적립 한도</td><td>1인당 일일 적립 상한 도달 시 추가 적립 중단</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>POL-007</td><td>월간 포인트 발행 한도</td><td>전체 발행량이 월 예산 초과 시 자동 중단 + 관리자 알림</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>POL-008</td><td>쿠폰 마진 체크</td><td>쿠폰 적용 후 상품 마진이 기준 이하 시 적용 불가</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr class="cat-row cat-green"><td colspan="4">결제 시 적용 순서 (6단계)</td></tr>
+      <tr><td>POL-009</td><td>정책 우선순위 엔진</td><td>① 상품 원가 확인 → ② 쇼핑몰 자체 할인 → ③ 쿠폰 적용 판단 → ④ 포인트 사용 판단 → ⑤ 총 할인율 캡 검증 → ⑥ 최종 결제금액 확정</td><td><span class="pri pri-must">필수</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">
+    <div class="section-num">4</div>
+    <div class="section-label">이맥스(Emax) 연동 기능 정의</div>
+  </div>
+
+  <table class="func-table">
+    <thead>
+      <tr><th style="width:55px;">기능 ID</th><th style="width:110px;">기능명</th><th>상세 설명</th><th style="width:55px;">우선순위</th></tr>
+    </thead>
+    <tbody>
+      <tr class="cat-row"><td colspan="4">이맥스 쿠폰 연동</td></tr>
+      <tr><td>EMX-001</td><td>쿠폰 코드 동기화</td><td>이맥스 주문 시스템과 코드 충돌 방지, 고유 접두사 부여</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-002</td><td>할인 금액 전달</td><td>이맥스 어드민에 쿠폰 할인 금액 정확 표기 (별도 필드)</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-003</td><td>정산 반영</td><td>쿠폰 할인분 정산 시 정확히 차감, 항목 분리 표기</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-004</td><td>취소 웹훅</td><td>이맥스 취소 API 호출 시 웹훅으로 쿠폰 상태 자동 업데이트</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr class="cat-row cat-blue"><td colspan="4">이맥스 포인트 연동</td></tr>
+      <tr><td>EMX-005</td><td>적립 시점 동기화</td><td>이맥스 주문 확정 이벤트 기준 포인트 적립</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-006</td><td>포인트 결제 수단</td><td>이맥스 결제 수단에 "포인트" 항목 추가, 실결제금액 분리</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-007</td><td>취소 시 포인트 복원</td><td>취소 유형별 포인트 복원 룰 사전 정의 및 자동 처리</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-008</td><td>관리자 차감 기능</td><td>이맥스 어드민에서 사유 입력 필수 + 승인 프로세스</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr class="cat-row cat-blue"><td colspan="4">공통 연동</td></tr>
+      <tr><td>EMX-009</td><td>데이터 정합성 검증</td><td>정기 교차검증 배치 (쿠폰/포인트 잔액 vs 이맥스 데이터)</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-010</td><td>동시성 처리</td><td>비관적 잠금 또는 큐 기반 처리로 데이터 충돌 방지</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-011</td><td>트랜잭션 롤백</td><td>결제/취소 과정 트랜잭션 보장, 실패 시 전체 롤백</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-012</td><td>로그 보관</td><td>최소 3년 보관 (전자상거래법 준수)</td><td><span class="pri pri-must">필수</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Confidential &nbsp;|&nbsp; 제안: (주)텐소프트웍스 tsw.im</span>
+    <span>Page 4</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 5: 삼성 연동 & API 명세 ═══════════ -->
+<div class="page page-body">
+  <div class="page-header">
+    <span class="page-header-title">쿠폰 & 포인트 시스템 — 상세 기능 개발정의서</span>
+    <span class="page-header-num">05 / 07</span>
+  </div>
+
+  <div class="section-title">
+    <div class="section-num">5</div>
+    <div class="section-label">삼성 구독 서비스 연동</div>
+  </div>
+
+  <table class="func-table">
+    <thead>
+      <tr><th style="width:55px;">기능 ID</th><th style="width:110px;">기능명</th><th>상세 설명</th><th style="width:55px;">우선순위</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>SAM-001</td><td>삼성 유입 태그</td><td>삼성 경유 고객 식별 태그 자동 부여, 쿠폰 자동 발행 로직</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr><td>SAM-002</td><td>확정 데이터 후적립</td><td>삼성 측 확인 완료 건에 한해 포인트 적립 (CSV 업로드/수동)</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr><td>SAM-003</td><td>적립 지연 안내</td><td>포인트 적립 지연에 대한 고객 자동 안내 메시지</td><td><span class="pri pri-mid">중간</span></td></tr>
+      <tr><td>SAM-004</td><td>쿠키 누락 대응</td><td>추적 누락분 포인트 미적립 정책 및 예외 처리 프로세스</td><td><span class="pri pri-mid">중간</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title">
+    <div class="section-num">6</div>
+    <div class="section-label">핵심 API 명세</div>
+  </div>
+
+  <div class="api-grid">
+    <div class="api-card api-amber">
+      <div class="api-title">쿠폰 API</div>
+      <div class="api-method"><span class="m-post">POST</span> /api/coupons</div>
+      <div class="api-item">쿠폰 생성 (유형, 할인값, 유효기간, 조건)</div>
+      <div class="api-method"><span class="m-post">POST</span> /api/coupons/distribute</div>
+      <div class="api-item">쿠폰 배포 (대상 고객, 채널)</div>
+      <div class="api-method"><span class="m-post">POST</span> /api/coupons/apply</div>
+      <div class="api-item">결제 시 쿠폰 적용 (정책 엔진 연동)</div>
+      <div class="api-method"><span class="m-put">PUT</span> /api/coupons/{id}/restore</div>
+      <div class="api-item">취소 시 쿠폰 복원</div>
+      <div class="api-method"><span class="m-get">GET</span> /api/coupons/available</div>
+      <div class="api-item">사용 가능 쿠폰 목록 조회</div>
+    </div>
+    <div class="api-card api-blue">
+      <div class="api-title">포인트 API</div>
+      <div class="api-method"><span class="m-post">POST</span> /api/points/earn</div>
+      <div class="api-item">포인트 적립 (유형별 트리거)</div>
+      <div class="api-method"><span class="m-post">POST</span> /api/points/use</div>
+      <div class="api-item">결제 시 포인트 사용</div>
+      <div class="api-method"><span class="m-post">POST</span> /api/points/deduct</div>
+      <div class="api-item">마이너스 발행 (차감, 사유 필수)</div>
+      <div class="api-method"><span class="m-get">GET</span> /api/points/balance</div>
+      <div class="api-item">실시간 잔액 조회</div>
+      <div class="api-method"><span class="m-get">GET</span> /api/points/history</div>
+      <div class="api-item">적립/사용/차감 이력 조회</div>
+    </div>
+    <div class="api-card api-green">
+      <div class="api-title">정책 엔진 API</div>
+      <div class="api-method"><span class="m-post">POST</span> /api/policy/validate</div>
+      <div class="api-item">결제 시 할인 정책 검증 (6단계 파이프라인)</div>
+      <div class="api-method"><span class="m-get">GET</span> /api/policy/rules</div>
+      <div class="api-item">현재 정책 설정 조회</div>
+      <div class="api-method"><span class="m-put">PUT</span> /api/policy/rules</div>
+      <div class="api-item">정책 설정 변경 (어드민)</div>
+    </div>
+    <div class="api-card api-amber">
+      <div class="api-title">이맥스 연동 API</div>
+      <div class="api-method"><span class="m-post">POST</span> /api/emax/webhook/order</div>
+      <div class="api-item">이맥스 주문 확정/취소 이벤트 수신</div>
+      <div class="api-method"><span class="m-get">GET</span> /api/emax/settlement</div>
+      <div class="api-item">정산 데이터 조회 (쿠폰/포인트 분리)</div>
+      <div class="api-method"><span class="m-post">POST</span> /api/emax/sync</div>
+      <div class="api-item">데이터 정합성 교차검증 실행</div>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <div class="section-num">7</div>
+    <div class="section-label">핵심 DB 테이블</div>
+  </div>
+
+  <table class="func-table">
+    <thead>
+      <tr><th style="width:120px;">테이블</th><th>주요 컬럼</th><th style="width:160px;">비고</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>coupons</td><td>id, type, value, max_discount, min_order, valid_from, valid_to, total_limit, per_user_limit, cost_bearer, status</td><td>쿠폰 마스터</td></tr>
+      <tr><td>coupon_issues</td><td>id, coupon_id, user_id, code, status(issued/used/expired), used_at, order_id</td><td>사용자별 발행 이력</td></tr>
+      <tr><td>points</td><td>id, user_id, amount, type(earn/use/deduct/expire), source, order_id, reason, expires_at</td><td>포인트 트랜잭션 원장</td></tr>
+      <tr><td>point_balances</td><td>user_id, available, pending, total_earned, total_used</td><td>잔액 캐시 (실시간 조회)</td></tr>
+      <tr><td>policy_rules</td><td>id, rule_type, condition, action, priority, is_active</td><td>정책 엔진 룰셋</td></tr>
+      <tr><td>discount_logs</td><td>id, order_id, coupon_id, point_used, shop_discount, total_discount, final_amount</td><td>할인 적용 이력 (감사 로그)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Confidential &nbsp;|&nbsp; 제안: (주)텐소프트웍스 tsw.im</span>
+    <span>Page 5</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 6: 개발 로드맵 ═══════════ -->
+<div class="page page-body">
+  <div class="page-header">
+    <span class="page-header-title">쿠폰 & 포인트 시스템 — 상세 기능 개발정의서</span>
+    <span class="page-header-num">06 / 07</span>
+  </div>
+
+  <div class="section-title">
+    <div class="section-num">8</div>
+    <div class="section-label">개발 로드맵</div>
+  </div>
+
+  <p class="body-text"><strong>정책 엔진이 먼저 설계</strong>되어야 쿠폰/포인트 시스템의 제약조건이 확정됩니다. 정책 설계 없이 개발을 시작하면 대규모 수정이 필요할 수 있으므로, 아래 순서를 준수합니다.</p>
+
+  <table class="func-table">
+    <thead>
+      <tr><th style="width:55px;">순서</th><th style="width:120px;">단계</th><th>주요 과업</th><th style="width:55px;">기간</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="pri pri-must">1순위</span></td><td>정책 엔진 설계</td><td>할인 중첩 규칙 정의, 최대 할인 캡 설계, 운영사 보호 룰 확정, DB 스키마 설계</td><td>2주</td></tr>
+      <tr><td><span class="pri pri-must">2순위</span></td><td>쿠폰 시스템 코어</td><td>발행/배포/사용/소멸 전주기 개발, 4개 쿠폰 유형, 취소/환불 로직, 어드민 관리</td><td>3~4주</td></tr>
+      <tr><td><span class="pri pri-must">3순위</span></td><td>포인트 시스템 코어</td><td>적립/사용/차감/소멸 전주기, 마이너스 발행, FIFO 소멸, 잔액 조회</td><td>3~4주</td></tr>
+      <tr><td><span class="pri pri-high">4순위</span></td><td>이맥스 어드민 연동</td><td>현황 대시보드, 정산 데이터 반영, 관리자 차감 기능, 웹훅 연동</td><td>2~3주</td></tr>
+      <tr><td><span class="pri pri-mid">5순위</span></td><td>삼성 연동 포인트</td><td>삼성 데이터 수신 프로세스, CSV 업로드, 유입 태그 자동 쿠폰 발행</td><td>1~2주</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-box note-green">
+    <strong>총 개발 기간:</strong> 약 12~15주 (3~4개월). 1~3순위 병렬 진행 시 약 8~10주로 단축 가능. QA 및 안정화 기간 2주 별도.
+  </div>
+
+  <div class="section-title">
+    <div class="section-num">9</div>
+    <div class="section-label">기능 통계 요약</div>
+  </div>
+
+  <table class="func-table">
+    <thead>
+      <tr><th>모듈</th><th style="width:60px;">기능 수</th><th style="width:60px;">필수</th><th style="width:60px;">높음</th><th style="width:60px;">중간</th><th>핵심 API</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>쿠폰 시스템</td><td>13개</td><td>9개</td><td>4개</td><td>-</td><td>5개 엔드포인트</td></tr>
+      <tr><td>포인트 시스템</td><td>14개</td><td>8개</td><td>4개</td><td>2개</td><td>5개 엔드포인트</td></tr>
+      <tr><td>정책 엔진</td><td>9개</td><td>8개</td><td>1개</td><td>-</td><td>3개 엔드포인트</td></tr>
+      <tr><td>이맥스 연동</td><td>12개</td><td>9개</td><td>3개</td><td>-</td><td>3개 엔드포인트</td></tr>
+      <tr><td>삼성 연동</td><td>4개</td><td>-</td><td>2개</td><td>2개</td><td>별도 협의</td></tr>
+      <tr style="font-weight:700; background:var(--bg);">
+        <td style="color:var(--navy);">합계</td><td>52개</td><td>34개</td><td>14개</td><td>4개</td><td>16개 엔드포인트</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>Confidential &nbsp;|&nbsp; 제안: (주)텐소프트웍스 tsw.im</span>
+    <span>Page 6</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 7: 견적서 ═══════════ -->
+<div class="page page-body">
+  <div class="page-header">
+    <span class="page-header-title">쿠폰 & 포인트 시스템 — 상세 기능 개발정의서</span>
+    <span class="page-header-num">07 / 07</span>
+  </div>
+
+  <div class="estimate-header">
+    <h2>견 적 서</h2>
+    <div class="est-divider"></div>
+    <div class="est-sub">쇼핑몰 쿠폰 & 포인트 시스템 구축</div>
+  </div>
+
+  <div class="total-box">
+    <div class="total-label">총 견적 금액<small>부가가치세(VAT) 별도</small></div>
+    <div class="total-amount">&#8361; <span id="total-display">46,000,000</span><small>원</small></div>
+  </div>
+
+  <table class="est-table">
+    <thead>
+      <tr>
+        <th style="width:80px;">구분</th>
+        <th>세부 항목 및 과업 내용</th>
+        <th style="width:60px;">인력 등급</th>
+        <th style="width:38px;">기간</th>
+        <th style="width:48px;">금액</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="est-section-row">
+        <td colspan="5"><span class="section-badge badge-required">필수</span>핵심 시스템 구축</td>
+      </tr>
+      <tr>
+        <td>설계 / PM</td>
+        <td>정책 엔진 설계, DB 스키마 설계, 할인 중첩 규칙 정의, 프로젝트 총괄·공정 관리</td>
+        <td class="tc"><span class="grade-badge grade-top">특급</span></td>
+        <td class="tc">2주</td>
+        <td class="tr">5,000</td>
+      </tr>
+      <tr>
+        <td>쿠폰 시스템</td>
+        <td>쿠폰 발행/배포/사용/소멸 전주기, 4개 유형, 취소/환불 로직, 코드 체계</td>
+        <td class="tc"><span class="grade-badge grade-top">특급</span></td>
+        <td class="tc">3주</td>
+        <td class="tr">8,000</td>
+      </tr>
+      <tr>
+        <td>포인트 시스템</td>
+        <td>적립/사용/차감/소멸 전주기, 마이너스 발행, FIFO 소멸, 잔액 조회 API</td>
+        <td class="tc"><span class="grade-badge grade-top">특급</span></td>
+        <td class="tc">3주</td>
+        <td class="tr">8,000</td>
+      </tr>
+      <tr>
+        <td>정책 엔진</td>
+        <td>할인 중첩 정책, 6단계 적용 파이프라인, 손해 방지 트리거, 한도 관리</td>
+        <td class="tc"><span class="grade-badge grade-top">특급</span></td>
+        <td class="tc">2주</td>
+        <td class="tr">6,000</td>
+      </tr>
+      <tr>
+        <td>이맥스 연동</td>
+        <td>쿠폰/포인트 데이터 동기화, 웹훅, 정산 반영, 동시성 처리, 롤백 보장</td>
+        <td class="tc"><span class="grade-badge grade-high">고급</span></td>
+        <td class="tc">2주</td>
+        <td class="tr">5,000</td>
+      </tr>
+      <tr>
+        <td>어드민 개발</td>
+        <td>쿠폰/포인트 대시보드, 관리자 차감/복원 기능, 정산 현황 조회</td>
+        <td class="tc"><span class="grade-badge grade-high">고급</span></td>
+        <td class="tc">2주</td>
+        <td class="tr">4,000</td>
+      </tr>
+      <tr>
+        <td>QA · 안정화</td>
+        <td>통합 테스트, 동시성 테스트, 정합성 검증, 크로스 브라우징, 버그 수정</td>
+        <td class="tc">-</td>
+        <td class="tc">2주</td>
+        <td class="tr">2,000</td>
+      </tr>
+      <tr class="est-subtotal">
+        <td colspan="4">필수 소계</td>
+        <td class="tr">38,000</td>
+      </tr>
+      <tr class="est-section-row">
+        <td colspan="5"><span class="section-badge badge-optional">선택</span>확장 기능 — 체크 해제 시 견적에서 제외</td>
+      </tr>
+      <tr class="opt-row" data-amount="5000">
+        <td><label><input type="checkbox" class="opt-check" checked> 삼성 연동</label></td>
+        <td>삼성 구독 서비스 유입 태그, 확정 데이터 후적립, CSV 업로드, 적립 지연 안내</td>
+        <td class="tc"><span class="grade-badge grade-high">고급</span></td>
+        <td class="tc">2주</td>
+        <td class="tr">5,000</td>
+      </tr>
+      <tr class="opt-row" data-amount="3000">
+        <td><label><input type="checkbox" class="opt-check" checked> 소멸 예고 알림</label></td>
+        <td>포인트 소멸 30일/7일 전 자동 SMS·푸시 발송, 쿠폰 만료 사전 알림</td>
+        <td class="tc"><span class="grade-badge grade-high">고급</span></td>
+        <td class="tc">1주</td>
+        <td class="tr">3,000</td>
+      </tr>
+      <tr class="est-subtotal">
+        <td colspan="4">선택 소계</td>
+        <td class="tr" id="opt-subtotal">8,000</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4">합 계</td>
+        <td class="tr" id="est-total">46,000</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="terms-cards">
+    <div class="term-card">
+      <div class="tc-label">결제 조건</div>
+      <div class="tc-value"><strong>선금 40%</strong> — 계약 시<br><strong>중도금 30%</strong> — 개발 착수 4주차<br><strong>잔금 30%</strong> — 검수 완료 시</div>
+    </div>
+    <div class="term-card">
+      <div class="tc-label">무상 하자보수</div>
+      <div class="tc-value">검수 완료일로부터 <strong>1년</strong><br>(서버 장애 및 기능 오류 대응)</div>
+    </div>
+  </div>
+
+  <div class="roi-footer">
+    <div class="rf-title">쿠폰 & 포인트 시스템은 쇼핑몰 매출의 핵심 엔진입니다</div>
+    <p>
+      본 시스템은 단순한 할인 기능이 아닌, <span class="rfh">고객 재구매율을 극대화하고 운영사 마진을 보호하는 정책 기반 세일즈 인프라</span>입니다. 정책 엔진이 할인 중첩을 자동 통제하고, 포인트 발행 한도가 운영사 재정을 보호하며, 이맥스 연동으로 정산까지 자동화됩니다. <span class="rfh">시스템 도입 후 고객 충성도 향상과 반복 구매 증가로 투자 대비 수십 배의 매출 효과</span>를 기대할 수 있습니다.
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <span>Confidential &nbsp;|&nbsp; 제안: (주)텐소프트웍스 tsw.im</span>
+    <span>Page 7</span>
+  </div>
+</div>
+
+<script>
+(function() {
+  var BASE = 38000;
+  var rows = document.querySelectorAll('.opt-row');
+  var optSub = document.getElementById('opt-subtotal');
+  var total = document.getElementById('est-total');
+  var totalDisplay = document.getElementById('total-display');
+
+  function fmt(n) { return n.toLocaleString('ko-KR'); }
+
+  function update() {
+    var optSum = 0;
+    rows.forEach(function(row) {
+      var cb = row.querySelector('.opt-check');
+      var amt = parseInt(row.dataset.amount, 10);
+      if (cb.checked) {
+        row.classList.remove('unchecked');
+        optSum += amt;
+      } else {
+        row.classList.add('unchecked');
+      }
+    });
+    optSub.textContent = fmt(optSum);
+    var t = BASE + optSum;
+    total.textContent = fmt(t);
+    totalDisplay.textContent = fmt(t * 1000);
+  }
+
+  rows.forEach(function(row) {
+    row.querySelector('.opt-check').addEventListener('change', update);
+  });
+})();
+</script>
+
+</body>
+</html>
