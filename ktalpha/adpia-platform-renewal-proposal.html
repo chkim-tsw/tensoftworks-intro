@@ -158,14 +158,20 @@
   </div>
   <h3 class="sub-title">시스템 전체 구조</h3>
   <table>
-    <thead><tr><th>시스템</th><th>역할</th><th>사용자</th><th>주요 메뉴 수</th></tr></thead>
+    <thead><tr><th>시스템</th><th>역할</th><th>사용자</th><th>접근 정책</th><th>메뉴 수</th></tr></thead>
     <tbody>
-      <tr><td><strong>FO</strong> (Front Office)</td><td>고객용 쇼핑몰 (PC/모바일 반응형)</td><td>일반/기업/입점사 회원</td><td>약 40+</td></tr>
-      <tr><td><strong>BO</strong> (Back Office)</td><td>관리자용 운영 시스템</td><td>본사 운영팀</td><td>약 60+</td></tr>
-      <tr><td><strong>SCM</strong> (Seller Center)</td><td>입점사용 판매 관리</td><td>입점 셀러</td><td>약 25+</td></tr>
-      <tr><td><strong>SRM</strong> (Supplier Mgmt)</td><td>공급사 등록/계약 관리</td><td>본사 구매/공급 담당</td><td>약 15+</td></tr>
+      <tr><td><strong>FO</strong></td><td>고객용 쇼핑몰 (PC/모바일 반응형)</td><td>일반/기업/입점사 회원</td><td>외부 공개</td><td>약 40+</td></tr>
+      <tr><td><strong>BO</strong></td><td>관리자용 운영 시스템</td><td>본사 운영팀</td><td><strong>통제된 인프라 내부 전용</strong></td><td>약 60+</td></tr>
+      <tr><td><strong>SCM</strong></td><td>입점사용 판매 관리</td><td>입점 셀러</td><td>외부 접속 가능</td><td>약 25+</td></tr>
+      <tr><td><strong>SRM</strong></td><td>공급사 등록/계약 관리</td><td>본사 구매/공급 담당</td><td>정책에 따름</td><td>약 15+</td></tr>
     </tbody>
   </table>
+  <div class="key-point">
+    <strong>BO와 SCM은 동일한 기능을 공유하는 부분이 있으나, 접근 정책이 완전히 다릅니다.</strong><br>
+    BO는 정산·ERP 연동 등 민감한 데이터를 다루기 때문에 <strong>통제된 인프라(사내망/VPN) 안에서만 접속 가능</strong>하도록 설계합니다. SCM은 입점 셀러가 외부에서 접속해야 하므로 공개 네트워크에 노출됩니다. 이에 따라 인증·보안 수준도 차등 적용합니다.
+    <br><br>
+    <strong>설계 영향:</strong> BO와 SCM은 API 백엔드를 공유하되, BO 전용 API(정산 상세, ERP 연동, 마진율 설정 등)는 내부 네트워크에서만 접근 가능한 별도 엔드포인트로 분리합니다. SCM API는 외부 노출이므로 Rate Limiting, IP 화이트리스트(선택), 강화된 인증 토큰 정책을 적용합니다.
+  </div>
   <div class="exp-box">
     KT alpha 기프티쇼비즈 판촉몰에서 FO/BO/SCM/SRM 4개 시스템을 풀스크래치로 구축한 경험이 있습니다. 초기 기획 시 BO 메뉴가 40개였으나, 운영 과정에서 브랜드관리, 메인배너관리, MDPICK관리, CS관리 세분화 등이 추가되어 최종 60개 이상으로 확장되었습니다. 이 경험을 바탕으로 애드피아몰도 <strong>초기 설계부터 확장을 전제로</strong> 메뉴 구조를 잡겠습니다.
   </div>
@@ -226,20 +232,29 @@
 
 <!-- ====== 2.1 계속 — 칼선 + 상세페이지 ====== -->
 <div class="page">
-  <h4 class="sub2-title">④ 칼선(디자인) 등록 — 실사출력/인쇄 상품 전용</h4>
+  <h4 class="sub2-title">④ 칼선(디자인) 및 인쇄영역 등록 — 편집기 API 종속 영역</h4>
   <p>고객이 FO에서 시안을 직접 올려볼 수 있도록 칼선 이미지를 등록하고, 인쇄 가능 영역을 설정하는 화면입니다.</p>
+
+  <div class="warn-box">
+    <strong>이 영역은 연동하는 편집기(에디터 API)에 완전히 종속됩니다.</strong> 칼선 이미지 형식(jpg/png/svg), 인쇄영역 좌표 포맷, 제작용 파일 규격(AI/PDF/EPS), 시안 합성 방식 등은 모두 편집기 벤더가 정의하는 스펙에 따릅니다. <strong>착수 전 편집기 벤더로부터 아래 항목을 반드시 공유받아야 합니다.</strong>
+  </div>
+
   <div class="screen-spec">
-    <h5>SCM 상품등록 &gt; 칼선 등록 화면 구성</h5>
-    <div class="field-list">
-      <span class="label">칼선 이미지</span><span class="val">25MB 이하 · jpg/png · 상품 외형 이미지</span>
-      <span class="label">칼선 직접 설정</span><span class="val">팝업 에디터 · 마우스로 인쇄 가능 영역 드래그</span>
-      <span class="label">제작용 파일</span><span class="val">AI/PDF 별도 업로드 버튼 · 실제 인쇄 원본</span>
-      <span class="label">시안 미리보기</span><span class="val">칼선 위에 고객 업로드 이미지 합성 프리뷰</span>
-    </div>
+    <h5>편집기 벤더 확인 필요 사항 (FR-SHP-007)</h5>
+    <table class="compact" style="margin-bottom:0;">
+      <thead><tr><th style="width:35%;">확인 항목</th><th>설명</th></tr></thead>
+      <tbody>
+        <tr><td>지원 파일 형식</td><td>칼선 이미지 포맷(jpg/png/svg), 해상도·용량 제한, 제작용 파일 포맷(AI/PDF/EPS)</td></tr>
+        <tr><td>인쇄영역 설정 방식</td><td>좌표 전달 포맷(JSON/XML), 편집기 자체 팝업인지 우리 UI에서 좌표만 넘기는지</td></tr>
+        <tr><td>시안 합성 프리뷰</td><td>편집기가 제공하는 iframe/SDK인지, 우리가 Canvas로 합성해야 하는지</td></tr>
+        <tr><td>API 연동 규격</td><td>REST/WebSocket, 인증 방식, 콜백 URL, 상품-칼선 매핑 키</td></tr>
+        <tr><td>고객 업로드 파일 처리</td><td>파일 저장 위치(편집기 서버/우리 서버), 용량 제한, 지원 형식</td></tr>
+      </tbody>
+    </table>
   </div>
-  <div class="key-point">
-    <strong>칼선 등록 워크플로우:</strong> ① 셀러가 상품 사진 업로드 → ② '칼선 직접 설정' 팝업에서 인쇄 영역 좌표 지정 → ③ 제작용 AI/PDF 파일 별도 업로드 → ④ 저장 시 FO 에디터 API에 자동 연동. RFP의 자체 에디터 API 연동(FR-SHP-007)과 정확히 맞는 구조입니다.
-  </div>
+
+  <p>KT alpha에서는 편집기 연동 규격을 프로젝트 중반에야 받아서 SCM 칼선 등록 화면을 두 번 재작업했습니다. <strong>이번에는 기획/설계 단계에서 편집기 벤더 미팅을 1순위로 잡고, 연동 규격 확정 후 칼선 등록 화면을 설계합니다.</strong></p>
+
   <div class="exp-box">
     칼선 등록은 셀러들이 가장 어려워하는 기능입니다. KT alpha에서 칼선 미등록 상태로 승인 요청하는 경우가 전체의 약 30%였습니다. <strong>칼선 미등록 시 승인 요청 버튼을 비활성화</strong>하고, 등록 가이드 툴팁을 상시 노출하는 UX를 적용하겠습니다.
   </div>
@@ -522,6 +537,10 @@
 <div class="page">
   <h3 class="sub-title">2.8 견적서 → 주문 전환 / 후불·여신한도</h3>
 
+  <div class="warn-box">
+    <strong>견적서+후불이 어려운 진짜 이유: 후불 정산 로직이 일반 카드 결제와 완전히 다릅니다.</strong> 일반 카드 결제는 PG 승인 → 구매확정 → 정산이지만, 후불은 주문 발생 → 월말 집계 → 청구 → 입금 확인 → 정산입니다. 결제 시점, 매출 인식 시점, 셀러 정산 시점이 전부 다르기 때문에, <strong>사실상 "일반 쇼핑몰"과 "후불제 몰"을 동시에 운영하는 구조</strong>가 됩니다. 이 이중 구조는 안정화까지 상당한 시간이 소요됩니다.
+  </div>
+
   <h4 class="sub2-title">견적서 발급 및 주문 전환</h4>
   <div class="pipeline">
     <span class="pipeline-step">견적서 발급</span><span class="pipeline-arrow">→</span>
@@ -549,8 +568,20 @@
     </div>
   </div>
 
+  <h4 class="sub2-title">일반결제 vs 후불결제 — 정산 로직 비교</h4>
+  <table class="compact">
+    <thead><tr><th style="width:20%;">구분</th><th style="width:40%;">일반결제 (카드/PG)</th><th style="width:40%;">후불결제</th></tr></thead>
+    <tbody>
+      <tr><td><strong>결제 시점</strong></td><td>주문 즉시</td><td>월말 일괄 청구</td></tr>
+      <tr><td><strong>매출 인식</strong></td><td>PG 승인 시점</td><td>청구서 발행 시점</td></tr>
+      <tr><td><strong>셀러 정산 시점</strong></td><td>구매확정 후 정산 주기</td><td>고객 입금 확인 후 정산</td></tr>
+      <tr><td><strong>취소/환불</strong></td><td>PG 취소 API → 즉시 환불</td><td>다음 청구에서 차감 또는 별도 환불</td></tr>
+      <tr><td><strong>미수금 리스크</strong></td><td>없음 (선결제)</td><td>있음 → 여신한도로 관리</td></tr>
+    </tbody>
+  </table>
+
   <div class="recommendation">
-    기업고객 → 플랫폼 후불만 기본 범위로 설계합니다. 플랫폼 → 입점사 간 채권 관리는 Phase 2로 분리를 권장합니다.
+    일반결제 정산 로직을 먼저 안정화한 후, 후불결제 정산을 별도 모듈로 추가하는 단계적 접근을 권장합니다. 두 정산 로직을 동시에 개발하면 QA 범위가 기하급수적으로 늘어나고, 안정화 기간이 길어집니다. <strong>Phase 1에서 일반결제 정산 안정화, Phase 2에서 후불결제 정산 추가</strong>가 현실적입니다.
   </div>
 
   <h3 class="sub-title">2.9 정산 시스템</h3>
@@ -574,11 +605,28 @@
     <tbody>
       <tr><td>자동확정 기간</td><td>판촉 <strong>7일</strong> / 실사출력 <strong>14일</strong> (제작 기간 고려) / 유통 <strong>7일</strong></td></tr>
       <tr><td>수수료</td><td>카테고리별 정률 기본, 입점사별 개별 조정 가능</td></tr>
-      <tr><td>취소/반품</td><td>다음 정산 차감 처리</td></tr>
-      <tr><td>정산 후 반품</td><td>다음 회차 역정산 · 부분 취소 시 수수료 재계산 자동</td></tr>
       <tr><td>세금계산서</td><td>팝빌 자동 발행 + ERP 연동</td></tr>
     </tbody>
   </table>
+
+  <h4 class="sub2-title">취소/환불과 셀러 정산의 연쇄 구조 — 핵심 난이도</h4>
+  <div class="warn-box">
+    <strong>취소/환불은 단순한 CS 처리가 아니라 셀러 정산과 직접 엮이는 회계 이슈입니다.</strong> 장바구니에 담긴 상태에서의 취소, 결제 후 부분 취소, 배송 후 반품 — 각각이 셀러 정산에 미치는 영향이 다릅니다.
+  </div>
+
+  <table class="compact">
+    <thead><tr><th style="width:25%;">취소 시점</th><th style="width:35%;">정산 영향</th><th style="width:40%;">처리 방식</th></tr></thead>
+    <tbody>
+      <tr><td>장바구니 단계</td><td>없음</td><td>단순 삭제</td></tr>
+      <tr><td>결제 후 ~ 정산 전</td><td>해당 건 정산에서 제외</td><td>PG 취소 → 셀러 정산 대상에서 차감</td></tr>
+      <tr><td>부분 취소 (일부 상품)</td><td>해당 상품분 셀러 정산 차감</td><td>수수료 재계산 자동 처리 · 배송비 재산정</td></tr>
+      <tr><td><strong>정산 완료 후 취소/반품</strong></td><td><strong>마이너스 발생</strong></td><td><strong>다음 달 정산에서 차감 (역정산)</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="key-point">
+    <strong>정산 완료 후 마이너스 역정산은 반드시 셀러 계약에 명시되어야 합니다.</strong> "이미 정산받은 금액에서 취소/반품 건이 발생하면 다음 달 정산에서 차감한다"는 조항이 셀러 입점 계약서에 들어가야 분쟁을 방지할 수 있습니다. 시스템 개발과 별도로 <strong>법무/계약 검토가 선행</strong>되어야 하며, 정산서에 역정산 내역을 명확히 표시하는 UI도 필수입니다.
+  </div>
 
   <div class="page-number">- 10 -</div>
 </div>
@@ -605,20 +653,41 @@
     KT alpha 초기에는 "주문취소요청목록/반품완료목록/교환완료목록"으로 <strong>상태 중심</strong>으로 메뉴를 나눴다가, 실제 운영에서 "내가 처리해야 할 취소 건은 어디 있지?"라는 혼란이 발생했습니다. <strong>"취소관리/반품관리/교환관리"</strong>로 <strong>처리 유형 중심</strong>으로 변경한 후 운영 효율이 크게 개선되었습니다. 처음부터 유형 중심으로 메뉴를 잡겠습니다.
   </div>
 
-  <h3 class="sub-title">2.11 전시 / 기획전 / 이벤트 관리</h3>
+  <h3 class="sub-title">2.11 전시 / 기획전 / 이벤트 관리 — FO 개발의 핵심</h3>
+
+  <div class="warn-box">
+    <strong>전시/기획전/이벤트는 사용자 FO 개발에서 가장 중요하고 가장 위험한 영역입니다.</strong> 입점몰에서 상품 데이터는 셀러들이 채워주므로 공유 자산입니다. 결국 FO의 차별화는 "상품을 어떻게 보여주느냐" — 즉 전시/이벤트 운영에 달려 있습니다. 이것은 사실상 <strong>MD(머천다이저)의 기능 전부</strong>이며, 일반 쇼핑몰의 핵심입니다.
+  </div>
+
+  <div class="key-point">
+    <strong>문제는 이 영역의 요구사항이 끝없이 확장될 수 있다는 것입니다.</strong> "타임세일", "쿠폰 자동 적용 기획전", "구매 조건부 사은품", "n+1 증정", "카테고리별 할인율 차등" 등 기획전/이벤트의 변형은 무한합니다. <strong>1차 오픈 범위를 명확히 픽스하지 않으면, 이 영역이 오픈 지연의 직접적인 사유가 됩니다.</strong>
+  </div>
+
+  <h4 class="sub2-title">1차 오픈 범위 (권장)</h4>
   <div class="menu-tree">
-    <div class="depth0">전시관리 (BO)</div>
+    <div class="depth0">전시관리 — Phase 1 (오픈 필수)</div>
     <div class="depth1">├ 카테고리 관리 — 추가/수정/삭제/노출 순서 변경</div>
     <div class="depth1">├ 메인배너 관리 — PC/모바일 이미지 각각 등록 · 시작/종료일 · 링크 URL</div>
     <div class="depth1">├ 띠 배너 관리 — 상단/중간/하단 위치별 등록</div>
     <div class="depth1">├ 베스트100 — 판매량/조회수 기반 자동 집계 + 수동 조정</div>
     <div class="depth1">├ MD PICK — 관리자 수동 큐레이션 상품 선택</div>
-    <div class="depth1">├ 브랜드관 — 브랜드 등록 (백색/컬러 로고, 최대 2MB) · 브랜드별 상품 연결</div>
-    <div class="depth1">└ 이벤트/기획전 — 할인/증정 이벤트 · 상세 배너 이미지 · 기간별 자동 노출/종료</div>
+    <div class="depth1">└ 브랜드관 — 브랜드 등록 (백색/컬러 로고, 최대 2MB) · 브랜드별 상품 연결</div>
+  </div>
+  <div class="menu-tree">
+    <div class="depth0">이벤트/기획전 — Phase 2 또는 범위 협의 필수</div>
+    <div class="depth1">├ 할인 이벤트 — 기간/카테고리/상품별 할인율 설정</div>
+    <div class="depth1">├ 증정 이벤트 — 구매 조건부 사은품 자동 배정</div>
+    <div class="depth1">├ 타임세일 — 시간 제한 할인, 재고 카운트다운</div>
+    <div class="depth1">├ 쿠폰 연동 기획전 — 기획전 진입 시 쿠폰 자동 발급</div>
+    <div class="depth1">└ 복합 이벤트 — n+1, 세트 할인, 단계별 할인 등</div>
+  </div>
+
+  <div class="recommendation">
+    <strong>1차 오픈 시 전시관리(배너/카테고리/큐레이션)는 필수로 포함하되, 이벤트/기획전의 세부 유형은 발주사와 범위를 명확히 협의한 후 확정합니다.</strong> 범위 미확정 상태로 개발에 돌입하면 "이것도 넣어달라, 저것도 넣어달라"가 반복되면서 FO 오픈이 지연됩니다. 2차 개발로 분리하거나, 1차에 포함할 이벤트 유형을 3가지 이내로 픽스하는 것을 강력히 권장합니다.
   </div>
 
   <div class="exp-box">
-    브랜드관리, 메인배너관리, MDPICK관리는 KT alpha 초기 기획에는 없었으나 <strong>운영 2개월 차에 필수로 추가</strong>된 메뉴들입니다. 특히 MD PICK은 판촉몰 특성상 "이번 시즌 인기 판촉물" 같은 큐레이션 수요가 높았습니다. 애드피아몰도 초기부터 포함합니다.
+    KT alpha에서도 브랜드관리, 메인배너관리, MDPICK관리는 초기 기획에 없었으나 <strong>운영 2개월 차에 필수로 추가</strong>되었습니다. 이벤트/기획전은 오픈 후에도 지속적으로 유형이 추가되는 영역이므로, 확장 가능한 이벤트 엔진 구조(이벤트 유형 → 조건 → 혜택을 조합하는 규칙 엔진)를 설계해두면 2차 개발 시 빠르게 대응할 수 있습니다.
   </div>
 
   <h3 class="sub-title">2.12 무통장입금 처리</h3>
