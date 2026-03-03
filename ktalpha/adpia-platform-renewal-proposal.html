@@ -6,359 +6,86 @@
 <title>애드피아몰 통합플랫폼 리뉴얼 제안서 — 텐소프트웍스</title>
 <style>
   @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
-
-  @page {
-    size: A4 portrait;
-    margin: 20mm 18mm 24mm 18mm;
-  }
-
+  @page { size: A4 portrait; margin: 20mm 18mm 24mm 18mm; }
   @media print {
     body { background: #fff; padding: 0; }
     .page { box-shadow: none; margin: 0; page-break-after: always; }
     .page:last-child { page-break-after: avoid; }
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-    background: #e8e8ed;
-    color: #1d1d1f;
-    line-height: 1.7;
-    font-size: 10.5pt;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    background: #e8e8ed; color: #1d1d1f; line-height: 1.7; font-size: 10.5pt;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
   }
-
   .page {
-    width: 210mm;
-    min-height: 297mm;
-    margin: 20px auto;
-    padding: 48px 52px;
-    background: #fff;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-    position: relative;
-    overflow: hidden;
+    width: 210mm; min-height: 297mm; margin: 20px auto; padding: 48px 52px;
+    background: #fff; box-shadow: 0 2px 16px rgba(0,0,0,0.08); position: relative; overflow: hidden;
   }
-
-  /* ── 표지 ── */
-  .cover {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0;
-  }
-
-  .cover-top-bar {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 6px;
-    background: linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  }
-
-  .cover-badge {
-    display: inline-block;
-    font-size: 11pt;
-    font-weight: 600;
-    color: #0f3460;
-    border: 1.5px solid #0f3460;
-    border-radius: 4px;
-    padding: 6px 20px;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
-  }
-
-  .cover h1 {
-    font-size: 30pt;
-    font-weight: 800;
-    color: #1a1a2e;
-    line-height: 1.3;
-    margin-bottom: 12px;
-  }
-
-  .cover h2 {
-    font-size: 15pt;
-    font-weight: 400;
-    color: #555;
-    margin-bottom: 60px;
-  }
-
-  .cover-divider {
-    width: 60px;
-    height: 3px;
-    background: #0f3460;
-    margin: 0 auto 48px;
-  }
-
-  .cover-info {
-    font-size: 12pt;
-    color: #333;
-    line-height: 2;
-  }
-
-  .cover-info strong {
-    color: #1a1a2e;
-  }
-
-  .cover-bottom {
-    position: absolute;
-    bottom: 48px;
-    left: 0; right: 0;
-    text-align: center;
-    font-size: 10pt;
-    color: #999;
-  }
-
-  /* ── 본문 ── */
-  .section-num {
-    display: inline-block;
-    font-size: 11pt;
-    font-weight: 700;
-    color: #fff;
-    background: #1a1a2e;
-    width: 32px;
-    height: 32px;
-    line-height: 32px;
-    text-align: center;
-    border-radius: 50%;
-    margin-right: 10px;
-    vertical-align: middle;
-  }
-
-  .section-title {
-    font-size: 17pt;
-    font-weight: 700;
-    color: #1a1a2e;
-    margin-bottom: 24px;
-    padding-bottom: 10px;
-    border-bottom: 2.5px solid #1a1a2e;
-    display: flex;
-    align-items: center;
-  }
-
-  .sub-title {
-    font-size: 12.5pt;
-    font-weight: 700;
-    color: #0f3460;
-    margin: 24px 0 12px;
-    padding-left: 12px;
-    border-left: 3px solid #0f3460;
-  }
-
-  .sub2-title {
-    font-size: 11pt;
-    font-weight: 600;
-    color: #333;
-    margin: 18px 0 8px;
-  }
-
-  p {
-    margin-bottom: 10px;
-    text-align: justify;
-    word-break: keep-all;
-  }
-
-  .lead {
-    font-size: 11pt;
-    color: #333;
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin-bottom: 20px;
-    border-left: 4px solid #0f3460;
-    line-height: 1.8;
-  }
-
-  .key-point {
-    background: #f0f4ff;
-    border-radius: 6px;
-    padding: 14px 18px;
-    margin: 12px 0;
-    font-size: 10pt;
-    border: 1px solid #d0daf0;
-  }
-
-  .key-point strong {
-    color: #0f3460;
-  }
-
-  .recommendation {
-    background: #fff8e1;
-    border: 1px solid #ffe082;
-    border-radius: 6px;
-    padding: 14px 18px;
-    margin: 12px 0;
-    font-size: 10pt;
-  }
-
-  .recommendation::before {
-    content: '권장안';
-    display: inline-block;
-    font-size: 9pt;
-    font-weight: 700;
-    color: #e65100;
-    background: #fff3e0;
-    border: 1px solid #ffcc80;
-    border-radius: 3px;
-    padding: 1px 8px;
-    margin-right: 8px;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 12px 0 16px;
-    font-size: 9.5pt;
-  }
-
-  table th {
-    background: #1a1a2e;
-    color: #fff;
-    font-weight: 600;
-    padding: 9px 12px;
-    text-align: center;
-    border: 1px solid #2a2a4e;
-  }
-
-  table td {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    vertical-align: top;
-  }
-
-  table tr:nth-child(even) td {
-    background: #fafafa;
-  }
-
-  table.simple th {
-    background: #f5f5f5;
-    color: #333;
-    border: 1px solid #ddd;
-  }
-
-  ul, ol {
-    margin: 8px 0 12px 20px;
-  }
-
-  li {
-    margin-bottom: 4px;
-  }
-
-  .page-number {
-    position: absolute;
-    bottom: 24px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 9pt;
-    color: #999;
-  }
-
-  .toc-item {
-    display: flex;
-    align-items: baseline;
-    padding: 8px 0;
-    border-bottom: 1px dotted #ccc;
-    font-size: 11pt;
-  }
-
-  .toc-num {
-    font-weight: 700;
-    color: #0f3460;
-    width: 36px;
-    flex-shrink: 0;
-  }
-
-  .toc-text {
-    flex: 1;
-    color: #333;
-  }
-
-  .toc-page {
-    color: #999;
-    font-size: 10pt;
-    margin-left: 12px;
-  }
-
-  .biz-model-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-    margin: 16px 0;
-  }
-
-  .biz-card {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 16px;
-    border-top: 3px solid #0f3460;
-  }
-
-  .biz-card h4 {
-    font-size: 11pt;
-    font-weight: 700;
-    color: #0f3460;
-    margin-bottom: 8px;
-  }
-
-  .biz-card p {
-    font-size: 9pt;
-    color: #555;
-    margin-bottom: 0;
-  }
-
-  .pipeline {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin: 12px 0;
-    flex-wrap: wrap;
-  }
-
-  .pipeline-step {
-    background: #e8edf5;
-    color: #0f3460;
-    font-size: 8.5pt;
-    font-weight: 600;
-    padding: 6px 10px;
-    border-radius: 4px;
-    white-space: nowrap;
-  }
-
-  .pipeline-arrow {
-    color: #aaa;
-    font-size: 10pt;
-  }
-
-  .stack-tag {
-    display: inline-block;
-    font-size: 8.5pt;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 12px;
-    margin: 2px 4px 2px 0;
-  }
-
-  .stack-fe { background: #e3f2fd; color: #1565c0; }
-  .stack-be { background: #e8f5e9; color: #2e7d32; }
-  .stack-db { background: #fce4ec; color: #c62828; }
-  .stack-infra { background: #f3e5f5; color: #7b1fa2; }
-  .stack-ext { background: #fff3e0; color: #e65100; }
-
-  .amount-highlight {
-    font-size: 22pt;
-    font-weight: 800;
-    color: #0f3460;
-  }
-
-  .footer-bar {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  }
+  .cover { display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0; }
+  .cover-top-bar { position:absolute; top:0; left:0; right:0; height:6px; background:linear-gradient(90deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%); }
+  .cover-badge { display:inline-block; font-size:11pt; font-weight:600; color:#0f3460; border:1.5px solid #0f3460; border-radius:4px; padding:6px 20px; letter-spacing:2px; margin-bottom:40px; }
+  .cover h1 { font-size:30pt; font-weight:800; color:#1a1a2e; line-height:1.3; margin-bottom:12px; }
+  .cover h2 { font-size:15pt; font-weight:400; color:#555; margin-bottom:60px; }
+  .cover-divider { width:60px; height:3px; background:#0f3460; margin:0 auto 48px; }
+  .cover-info { font-size:12pt; color:#333; line-height:2; }
+  .cover-info strong { color:#1a1a2e; }
+  .cover-bottom { position:absolute; bottom:48px; left:0; right:0; text-align:center; font-size:10pt; color:#999; }
+  .section-num { display:inline-block; font-size:11pt; font-weight:700; color:#fff; background:#1a1a2e; width:32px; height:32px; line-height:32px; text-align:center; border-radius:50%; margin-right:10px; vertical-align:middle; }
+  .section-title { font-size:17pt; font-weight:700; color:#1a1a2e; margin-bottom:24px; padding-bottom:10px; border-bottom:2.5px solid #1a1a2e; display:flex; align-items:center; }
+  .sub-title { font-size:12.5pt; font-weight:700; color:#0f3460; margin:24px 0 12px; padding-left:12px; border-left:3px solid #0f3460; }
+  .sub2-title { font-size:11pt; font-weight:600; color:#333; margin:18px 0 8px; }
+  .sub3-title { font-size:10pt; font-weight:600; color:#555; margin:12px 0 6px; }
+  p { margin-bottom:10px; text-align:justify; word-break:keep-all; }
+  .lead { font-size:11pt; color:#333; background:#f8f9fa; border-radius:8px; padding:16px 20px; margin-bottom:20px; border-left:4px solid #0f3460; line-height:1.8; }
+  .key-point { background:#f0f4ff; border-radius:6px; padding:14px 18px; margin:12px 0; font-size:10pt; border:1px solid #d0daf0; }
+  .key-point strong { color:#0f3460; }
+  .recommendation { background:#fff8e1; border:1px solid #ffe082; border-radius:6px; padding:14px 18px; margin:12px 0; font-size:10pt; }
+  .recommendation::before { content:'권장안'; display:inline-block; font-size:9pt; font-weight:700; color:#e65100; background:#fff3e0; border:1px solid #ffcc80; border-radius:3px; padding:1px 8px; margin-right:8px; }
+  .exp-box { background:#f1f8e9; border:1px solid #c5e1a5; border-radius:6px; padding:14px 18px; margin:12px 0; font-size:10pt; }
+  .exp-box::before { content:'운영 경험'; display:inline-block; font-size:9pt; font-weight:700; color:#33691e; background:#dcedc8; border:1px solid #aed581; border-radius:3px; padding:1px 8px; margin-right:8px; }
+  .warn-box { background:#fce4ec; border:1px solid #f48fb1; border-radius:6px; padding:14px 18px; margin:12px 0; font-size:10pt; }
+  .warn-box::before { content:'주의'; display:inline-block; font-size:9pt; font-weight:700; color:#c62828; background:#ffcdd2; border:1px solid #ef9a9a; border-radius:3px; padding:1px 8px; margin-right:8px; }
+  table { width:100%; border-collapse:collapse; margin:12px 0 16px; font-size:9.5pt; }
+  table th { background:#1a1a2e; color:#fff; font-weight:600; padding:9px 12px; text-align:center; border:1px solid #2a2a4e; }
+  table td { padding:8px 12px; border:1px solid #ddd; vertical-align:top; }
+  table tr:nth-child(even) td { background:#fafafa; }
+  table.simple th { background:#f5f5f5; color:#333; border:1px solid #ddd; }
+  table.compact { font-size:8.5pt; }
+  table.compact td, table.compact th { padding:5px 8px; }
+  ul, ol { margin:8px 0 12px 20px; }
+  li { margin-bottom:4px; }
+  .page-number { position:absolute; bottom:24px; left:0; right:0; text-align:center; font-size:9pt; color:#999; }
+  .toc-item { display:flex; align-items:baseline; padding:8px 0; border-bottom:1px dotted #ccc; font-size:11pt; }
+  .toc-num { font-weight:700; color:#0f3460; width:36px; flex-shrink:0; }
+  .toc-text { flex:1; color:#333; }
+  .toc-page { color:#999; font-size:10pt; margin-left:12px; }
+  .toc-sub { padding-left:36px; font-size:9.5pt; color:#666; border-bottom:1px dotted #eee; padding-top:4px; padding-bottom:4px; }
+  .biz-model-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:16px 0; }
+  .biz-card { background:#f8f9fa; border-radius:8px; padding:16px; border-top:3px solid #0f3460; }
+  .biz-card h4 { font-size:11pt; font-weight:700; color:#0f3460; margin-bottom:8px; }
+  .biz-card p { font-size:9pt; color:#555; margin-bottom:0; }
+  .pipeline { display:flex; align-items:center; gap:4px; margin:12px 0; flex-wrap:wrap; }
+  .pipeline-step { background:#e8edf5; color:#0f3460; font-size:8.5pt; font-weight:600; padding:6px 10px; border-radius:4px; white-space:nowrap; }
+  .pipeline-arrow { color:#aaa; font-size:10pt; }
+  .stack-tag { display:inline-block; font-size:8.5pt; font-weight:600; padding:3px 10px; border-radius:12px; margin:2px 4px 2px 0; }
+  .stack-fe { background:#e3f2fd; color:#1565c0; }
+  .stack-be { background:#e8f5e9; color:#2e7d32; }
+  .stack-db { background:#fce4ec; color:#c62828; }
+  .stack-infra { background:#f3e5f5; color:#7b1fa2; }
+  .stack-ext { background:#fff3e0; color:#e65100; }
+  .amount-highlight { font-size:22pt; font-weight:800; color:#0f3460; }
+  .footer-bar { position:absolute; bottom:0; left:0; right:0; height:4px; background:linear-gradient(90deg,#1a1a2e 0%,#16213e 50%,#0f3460 100%); }
+  .screen-spec { background:#fafafa; border:1px solid #e0e0e0; border-radius:6px; padding:12px 16px; margin:10px 0; font-size:9.5pt; }
+  .screen-spec h5 { font-size:9.5pt; font-weight:700; color:#0f3460; margin-bottom:6px; }
+  .field-list { display:grid; grid-template-columns:1fr 1fr; gap:4px 16px; font-size:9pt; margin:6px 0; }
+  .field-list span { padding:2px 0; }
+  .field-list .label { color:#666; }
+  .field-list .val { color:#333; font-weight:500; }
+  .menu-tree { font-size:9pt; margin:8px 0; padding:12px 16px; background:#f8f9fa; border-radius:6px; }
+  .menu-tree .depth0 { font-weight:700; color:#1a1a2e; margin-bottom:4px; }
+  .menu-tree .depth1 { padding-left:20px; color:#333; margin-bottom:2px; }
+  .menu-tree .depth2 { padding-left:40px; color:#666; margin-bottom:2px; }
 </style>
 </head>
 <body>
@@ -384,28 +111,25 @@
 <!-- ====== 목차 ====== -->
 <div class="page">
   <div class="section-title"><span class="section-num" style="font-size:9pt;">C</span> 목차</div>
-  <div style="margin-top:20px;">
+  <div style="margin-top:16px;">
     <div class="toc-item"><span class="toc-num">1.</span><span class="toc-text">사업 이해도</span><span class="toc-page">3</span></div>
     <div class="toc-item"><span class="toc-num">2.</span><span class="toc-text">기능별 설계 방향</span><span class="toc-page">4</span></div>
-    <div class="toc-item" style="padding-left:36px; font-size:10pt; color:#666;">
-      <span class="toc-text">2.1 상품등록 체계 · 2.2 장바구니→결제→주문 분리 · 2.3 주문 프로세스 · 2.4 셀러 관리</span>
-    </div>
-    <div class="toc-item" style="padding-left:36px; font-size:10pt; color:#666;">
-      <span class="toc-text">2.5 견적서→주문 전환 · 2.6 후불/여신한도 · 2.7 정산 시스템 · 2.8 취소/반품/교환</span>
-    </div>
-    <div class="toc-item" style="padding-left:36px; font-size:10pt; color:#666;">
-      <span class="toc-text">2.9 전시/기획전/이벤트 · 2.10 무통장입금 처리</span>
-    </div>
-    <div class="toc-item"><span class="toc-num">3.</span><span class="toc-text">의견이 필요한 영역</span><span class="toc-page">9</span></div>
-    <div class="toc-item" style="padding-left:36px; font-size:10pt; color:#666;">
-      <span class="toc-text">3.1 사방넷 연동 · 3.2 다국어(한/영/일) · 3.3 셀러센터 다국어</span>
-    </div>
-    <div class="toc-item"><span class="toc-num">4.</span><span class="toc-text">기술 아키텍처</span><span class="toc-page">11</span></div>
-    <div class="toc-item"><span class="toc-num">5.</span><span class="toc-text">수행 조직</span><span class="toc-page">12</span></div>
-    <div class="toc-item"><span class="toc-num">6.</span><span class="toc-text">일정 계획</span><span class="toc-page">12</span></div>
-    <div class="toc-item"><span class="toc-num">7.</span><span class="toc-text">비용 제안</span><span class="toc-page">13</span></div>
-    <div class="toc-item"><span class="toc-num">8.</span><span class="toc-text">왜 우리인가 — 경험 기반의 구체적 근거</span><span class="toc-page">13</span></div>
-    <div class="toc-item"><span class="toc-num">9.</span><span class="toc-text">발주사 확인 필요 사항 정리</span><span class="toc-page">14</span></div>
+    <div class="toc-sub">2.1 상품등록 체계 — 기본정보·공급정보·옵션·칼선·상세페이지</div>
+    <div class="toc-sub">2.2 상품 승인 워크플로우 — 임시저장·심사·거절/보류·재심사·대량등록</div>
+    <div class="toc-sub">2.3 관리자(BO) 상품 관리 — 마진율 설정·소비자가 자동계산·최종승인 잠금</div>
+    <div class="toc-sub">2.4 장바구니 → 결제 → 주문 분리</div>
+    <div class="toc-sub">2.5 주문 프로세스 — SCM 7단계 파이프라인·BO 4단계 관리·메모 시스템</div>
+    <div class="toc-sub">2.6 셀러 관리 — 가입심사·SRM연동·서브회원·권한체계·계정찾기</div>
+    <div class="toc-sub">2.7 셀러 커뮤니케이션 — 1:1문의·답변상태·댓글·게시판·FAQ</div>
+    <div class="toc-sub">2.8 견적서 → 주문 전환 · 후불/여신한도</div>
+    <div class="toc-sub">2.9 정산 시스템 — 이중정산·구매확정·역정산·세금계산서</div>
+    <div class="toc-sub">2.10 취소/반품/교환 · 2.11 전시/기획전 · 2.12 무통장입금</div>
+    <div class="toc-item"><span class="toc-num">3.</span><span class="toc-text">의견이 필요한 영역</span><span class="toc-page">14</span></div>
+    <div class="toc-sub">3.1 사방넷 연동 · 3.2 다국어(한/영/일) · 3.3 셀러센터 다국어</div>
+    <div class="toc-item"><span class="toc-num">4.</span><span class="toc-text">기술 아키텍처</span><span class="toc-page">16</span></div>
+    <div class="toc-item"><span class="toc-num">5.</span><span class="toc-text">수행 조직 · 일정 · 비용</span><span class="toc-page">17</span></div>
+    <div class="toc-item"><span class="toc-num">6.</span><span class="toc-text">왜 우리인가 — 경험 기반의 구체적 근거</span><span class="toc-page">18</span></div>
+    <div class="toc-item"><span class="toc-num">7.</span><span class="toc-text">발주사 확인 필요 사항</span><span class="toc-page">19</span></div>
   </div>
   <div class="page-number">- 2 -</div>
 </div>
@@ -413,14 +137,12 @@
 <!-- ====== 1. 사업 이해도 ====== -->
 <div class="page">
   <div class="section-title"><span class="section-num">1</span> 사업 이해도</div>
-
   <h3 class="sub-title">프로젝트 본질</h3>
   <p>겉으로는 하나의 쇼핑몰이지만, 안에는 세 가지 완전히 다른 비즈니스 모델이 돌아갑니다.</p>
-
   <div class="biz-model-grid">
     <div class="biz-card">
       <h4>유통 (원자재)</h4>
-      <p>본사가 직접 팔고, 직접 배송하고, 직접 CS. 정산도 없는 자사몰 구조. 다만 향후 입점 기능을 열 수 있게 설계만 열어두라는 조건 부여.</p>
+      <p>본사가 직접 팔고, 직접 배송하고, 직접 CS. 정산도 없는 자사몰 구조. 향후 입점 기능을 열 수 있게 설계만 열어둠.</p>
     </div>
     <div class="biz-card">
       <h4>판촉 (판촉물)</h4>
@@ -428,63 +150,193 @@
     </div>
     <div class="biz-card">
       <h4>실사출력</h4>
-      <p>판촉과 동일한 입점 구조인데, 주문제작 방식이라 사이즈 직접 입력, 디자인 파일 업로드, 실시간 견적 계산 추가.</p>
+      <p>판촉과 동일한 입점 구조 + 주문제작 방식. 사이즈 직접 입력, 디자인 파일 업로드, 실시간 견적 계산 추가.</p>
     </div>
   </div>
-
   <div class="lead">
     이 프로젝트의 난이도는 결국 <strong>"하나의 결제에서 시작된 주문이 판매자별로 갈라져서 각각의 배송 → CS → 구매확정 → 정산 → 세금계산서 → ERP까지 흘러가는 전체 파이프라인"</strong>을 얼마나 깔끔하게 설계하느냐에 달려 있습니다.
   </div>
-
+  <h3 class="sub-title">시스템 전체 구조</h3>
+  <table>
+    <thead><tr><th>시스템</th><th>역할</th><th>사용자</th><th>주요 메뉴 수</th></tr></thead>
+    <tbody>
+      <tr><td><strong>FO</strong> (Front Office)</td><td>고객용 쇼핑몰 (PC/모바일 반응형)</td><td>일반/기업/입점사 회원</td><td>약 40+</td></tr>
+      <tr><td><strong>BO</strong> (Back Office)</td><td>관리자용 운영 시스템</td><td>본사 운영팀</td><td>약 60+</td></tr>
+      <tr><td><strong>SCM</strong> (Seller Center)</td><td>입점사용 판매 관리</td><td>입점 셀러</td><td>약 25+</td></tr>
+      <tr><td><strong>SRM</strong> (Supplier Mgmt)</td><td>공급사 등록/계약 관리</td><td>본사 구매/공급 담당</td><td>약 15+</td></tr>
+    </tbody>
+  </table>
+  <div class="exp-box">
+    KT alpha 기프티쇼비즈 판촉몰에서 FO/BO/SCM/SRM 4개 시스템을 풀스크래치로 구축한 경험이 있습니다. 초기 기획 시 BO 메뉴가 40개였으나, 운영 과정에서 브랜드관리, 메인배너관리, MDPICK관리, CS관리 세분화 등이 추가되어 최종 60개 이상으로 확장되었습니다. 이 경험을 바탕으로 애드피아몰도 <strong>초기 설계부터 확장을 전제로</strong> 메뉴 구조를 잡겠습니다.
+  </div>
   <div class="page-number">- 3 -</div>
 </div>
 
-<!-- ====== 2. 기능별 설계 방향 (1) ====== -->
+<!-- ====== 2.1 상품등록 체계 ====== -->
 <div class="page">
   <div class="section-title"><span class="section-num">2</span> 기능별 설계 방향</div>
-
   <h3 class="sub-title">2.1 상품등록 체계</h3>
-  <p>판촉물 특성상 옵션 조합이 곱하기로 늘어나는 구조입니다. 인쇄 방식, 소재, 수량 구간별 단가, 사이즈, 색상 — 이게 다 조합이니까 가격 테이블이 매트릭스가 됩니다.</p>
+  <p>판촉물 특성상 옵션 조합이 곱하기로 늘어나는 구조입니다. 인쇄 방식, 소재, 수량 구간별 단가, 사이즈, 색상 — 이게 다 조합이니까 가격 테이블이 매트릭스가 됩니다. KT alpha 판촉몰에서 이미 구현하고 셀러들이 실제로 사용하면서 안정화된 방식을 기반으로 설계합니다.</p>
 
-  <div class="key-point">
-    <strong>KT alpha 판촉몰에서 이미 구현한 방식을 기반으로 설계합니다.</strong><br>
-    셀러센터(SCM)에서 상품 등록 시 기본정보 탭과 공급정보 탭을 분리합니다. 카테고리는 다중 추가가 가능하고, 썸네일 이미지(500×500 권장, 최대 3개), 법적 허가사항, 재질, 규격을 입력하는 영역을 둡니다. 공급가액은 VAT 별도 기준으로 입력하고, 제작 기간과 배송비 부담 주체(셀러/본사)를 선택합니다.
+  <h4 class="sub2-title">① 기본정보 탭</h4>
+  <div class="screen-spec">
+    <h5>SCM 상품등록 &gt; 기본정보 화면 구성</h5>
+    <div class="field-list">
+      <span class="label">카테고리</span><span class="val">필수 · 다중 추가 가능 · 불일치 시 등록 반려</span>
+      <span class="label">상품명</span><span class="val">필수 · 텍스트 입력</span>
+      <span class="label">법적 허가사항</span><span class="val">선택 · 해당 시 입력</span>
+      <span class="label">재질</span><span class="val">필수 · 텍스트 입력</span>
+      <span class="label">규격</span><span class="val">필수 · 가로×세로×높이(mm)</span>
+      <span class="label">썸네일 이미지</span><span class="val">500×500px 권장 · 최대 3개 · jpg/png</span>
+    </div>
+  </div>
+  <div class="exp-box">
+    카테고리 다중 추가는 "판촉물이 여러 카테고리에 걸치는 경우"를 위한 것입니다. 예: 머그컵이 '사무용품'이면서 '기념품'일 수 있습니다. 다만 카테고리 불일치로 인한 반려가 초기 셀러 이탈의 주요 원인이었습니다. <strong>카테고리 선택 시 추천 카테고리를 자동 제안하는 UI</strong>를 추가하겠습니다.
   </div>
 
-  <h4 class="sub2-title">옵션 설정</h4>
-  <p>인쇄/박스/포장 각각에 대해 <strong>사용/미사용</strong>을 선택하고, 사용 시 가격 방식을 <strong>무료 / 통합(총액) / 개당</strong> 중에서 선택하는 구조입니다. 이 방식이 판촉물 옵션 매트릭스를 가장 현실적으로 처리하는 UI이고, KT alpha에서 셀러들이 실제로 사용하면서 안정화된 패턴입니다.</p>
-
-  <h4 class="sub2-title">칼선(디자인) 등록 — 실사출력 전용</h4>
-  <p>25MB 이하 jpg/png 칼선 이미지를 첨부하고, 팝업 에디터에서 마우스로 인쇄 가능 영역을 직접 설정합니다. 실제 제작용 AI/PDF 파일은 별도 업로드 버튼으로 분리합니다. RFP의 자체 에디터 API 연동(FR-SHP-007)과 정확히 맞는 구조입니다.</p>
-
-  <h4 class="sub2-title">상품 상태 관리</h4>
-  <div class="pipeline">
-    <span class="pipeline-step">임시저장</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">승인대기</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">1차승인</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">최종승인</span>
+  <h4 class="sub2-title">② 공급정보 탭</h4>
+  <div class="screen-spec">
+    <h5>SCM 상품등록 &gt; 공급정보 화면 구성</h5>
+    <div class="field-list">
+      <span class="label">공급가액</span><span class="val">VAT 별도 기준 입력 · 숫자+콤마 포맷</span>
+      <span class="label">제작 기간</span><span class="val">영업일 기준 · 드롭다운(1일~30일)</span>
+      <span class="label">최소/최대 주문수량</span><span class="val">숫자 입력 · 최소 ≤ 최대 자동 검증</span>
+      <span class="label">배송비 부담</span><span class="val">셀러부담 / 본사부담 라디오 선택</span>
+      <span class="label">배송비 금액</span><span class="val">셀러부담 선택 시 활성화 · 숫자 입력</span>
+      <span class="label">무료배송 조건</span><span class="val">금액 기준 설정 가능 (0원 = 항상 유료)</span>
+    </div>
   </div>
-  <p>승인대기 상태에서는 셀러가 상품 정보를 수정할 수 없고, 거절/보류 시 사유를 확인한 후 보류 건에 한해 재심사 요청이 가능합니다. 대용량 엑셀 등록도 지원합니다.</p>
 
-  <h4 class="sub2-title">관리자(BO) 측 핵심: 수량별 마진율 설정</h4>
-  <p>셀러가 등록한 공급가 위에 관리자가 최소/최대 수량 기준으로 마진율을 책정하면 소비자가격이 자동 계산됩니다. 최종 승인 후에는 마진율 수정이 불가능하게 잠급니다. 이 구조가 입점몰에서 본사 수익을 관리하는 가장 깔끔한 방식이고, RFP의 카테고리별/입점사별 수수료율(FR-STL-002)과 함께 이중으로 수익 구조를 설계할 수 있습니다.</p>
-
+  <h4 class="sub2-title">③ 옵션 설정 탭 — 판촉물 핵심 UI</h4>
+  <p>인쇄/박스/포장 각각에 대해 <strong>사용/미사용 라디오 버튼</strong>을 선택합니다. '사용' 선택 시 우측에 드롭다운이 활성화되어 가격 방식을 선택합니다.</p>
+  <table class="compact">
+    <thead><tr><th>옵션 항목</th><th>사용 여부</th><th>가격 방식</th><th>금액 입력</th></tr></thead>
+    <tbody>
+      <tr><td><strong>인쇄</strong></td><td>사용 ○ / 미사용 ○</td><td>무료 | 통합(총액) | 개당</td><td>통합/개당 선택 시 금액 입력란 활성화</td></tr>
+      <tr><td><strong>박스</strong></td><td>사용 ○ / 미사용 ○</td><td>무료 | 통합(총액) | 개당</td><td>동일</td></tr>
+      <tr><td><strong>포장</strong></td><td>사용 ○ / 미사용 ○</td><td>무료 | 통합(총액) | 개당</td><td>동일</td></tr>
+      <tr><td><strong>추가 옵션</strong></td><td colspan="3">셀러가 직접 옵션명을 입력하여 추가 생성 가능 (예: 각인, 포장지 종류)</td></tr>
+    </tbody>
+  </table>
+  <div class="exp-box">
+    "통합(총액)"은 수량과 무관하게 고정 금액, "개당"은 수량에 비례하는 금액입니다. 이 구분이 판촉물 견적의 핵심입니다. KT alpha에서 초기에 "단가×수량" 방식만 있었는데, 셀러들이 "인쇄 셋업비는 수량과 무관하게 5만원"처럼 설정하고 싶어해서 통합(총액) 방식을 추가했습니다.
+  </div>
   <div class="page-number">- 4 -</div>
 </div>
 
-<!-- ====== 2.2~2.3 ====== -->
+<!-- ====== 2.1 계속 — 칼선 + 상세페이지 ====== -->
 <div class="page">
-  <h3 class="sub-title">2.2 장바구니 → 결제 → 주문 분리</h3>
-  <p>장바구니에 담기는 시점부터 판매자 구분값(본사/입점사ID)을 보유합니다. 결제는 PG 한 번에 처리하고, 내부에서 판매자별 주문을 자동 분리합니다. 배송비는 판매자별 개별 산정합니다. PG 수수료는 본사 부담으로 설계하고 수수료율에 반영합니다.</p>
-
-  <div class="recommendation">
-    장바구니에서 결제로 넘어갈 때 판매자별 주문 분리 방식, 배송비 판매자별 부과, 합배송 가능 여부 등은 RFP에 명시되어 있지 않습니다. <strong>PG 한 번 결제 + 내부 분리 방식으로 설계하되, 발주사 확인 후 확정합니다.</strong>
+  <h4 class="sub2-title">④ 칼선(디자인) 등록 — 실사출력/인쇄 상품 전용</h4>
+  <p>고객이 FO에서 시안을 직접 올려볼 수 있도록 칼선 이미지를 등록하고, 인쇄 가능 영역을 설정하는 화면입니다.</p>
+  <div class="screen-spec">
+    <h5>SCM 상품등록 &gt; 칼선 등록 화면 구성</h5>
+    <div class="field-list">
+      <span class="label">칼선 이미지</span><span class="val">25MB 이하 · jpg/png · 상품 외형 이미지</span>
+      <span class="label">칼선 직접 설정</span><span class="val">팝업 에디터 · 마우스로 인쇄 가능 영역 드래그</span>
+      <span class="label">제작용 파일</span><span class="val">AI/PDF 별도 업로드 버튼 · 실제 인쇄 원본</span>
+      <span class="label">시안 미리보기</span><span class="val">칼선 위에 고객 업로드 이미지 합성 프리뷰</span>
+    </div>
+  </div>
+  <div class="key-point">
+    <strong>칼선 등록 워크플로우:</strong> ① 셀러가 상품 사진 업로드 → ② '칼선 직접 설정' 팝업에서 인쇄 영역 좌표 지정 → ③ 제작용 AI/PDF 파일 별도 업로드 → ④ 저장 시 FO 에디터 API에 자동 연동. RFP의 자체 에디터 API 연동(FR-SHP-007)과 정확히 맞는 구조입니다.
+  </div>
+  <div class="exp-box">
+    칼선 등록은 셀러들이 가장 어려워하는 기능입니다. KT alpha에서 칼선 미등록 상태로 승인 요청하는 경우가 전체의 약 30%였습니다. <strong>칼선 미등록 시 승인 요청 버튼을 비활성화</strong>하고, 등록 가이드 툴팁을 상시 노출하는 UX를 적용하겠습니다.
   </div>
 
-  <h3 class="sub-title">2.3 주문 프로세스 및 상태 관리</h3>
+  <h4 class="sub2-title">⑤ 상세페이지 에디터</h4>
+  <p>상품 상세페이지는 WYSIWYG 에디터를 통해 텍스트 작성, 표 삽입, 이미지 첨부가 가능합니다. 이미지는 드래그앤드롭 업로드를 지원하고, 최대 해상도 제한(2000×2000px)과 용량 제한(5MB/장)을 적용합니다.</p>
 
-  <h4 class="sub2-title">셀러센터(SCM) 주문관리</h4>
-  <p>화면 상단에 파이프라인 형태로 주문 단계를 배치합니다. 단계별 건수를 직관적으로 확인하고 필터링할 수 있는 구조입니다.</p>
+  <h3 class="sub-title">2.2 상품 승인 워크플로우</h3>
+  <div class="pipeline">
+    <span class="pipeline-step">임시저장</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">승인요청</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">승인대기</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">1차승인(BO)</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">최종승인</span>
+  </div>
+
+  <p>SCM 좌측 메뉴(LNB)가 <strong>임시저장, 승인대기, 거절, 보류</strong>로 나뉘어 있어 셀러가 상태별로 상품을 관리합니다.</p>
+
+  <table class="compact">
+    <thead><tr><th>상태</th><th>셀러 가능 행동</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td><strong>임시저장</strong></td><td>수정, 삭제, 승인요청</td><td>작성 중 이탈 시 자동 저장</td></tr>
+      <tr><td><strong>승인대기</strong></td><td>조회만 가능 (수정 불가)</td><td>관리자 심사 중</td></tr>
+      <tr><td><strong>거절</strong></td><td>사유 확인만 가능</td><td>판매 불가 판정 · 재등록 필요</td></tr>
+      <tr><td><strong>보류</strong></td><td>사유 확인 → 수정 → 재심사 요청</td><td>수정 후 재승인 가능</td></tr>
+    </tbody>
+  </table>
+
+  <div class="exp-box">
+    KT alpha 초기에는 "거절"과 "보류"를 구분하지 않았습니다. 셀러가 "사소한 수정이면 바로 고쳐서 재심사 받고 싶다"는 요구가 많아 보류(재심사 가능) / 거절(완전 반려)로 분리했습니다. 이 구분이 없으면 셀러가 상품을 처음부터 다시 등록해야 해서 이탈률이 높아집니다.
+  </div>
+
+  <h4 class="sub2-title">대용량 엑셀 등록</h4>
+  <p>엑셀 양식 다운로드 → 일괄 입력 → 업로드 → 검증 결과 리스트(성공/실패 행 표시) → 성공 건 자동 임시저장. 이미지는 ZIP으로 별도 업로드하고 파일명으로 상품과 매칭합니다.</p>
+
+  <div class="page-number">- 5 -</div>
+</div>
+
+<!-- ====== 2.3 BO 상품관리 ====== -->
+<div class="page">
+  <h3 class="sub-title">2.3 관리자(BO) 상품 관리</h3>
+
+  <h4 class="sub2-title">상품 심사 화면</h4>
+  <p>BO에서 승인대기 상품을 조회하면, 셀러가 입력한 기본정보/공급정보/옵션/칼선/상세페이지를 모두 확인할 수 있습니다. 심사 결과는 <strong>1차승인 / 보류(사유 입력) / 거절(사유 입력)</strong> 중 선택합니다.</p>
+
+  <h4 class="sub2-title">수량별 마진율 설정 — BO 핵심 기능</h4>
+  <div class="screen-spec">
+    <h5>BO 상품관리 &gt; 마진율 설정 화면</h5>
+    <p style="font-size:9pt; margin-bottom:8px;">1차승인 후 활성화. 셀러 공급가 위에 관리자가 마진율을 설정하면 소비자가격이 자동 계산됩니다.</p>
+    <table class="compact">
+      <thead><tr><th>수량 구간</th><th>공급가(셀러)</th><th>마진율(BO)</th><th>소비자가(자동)</th></tr></thead>
+      <tbody>
+        <tr><td>1~99개</td><td>5,000원</td><td>30%</td><td>6,500원</td></tr>
+        <tr><td>100~499개</td><td>4,500원</td><td>25%</td><td>5,625원</td></tr>
+        <tr><td>500개 이상</td><td>4,000원</td><td>20%</td><td>4,800원</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warn-box">
+    <strong>최종승인 후에는 마진율 수정이 불가능하게 잠급니다.</strong> 이미 고객에게 노출된 가격이 변경되면 진행 중인 견적/주문에 영향을 주기 때문입니다. 가격 변경이 필요하면 상품을 비활성화 → 신규 등록하는 프로세스를 적용합니다.
+  </div>
+
+  <h4 class="sub2-title">BO 상품관리 메뉴 구조</h4>
+  <div class="menu-tree">
+    <div class="depth0">상품관리</div>
+    <div class="depth1">├ 상품 목록 (전체/카테고리별/입점사별 필터)</div>
+    <div class="depth1">├ 승인대기 목록 (심사 처리)</div>
+    <div class="depth1">├ 마진율 설정 (1차승인 후)</div>
+    <div class="depth1">├ 카테고리 관리 (추가/수정/삭제/순서변경)</div>
+    <div class="depth1">├ 브랜드 관리 (백색/컬러 로고, 최대 2MB)</div>
+    <div class="depth1">└ 대용량 등록 관리 (엑셀 업로드 현황)</div>
+  </div>
+
+  <h3 class="sub-title">2.4 장바구니 → 결제 → 주문 분리</h3>
+  <p>장바구니에 담기는 시점부터 판매자 구분값(본사/입점사ID)을 보유합니다. 결제는 PG 한 번에 처리하고, 내부에서 판매자별 주문을 자동 분리합니다.</p>
+  <table class="compact">
+    <thead><tr><th>처리 단계</th><th>동작</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>장바구니</td><td>판매자별 그룹 표시 · 배송비 판매자별 개별 산정</td><td>FO 화면에 판매자 구분 표시</td></tr>
+      <tr><td>결제</td><td>PG 1회 통합 결제</td><td>PG 수수료 본사 부담 → 수수료율 반영</td></tr>
+      <tr><td>주문 분리</td><td>결제 완료 → 판매자별 개별 주문서 자동 생성</td><td>각 주문서에 부분결제금액 배분</td></tr>
+      <tr><td>배송</td><td>판매자별 독립 배송 · 각자 운송장 입력</td><td>합배송 가능 여부 발주사 확인 필요</td></tr>
+    </tbody>
+  </table>
+
+  <div class="recommendation">
+    장바구니→결제 분리 방식, 배송비 합산/분리 규칙, 합배송 가능 여부는 RFP에 명시되어 있지 않습니다. <strong>PG 한 번 결제 + 내부 분리 방식으로 설계하되, 발주사 확인 후 확정합니다.</strong>
+  </div>
+
+  <div class="page-number">- 6 -</div>
+</div>
+
+<!-- ====== 2.5 주문 프로세스 ====== -->
+<div class="page">
+  <h3 class="sub-title">2.5 주문 프로세스 및 상태 관리</h3>
+
+  <h4 class="sub2-title">셀러센터(SCM) 주문관리 — 7단계 파이프라인</h4>
   <div class="pipeline">
     <span class="pipeline-step">주문서 접수</span><span class="pipeline-arrow">→</span>
     <span class="pipeline-step">주문확인</span><span class="pipeline-arrow">→</span>
@@ -494,232 +346,423 @@
     <span class="pipeline-step">배송중</span><span class="pipeline-arrow">→</span>
     <span class="pipeline-step">배송완료</span>
   </div>
+  <p>화면 상단에 파이프라인 탭을 배치하고, 각 단계별 건수를 뱃지로 표시합니다. 셀러가 현재 어떤 단계에 몇 건이 쌓여있는지 한눈에 파악할 수 있는 구조입니다.</p>
 
-  <h4 class="sub2-title">관리자(BO) 주문관리</h4>
-  <p>'발주신청내역'부터 '1단계: 주문확인', '2단계: 상품제작', '3단계: 배송중', '4단계: 배송완료'까지 프로세스별로 목록을 조회합니다. 주문서 상세에서 공급가, 부가세, 결제 금액(PG/비즈머니), 배송 주의사항, 고객 시안 요청 내역(칼선 이미지, PDF/AI 파일)을 모두 확인할 수 있습니다.</p>
+  <div class="screen-spec">
+    <h5>SCM 주문관리 화면 구성</h5>
+    <div class="field-list">
+      <span class="label">검색 조건</span><span class="val">발주일 / 결제일 / 배송일 기간 검색</span>
+      <span class="label">주문 목록</span><span class="val">주문번호, 상품명, 수량, 금액, 상태, 메모 아이콘</span>
+      <span class="label">주문서 상세 (팝업)</span><span class="val">기본정보 탭 + 변경이력 탭 (작업자, 변경일)</span>
+      <span class="label">운송장 관리</span><span class="val">택배사 선택 + 운송장 번호 입력 + 배송추적 링크</span>
+      <span class="label">시안 파일</span><span class="val">고객 업로드 시안 다운로드 버튼 + 주문서 인쇄 버튼</span>
+    </div>
+  </div>
+
+  <h4 class="sub2-title">메모 시스템 — 관리자↔셀러 실시간 소통</h4>
+  <div class="screen-spec">
+    <h5>SCM 주문관리 &gt; 메모 팝업 구성</h5>
+    <p style="font-size:9pt;">주문 목록의 '메모' 아이콘 클릭 시 팝업이 열립니다.</p>
+    <ul style="font-size:9pt; margin-left:16px;">
+      <li><strong>상단 영역 (읽기 전용):</strong> 관리자가 남긴 메모 내용 · 작성일시 표시</li>
+      <li><strong>하단 영역 (입력 가능):</strong> '셀러 메모' 텍스트 입력란 + 저장 버튼</li>
+      <li>메모 이력은 시간순으로 누적 표시 · 삭제 불가 (감사추적용)</li>
+    </ul>
+  </div>
+
+  <h4 class="sub2-title">관리자(BO) 주문관리 — 4단계 프로세스</h4>
+  <div class="pipeline">
+    <span class="pipeline-step">발주신청내역</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">1단계: 주문확인</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">2단계: 상품제작</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">3단계: 배송중</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">4단계: 배송완료</span>
+  </div>
+  <div class="screen-spec">
+    <h5>BO 주문서 상세 팝업 — 확인 가능 항목</h5>
+    <div class="field-list">
+      <span class="label">금액 정보</span><span class="val">공급가, 부가세, 결제 금액 (PG / 비즈머니 구분)</span>
+      <span class="label">배송 정보</span><span class="val">배송 주의사항, 운송장 번호, 택배사</span>
+      <span class="label">시안 정보</span><span class="val">고객 시안 요청 내역 · 칼선 이미지 · PDF/AI 파일 다운로드</span>
+      <span class="label">변경 이력</span><span class="val">작업자명, 변경 내용, 변경 일시 (감사 로그)</span>
+    </div>
+  </div>
 
   <div class="key-point">
-    <strong>핵심 비즈니스 룰:</strong> KT alpha 판촉몰 운영 경험에서 확인된 것으로, <strong>"상품제작중" 상태에서는 주문 취소가 불가능합니다.</strong> 주문제작 상품의 특성상 제작에 들어간 후에는 원상복구가 안 되기 때문입니다. 이 룰은 애드피아몰의 판촉/실사출력 카테고리에도 동일하게 적용되어야 합니다.
+    <strong>핵심 비즈니스 룰:</strong> <strong>"상품제작중" 상태에서는 주문 취소가 불가능합니다.</strong> 주문제작 상품의 특성상 제작에 들어간 후에는 원상복구가 안 되기 때문입니다. KT alpha 판촉몰 운영 경험에서 확인된 룰이며, 애드피아몰의 판촉/실사출력 카테고리에도 동일하게 적용합니다.
   </div>
-
-  <h4 class="sub2-title">셀러-관리자 커뮤니케이션</h4>
-  <p>주문 목록의 메모 기능으로 관리자↔셀러 간 실시간 소통을 지원합니다. 1:1 문의는 이벤트/정산/배송비 등 유형별 셀렉트 박스 + 텍스트 에디터 + 첨부파일 업로드로 구성하고, 답변 완료 시 '처리'로 변경, 추가 댓글 시 '추가처리'로 자동 변경되는 상태 관리를 적용합니다.</p>
-
-  <div class="page-number">- 5 -</div>
-</div>
-
-<!-- ====== 2.4~2.5 ====== -->
-<div class="page">
-  <h3 class="sub-title">2.4 셀러 관리 및 권한 체계</h3>
-
-  <h4 class="sub2-title">셀러 가입 흐름</h4>
-  <div class="pipeline">
-    <span class="pipeline-step">이메일 ID + 휴대전화 인증</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">사업자/회원 정보 입력</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">관리자 승인</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">SCM 로그인 활성화</span>
-  </div>
-  <p>반려 시 사유가 셀러에게 그대로 노출되어 수정 후 재신청이 가능합니다. <strong>SRM 시스템 회원가입이 선행되어야 SCM 가입 심사가 가능한 구조</strong>는 RFP의 공급사 관리 시스템과 연결됩니다.</p>
-
-  <h4 class="sub2-title">관리자 권한</h4>
-  <p>BO 관리자별로 접근 가능한 메뉴(상품/주문/정산/전시 등)를 개별 부여/해제할 수 있게 합니다. 셀러 비밀번호 초기화, SCM 이용중지 처리가 가능하되, 이용중지 상태라도 FO 로그인 및 구매에는 영향을 주지 않습니다.</p>
-
-  <h4 class="sub2-title">서브회원 관리</h4>
-  <p>마스터 계정으로 서브회원의 ID/이름/전화번호를 등록하고, 토글 스위치로 이용중/이용정지를 제어합니다. B2B 입점사 특성상 담당자가 여러 명인 경우가 많으므로 필수 기능입니다.</p>
-
-  <h3 class="sub-title">2.5 견적서 → 주문 전환</h3>
-  <div class="pipeline">
-    <span class="pipeline-step">견적서 발급</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">고객 승인</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">주문서 자동 생성</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">결제 (또는 후불 배정)</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">입점사/생산시스템 전달</span>
-  </div>
-  <p>견적 유효기간 설정이 가능하고, B2B 대량 주문은 엑셀 업로드 + 견적 일괄 생성으로 처리합니다.</p>
-
-  <div class="key-point">
-    <strong>후불결제 계약 관리:</strong> 후불결제 주문 건의 경우 법인 날인 기반의 계약서를 이메일로 발송하거나 PDF로 다운로드 및 인쇄하여 관리할 수 있는 기능을 포함합니다.
-  </div>
-
-  <h3 class="sub-title">2.6 후불 / 여신한도</h3>
-  <p>기업회원별 여신한도 설정(FR-B2B-004, FR-B2B-102), 주문 시 실시간 잔여한도 체크, 한도 초과 시 선결제 전환 또는 주문 차단. 월정산 시 미수금 자동 집계, 관리자 대시보드에서 기업별 채권 현황 조회.</p>
-
-  <div class="recommendation">
-    기업고객 대상 여신 관리를 기본 범위로 설계하되, 입점사 간 채권 관리는 Phase 2로 분리하는 것을 권장합니다.
-  </div>
-
-  <div class="page-number">- 6 -</div>
-</div>
-
-<!-- ====== 2.7 정산 ====== -->
-<div class="page">
-  <h3 class="sub-title">2.7 정산 시스템</h3>
-
-  <div class="lead">
-    <strong>이중 정산 구조로 설계합니다.</strong><br>
-    KT alpha에서는 원래 하나였던 "출금정산관리"를 <strong>판매정산관리와 공급정산관리로 분리</strong>하면서 운영이 훨씬 명확해졌습니다. 애드피아몰도 처음부터 이중 정산 구조로 가는 것이 맞습니다.
-  </div>
-
-  <table>
-    <thead>
-      <tr><th style="width:40%;">공급 정산 관리<br><span style="font-weight:400; font-size:8.5pt;">(플랫폼 → 셀러)</span></th><th style="width:40%;">판매 정산 관리<br><span style="font-weight:400; font-size:8.5pt;">(고객 → 플랫폼)</span></th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>셀러에게 지급할 정산 내역<br>공급가액 + 부가세 + 배송비 합산<br>주문번호/세금계산서번호/전표번호 검색</td>
-        <td>고객으로부터 입금된 판매 금액<br>결제수단(PG/비즈머니), PG수수료<br>최종 입금예정액 · 엑셀 다운로드</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h4 class="sub2-title">구매확정 기반 정산</h4>
-  <ul>
-    <li>자동확정 기간: 카테고리별 차등 적용 (판촉 <strong>7일</strong>, 실사출력 <strong>14일</strong> — 제작 기간 고려)</li>
-    <li>수수료: 카테고리별 정률 기본, 입점사별 개별 조정 가능</li>
-    <li>취소/반품: 다음 정산 차감 처리</li>
-    <li>세금계산서: 팝빌 자동 발행 + ERP 연동</li>
-  </ul>
-
-  <h4 class="sub2-title">정산 완료 후 반품 처리</h4>
-  <p>이미 정산이 완료된 후에 반품이 들어오면 다음 회차 정산에서 역정산. 부분 취소 시 수수료 재계산도 자동 처리.</p>
-
-  <h3 class="sub-title">2.8 취소 / 반품 / 교환</h3>
-  <div class="pipeline">
-    <span class="pipeline-step">입점사 1차 승인/거부</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">미응답 48시간</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">본사 자동 이관</span><span class="pipeline-arrow">→</span>
-    <span class="pipeline-step">분쟁 시 본사 중재</span>
-  </div>
-  <p>CS 메뉴에서 취소관리/반품관리/교환관리를 통합 관리합니다. KT alpha 경험에서 초기에는 "주문취소요청목록/반품완료목록/교환완료목록"으로 나눴다가, 실제 운영에서 <strong>"취소관리/반품관리/교환관리"</strong>로 메뉴명과 구조를 변경한 이력이 있습니다. 처음부터 상태 중심이 아니라 <strong>처리 유형 중심</strong>으로 메뉴를 잡겠습니다.</p>
 
   <div class="page-number">- 7 -</div>
 </div>
 
-<!-- ====== 2.9~2.10 ====== -->
+<!-- ====== 2.6 셀러 관리 ====== -->
 <div class="page">
-  <h3 class="sub-title">2.9 전시 / 기획전 / 이벤트 관리</h3>
-  <p>카테고리 추가, 메인 배너 및 띠 배너 등록(PC/모바일 이미지, 시작/종료일 지정), 베스트100, MD PICK, 브랜드관 구성을 포함합니다. 브랜드 등록 시 백색 및 컬러 로고 이미지(최대 2MB 제한)를 업로드합니다.</p>
-  <p>이벤트/기획전은 할인 또는 증정 등의 이벤트를 기획하고 상세 배너 이미지를 등록하여 기간별로 노출합니다. KT alpha에서 초기 기획 대비 추가된 메뉴(브랜드관리/메인배너관리/MDPICK관리)들이 실제 운영에서 필수로 밝혀진 항목들이므로, 애드피아몰에도 초기부터 포함합니다.</p>
+  <h3 class="sub-title">2.6 셀러 관리 및 권한 체계</h3>
 
-  <h3 class="sub-title">2.10 무통장입금 처리</h3>
-  <p>가상계좌 발급 후 입금 대기 상태, 재고 홀딩 72시간(설정 가능), 미입금 시 자동 취소. 입금 확인은 PG 자동 통보. 입점사 주문에 대한 무통장입금이면 입금 확인 주체와 주문 활성화 시점을 명확히 분리합니다.</p>
+  <h4 class="sub2-title">셀러 가입 및 심사 프로세스</h4>
+  <div class="pipeline">
+    <span class="pipeline-step">SRM 회원가입 (선행 필수)</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">SCM 회원가입</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">관리자 심사 (1~3영업일)</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">승인 → SCM 로그인 활성화</span>
+  </div>
+
+  <div class="screen-spec">
+    <h5>SCM 회원가입 화면 — 입력 필드 상세</h5>
+    <table class="compact" style="margin-bottom:0;">
+      <thead><tr><th colspan="2">사업자 정보</th><th colspan="2">회원 정보</th></tr></thead>
+      <tbody>
+        <tr><td class="label">사업자등록번호</td><td>필수 · 자동 형식 검증</td><td class="label">이메일 (=ID)</td><td>필수 · 중복 확인</td></tr>
+        <tr><td class="label">상호명</td><td>필수</td><td class="label">비밀번호</td><td>영문(대/소)+숫자+특수문자 8~20자</td></tr>
+        <tr><td class="label">대표자명</td><td>필수</td><td class="label">담당자명</td><td>필수</td></tr>
+        <tr><td class="label">사업장 주소</td><td>주소 검색 API</td><td class="label">휴대전화</td><td>필수 · SMS 인증 필수</td></tr>
+        <tr><td class="label">출고지</td><td>필수 · 사업장과 별도 가능</td><td class="label">회수지</td><td>반품 수거 주소</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn-box">
+    <strong>비밀번호 규칙:</strong> 영문 대/소문자 + 숫자 + 특수문자 조합, 8~20자리. 공백 사용 불가, 연속된 4자리 문자/숫자 사용 불가 (예: 1234, abcd). 화면에 규칙 안내 텍스트 상시 노출.
+  </div>
+
+  <h4 class="sub2-title">가입 심사 상태별 처리</h4>
+  <table class="compact">
+    <thead><tr><th>상태</th><th>로그인 시 동작</th><th>셀러 가능 행동</th></tr></thead>
+    <tbody>
+      <tr><td><strong>심사중</strong></td><td>'심사중' 알럿 팝업 표시</td><td>대기만 가능</td></tr>
+      <tr><td><strong>반려</strong></td><td>반려 사유 팝업 표시 (예: "SRM 미가입")</td><td>정보 수정 후 재신청</td></tr>
+      <tr><td><strong>승인</strong></td><td>정상 로그인 → 대시보드 진입</td><td>모든 SCM 기능 사용</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sub2-title">계정 찾기</h4>
+  <p>담당자 이름 + 휴대전화 SMS 인증을 통해 아이디 찾기 및 비밀번호 재설정이 가능합니다. 기존 비밀번호 확인 후 새 비밀번호로 변경하는 '비밀번호 재설정' 화면을 마이페이지에 별도 제공합니다.</p>
+
+  <h4 class="sub2-title">서브회원 관리</h4>
+  <div class="screen-spec">
+    <h5>SCM 회원관리 &gt; 서브회원 관리 화면</h5>
+    <ul style="font-size:9pt; margin-left:16px;">
+      <li>마스터 계정으로 서브회원의 <strong>아이디, 이름, 전화번호</strong>를 입력하여 등록</li>
+      <li>서브회원 비밀번호는 <strong>최초 로그인 시 전화번호 인증으로 설정</strong> (마스터가 비밀번호를 알 필요 없음)</li>
+      <li>리스트 우측의 <strong>토글 스위치</strong>로 이용중/이용정지 개별 제어</li>
+      <li><strong>일괄 변경 버튼</strong>으로 체크박스 선택 → 일괄 이용중지 처리</li>
+    </ul>
+  </div>
+  <div class="exp-box">
+    B2B 입점사는 담당자가 여러 명인 경우가 대부분입니다. 서브회원의 비밀번호를 마스터가 설정하는 대신 전화번호 인증으로 본인이 직접 설정하게 한 것은 <strong>보안 + 운영 편의 양쪽을 만족</strong>시킨 설계입니다.
+  </div>
+
+  <h4 class="sub2-title">관리자(BO) 셀러 관리 권한</h4>
+  <ul>
+    <li>BO 관리자별로 접근 가능한 메뉴(상품/주문/정산/전시 등) <strong>개별 부여/해제</strong></li>
+    <li>셀러 비밀번호 초기화 처리 가능</li>
+    <li>SCM 이용중지 처리 가능 — <strong>단, 이용중지 상태라도 FO 로그인 및 구매에는 영향 없음</strong></li>
+  </ul>
 
   <div class="page-number">- 8 -</div>
 </div>
 
-<!-- ====== 3. 의견이 필요한 영역 (1) ====== -->
+<!-- ====== 2.7 커뮤니케이션 ====== -->
 <div class="page">
-  <div class="section-title"><span class="section-num">3</span> 의견이 필요한 영역</div>
+  <h3 class="sub-title">2.7 셀러 커뮤니케이션 시스템</h3>
 
-  <h3 class="sub-title">3.1 사방넷 연동 — 구조적 미스매치에 대한 의견</h3>
-  <p>RFP의 FR-VND-003에 "재고 관리 — 재고 수량, 사방넷 연동"이 명시되어 있습니다. 그런데 여기에는 <strong>근본적인 구조 문제</strong>가 있습니다.</p>
+  <h4 class="sub2-title">1:1 문의 시스템</h4>
+  <div class="screen-spec">
+    <h5>SCM 마이페이지 &gt; 1:1 문의 화면 구성</h5>
+    <div class="field-list">
+      <span class="label">문의 유형</span><span class="val">셀렉트 박스 — 이벤트 / 정산 / 배송비 / 상품 / 기타</span>
+      <span class="label">제목</span><span class="val">텍스트 입력</span>
+      <span class="label">내용</span><span class="val">텍스트 에디터 (서식 지원)</span>
+      <span class="label">첨부파일</span><span class="val">파일 업로드 (이미지, PDF 등)</span>
+    </div>
+  </div>
 
-  <table>
-    <thead>
-      <tr><th>구분</th><th>사방넷의 설계 철학</th><th>애드피아몰이 필요한 구조</th></tr>
-    </thead>
+  <h4 class="sub2-title">답변 상태 관리 — 문의 목록 화면</h4>
+  <table class="compact">
+    <thead><tr><th>답변 상태</th><th>셀러 가능 행동</th><th>UI 동작</th></tr></thead>
     <tbody>
-      <tr>
-        <td style="font-weight:600;">관계 구조</td>
-        <td><strong>1 셀러 : N 쇼핑몰</strong><br>하나의 판매자가 여러 채널 주문을 한 곳에서 관리</td>
-        <td><strong>N 셀러 : 1 쇼핑몰</strong><br>여러 입점사가 하나의 몰에 상품을 올리는 마켓플레이스</td>
-      </tr>
-      <tr>
-        <td style="font-weight:600;">재고 관리</td>
-        <td>SKU 기반 재고 추적이 핵심</td>
-        <td>판촉물/실사출력은 주문제작(make-to-order)이 대부분으로 SKU 재고 추적이 무의미</td>
-      </tr>
+      <tr><td><strong>— (미답변)</strong></td><td>수정 · 삭제 가능</td><td>'수정/삭제' 버튼 활성화</td></tr>
+      <tr><td><strong>완료</strong></td><td>수정/삭제 불가 · 댓글 추가 가능</td><td>수정/삭제 버튼 비활성화 · 하단에 '댓글 추가' 입력창 생성</td></tr>
+      <tr><td><strong>추가처리</strong></td><td>추가 댓글 대기</td><td>댓글 등록 시 자동 변경</td></tr>
+    </tbody>
+  </table>
+  <div class="exp-box">
+    "답변 완료 후 셀러가 추가 질문하면 상태가 어떻게 되지?"는 실제 운영에서 반드시 나오는 문제입니다. KT alpha에서는 답변 완료 → 셀러 댓글 → '추가처리'로 자동 상태 변경되어 관리자가 재확인해야 할 건을 놓치지 않는 구조로 해결했습니다.
+  </div>
+
+  <h4 class="sub2-title">업체정보 수정 — SRM 연동 제약</h4>
+  <table class="compact">
+    <thead><tr><th>항목</th><th>SCM에서 직접 수정 가능</th><th>SRM 경유 필요</th></tr></thead>
+    <tbody>
+      <tr><td>사업장 주소</td><td>O</td><td></td></tr>
+      <tr><td>출고지 / 회수지</td><td>O</td><td></td></tr>
+      <tr><td>담당자 연락처</td><td>O</td><td></td></tr>
+      <tr><td>사업자등록번호</td><td></td><td>O (변경 불가, SRM에서 수정 요청)</td></tr>
+      <tr><td>상호명</td><td></td><td>O</td></tr>
+      <tr><td>대표자명</td><td></td><td>O</td></tr>
     </tbody>
   </table>
 
-  <p>KT alpha 판촉몰에서도 재고 관리가 아니라 <strong>주문 상태 관리</strong>(주문확인→시안제작→시안확정→상품제작→배송)가 핵심이었습니다.</p>
-
-  <h4 class="sub2-title">현실적 제안</h4>
-  <ul>
-    <li>사방넷 연동이 실제로 필요한 입점사가 얼마나 되는지 발주사에 확인 필요</li>
-    <li>유통(원자재) 카테고리의 재고 기반 상품을 취급하는 셀러에게는 의미가 있을 수 있으나, 판촉/실사출력 셀러에게는 사방넷보다 주문제작 프로세스 관리가 더 중요</li>
-    <li>필수 요구사항이라면 사방넷 API는 부가서비스(유료) 별도 계약 필요, API 연동키도 셀러 각자가 발급</li>
-    <li>연동 방향: <strong>애드피아몰 → 사방넷으로 주문을 밀어넣는 구조</strong>가 되어야 함</li>
-  </ul>
-
-  <div class="recommendation">
-    사방넷 연동은 Phase 2로 분리하고, Phase 1에서는 자체 재고관리(유통 카테고리) + 주문제작 프로세스 관리(판촉/실사출력)로 충분히 운영 가능한 구조를 먼저 잡는 것이 현실적입니다.
+  <h4 class="sub2-title">게시판(Board) 시스템</h4>
+  <table class="compact">
+    <thead><tr><th>메뉴</th><th>기능</th><th>검색/필터</th></tr></thead>
+    <tbody>
+      <tr><td><strong>공지사항</strong></td><td>관리자 등록 · 셀러 조회</td><td>등록일(3/6/12개월) + 제목 키워드</td></tr>
+      <tr><td><strong>FAQ</strong></td><td>아코디언 펼침 형식</td><td>대분류 탭: 배송 / 상품 / 회원 / 시안 / 정산 / 기타</td></tr>
+    </tbody>
+  </table>
+  <div class="exp-box">
+    FAQ 카테고리 중 <strong>'시안'</strong>이 별도 분류로 있는 것은 판촉몰 특유의 구조입니다. 일반 쇼핑몰에서는 존재하지 않는 카테고리인데, 칼선 등록/시안 확인/디자인 파일 형식 등에 대한 셀러 문의가 전체의 약 40%를 차지했기 때문에 분리했습니다.
   </div>
 
   <div class="page-number">- 9 -</div>
 </div>
 
-<!-- ====== 3.2~3.3 ====== -->
+<!-- ====== 2.8 견적 + 후불 ====== -->
 <div class="page">
-  <h3 class="sub-title">3.2 다국어(한/영/일) — 결제까지 원하는 건지 확인 필요</h3>
-  <p>RFP에 다국어(한/영/일)가 필수로 잡혀 있고, 전체 사용자 시스템에 걸쳐 있습니다. 그런데 <strong>다국어가 UI 번역인지, 결제까지 포함인지에 따라 복잡도가 완전히 달라집니다.</strong></p>
+  <h3 class="sub-title">2.8 견적서 → 주문 전환 / 후불·여신한도</h3>
+
+  <h4 class="sub2-title">견적서 발급 및 주문 전환</h4>
+  <div class="pipeline">
+    <span class="pipeline-step">견적서 발급</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">고객 승인</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">주문서 자동 생성</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">결제 (또는 후불 배정)</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">입점사 전달</span>
+  </div>
+  <ul>
+    <li>견적 유효기간 설정 가능 (기본 7일, 관리자 조정)</li>
+    <li>B2B 대량 주문: 엑셀 업로드 → 견적 일괄 생성</li>
+    <li>견적 승인 → 주문서 자동 생성 시 상품 옵션/수량/금액 자동 복사</li>
+    <li>후불결제 계약: 법인 날인 기반 계약서 이메일 발송 / PDF 다운로드·인쇄</li>
+  </ul>
+
+  <h4 class="sub2-title">후불 / 여신한도 관리</h4>
+  <div class="screen-spec">
+    <h5>BO 여신관리 화면 구성</h5>
+    <div class="field-list">
+      <span class="label">기업별 여신한도</span><span class="val">금액 설정 (월 단위)</span>
+      <span class="label">실시간 잔여한도</span><span class="val">주문 시 자동 차감 · 잔여한도 표시</span>
+      <span class="label">한도 초과 시</span><span class="val">선결제 전환 안내 또는 주문 차단</span>
+      <span class="label">월정산</span><span class="val">미수금 자동 집계 · 청구서 발행</span>
+      <span class="label">대시보드</span><span class="val">기업별 채권 현황 조회 · 연체 알림</span>
+    </div>
+  </div>
+
+  <div class="recommendation">
+    기업고객 → 플랫폼 후불만 기본 범위로 설계합니다. 플랫폼 → 입점사 간 채권 관리는 Phase 2로 분리를 권장합니다.
+  </div>
+
+  <h3 class="sub-title">2.9 정산 시스템</h3>
+  <div class="lead">
+    <strong>이중 정산 구조로 설계합니다.</strong> KT alpha에서는 원래 하나였던 "출금정산관리"를 <strong>판매정산관리와 공급정산관리로 분리</strong>하면서 운영이 훨씬 명확해졌습니다.
+  </div>
 
   <table>
-    <thead>
-      <tr><th style="width:15%;">구분</th><th style="width:42%;">시나리오 A: 국내 외국인 UI 지원</th><th style="width:43%;">시나리오 B: 해외 거주 외국인 결제</th></tr>
-    </thead>
+    <thead><tr><th style="width:50%;">공급 정산 관리 (플랫폼 → 셀러)</th><th style="width:50%;">판매 정산 관리 (고객 → 플랫폼)</th></tr></thead>
     <tbody>
       <tr>
-        <td style="font-weight:600;">결제</td>
-        <td>국내 PG 일반결제 + 간편결제 그대로</td>
-        <td>해외특약 별도 계약, 3DS 인증 기반 해외카드 결제</td>
-      </tr>
-      <tr>
-        <td style="font-weight:600;">간편결제</td>
-        <td>네이버페이, 카카오페이 사용 가능</td>
-        <td>네이버페이(한국 휴대폰 필수), 카카오페이(외국인등록증+한국 휴대폰) → 사실상 불가</td>
-      </tr>
-      <tr>
-        <td style="font-weight:600;">수수료</td>
-        <td>국내 일반 수수료</td>
-        <td>해외카드 결제 수수료 3.8~4% 수준</td>
-      </tr>
-      <tr>
-        <td style="font-weight:600;">난이도</td>
-        <td>UI만 i18n 처리 → 낮음</td>
-        <td>PG사별 지원 범위 확인 + 해외특약 → 높음</td>
+        <td>셀러에게 지급할 정산 내역<br>공급가액 + 부가세 + 배송비 합산<br>검색: 주문번호 / 세금계산서번호 / 전표번호 / 상품명</td>
+        <td>고객으로부터 입금된 판매 금액<br>결제수단별 구분 (PG / 비즈머니)<br>PG수수료 차감 후 최종 입금예정액<br>엑셀 다운로드 지원</td>
       </tr>
     </tbody>
   </table>
 
-  <div class="recommendation">
-    시나리오 A는 기본 범위에 포함하고, 시나리오 B는 해외특약 계약 조건 및 PG사별 지원 범위 확인 후 추가 범위로 분리합니다.
-  </div>
-
-  <h3 class="sub-title">3.3 셀러센터 다국어 — 쇼핑몰일 때 오히려 복잡도가 높다</h3>
-  <p><strong>FO(고객용) 다국어는 당연합니다.</strong> 상품명, 설명, 카테고리, 검색 등 고객 접점 전체를 i18n 처리해야 합니다.</p>
-  <p><strong>그런데 셀러센터 다국어는 다른 문제입니다.</strong> 입점하는 셀러들이 한국 업체라면 셀러센터를 영어/일본어로 만들 이유가 없습니다. 만약 해외 셀러 입점까지 고려하는 거라면 상품 등록 시 다국어 입력 필드, 셀러-관리자 커뮤니케이션의 언어 문제, 정산서/세금계산서의 언어 등이 추가되면서 복잡도가 급격히 올라갑니다.</p>
-  <p>KT alpha 판촉몰 운영 경험에서 셀러들은 상품 등록 UI의 복잡도에 굉장히 민감합니다. 옵션 설정, 칼선 등록, 가격 매트릭스만으로도 충분히 복잡한데, 여기에 다국어 입력 필드까지 붙이면 <strong>등록 이탈률이 높아질 수 있습니다.</strong></p>
-
-  <div class="recommendation">
-    FO(고객용)만 다국어 처리하고, 셀러센터/BO는 한국어 단일 언어로 가는 것을 1차 범위로 잡습니다. 상품 데이터 구조는 처음부터 다국어 필드를 설계해두되, 셀러 입력 화면은 한국어로 시작하고 번역은 관리자 측에서 처리하는 방식이 현실적입니다.
-  </div>
+  <h4 class="sub2-title">구매확정 기반 정산 규칙</h4>
+  <table class="compact">
+    <thead><tr><th>항목</th><th>규칙</th></tr></thead>
+    <tbody>
+      <tr><td>자동확정 기간</td><td>판촉 <strong>7일</strong> / 실사출력 <strong>14일</strong> (제작 기간 고려) / 유통 <strong>7일</strong></td></tr>
+      <tr><td>수수료</td><td>카테고리별 정률 기본, 입점사별 개별 조정 가능</td></tr>
+      <tr><td>취소/반품</td><td>다음 정산 차감 처리</td></tr>
+      <tr><td>정산 후 반품</td><td>다음 회차 역정산 · 부분 취소 시 수수료 재계산 자동</td></tr>
+      <tr><td>세금계산서</td><td>팝빌 자동 발행 + ERP 연동</td></tr>
+    </tbody>
+  </table>
 
   <div class="page-number">- 10 -</div>
+</div>
+
+<!-- ====== 2.10~2.12 ====== -->
+<div class="page">
+  <h3 class="sub-title">2.10 취소 / 반품 / 교환</h3>
+  <div class="pipeline">
+    <span class="pipeline-step">고객 요청</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">입점사 1차 승인/거부</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">미응답 48시간</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">본사 자동 이관</span><span class="pipeline-arrow">→</span>
+    <span class="pipeline-step">분쟁 시 본사 중재</span>
+  </div>
+
+  <div class="menu-tree">
+    <div class="depth0">CS관리 (BO/SCM 공통)</div>
+    <div class="depth1">├ 취소관리 — 취소 요청 목록 · 승인/거부 처리 · 환불 처리</div>
+    <div class="depth1">├ 반품관리 — 반품 요청 목록 · 수거 확인 · 환불/교환 전환</div>
+    <div class="depth1">└ 교환관리 — 교환 요청 목록 · 수거→재발송 처리</div>
+  </div>
+
+  <div class="exp-box">
+    KT alpha 초기에는 "주문취소요청목록/반품완료목록/교환완료목록"으로 <strong>상태 중심</strong>으로 메뉴를 나눴다가, 실제 운영에서 "내가 처리해야 할 취소 건은 어디 있지?"라는 혼란이 발생했습니다. <strong>"취소관리/반품관리/교환관리"</strong>로 <strong>처리 유형 중심</strong>으로 변경한 후 운영 효율이 크게 개선되었습니다. 처음부터 유형 중심으로 메뉴를 잡겠습니다.
+  </div>
+
+  <h3 class="sub-title">2.11 전시 / 기획전 / 이벤트 관리</h3>
+  <div class="menu-tree">
+    <div class="depth0">전시관리 (BO)</div>
+    <div class="depth1">├ 카테고리 관리 — 추가/수정/삭제/노출 순서 변경</div>
+    <div class="depth1">├ 메인배너 관리 — PC/모바일 이미지 각각 등록 · 시작/종료일 · 링크 URL</div>
+    <div class="depth1">├ 띠 배너 관리 — 상단/중간/하단 위치별 등록</div>
+    <div class="depth1">├ 베스트100 — 판매량/조회수 기반 자동 집계 + 수동 조정</div>
+    <div class="depth1">├ MD PICK — 관리자 수동 큐레이션 상품 선택</div>
+    <div class="depth1">├ 브랜드관 — 브랜드 등록 (백색/컬러 로고, 최대 2MB) · 브랜드별 상품 연결</div>
+    <div class="depth1">└ 이벤트/기획전 — 할인/증정 이벤트 · 상세 배너 이미지 · 기간별 자동 노출/종료</div>
+  </div>
+
+  <div class="exp-box">
+    브랜드관리, 메인배너관리, MDPICK관리는 KT alpha 초기 기획에는 없었으나 <strong>운영 2개월 차에 필수로 추가</strong>된 메뉴들입니다. 특히 MD PICK은 판촉몰 특성상 "이번 시즌 인기 판촉물" 같은 큐레이션 수요가 높았습니다. 애드피아몰도 초기부터 포함합니다.
+  </div>
+
+  <h3 class="sub-title">2.12 무통장입금 처리</h3>
+  <table class="compact">
+    <thead><tr><th>단계</th><th>처리</th><th>비고</th></tr></thead>
+    <tbody>
+      <tr><td>가상계좌 발급</td><td>PG사 가상계좌 자동 생성</td><td>주문별 고유 계좌</td></tr>
+      <tr><td>입금 대기</td><td>재고 홀딩 72시간 (설정 가능)</td><td>유통 카테고리만 해당</td></tr>
+      <tr><td>미입금</td><td>72시간 후 자동 취소</td><td>재고 홀딩 해제</td></tr>
+      <tr><td>입금 확인</td><td>PG 자동 통보 → 주문 활성화</td><td>수동 확인 불요</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-number">- 11 -</div>
+</div>
+
+<!-- ====== BO 메뉴 전체 구조 ====== -->
+<div class="page">
+  <h3 class="sub-title">참고: BO(관리자) 메뉴 전체 구조</h3>
+  <p>KT alpha 판촉몰 운영 경험을 기반으로, 애드피아몰 BO의 초기 메뉴 구조를 다음과 같이 설계합니다.</p>
+
+  <table class="compact" style="font-size:8.5pt;">
+    <thead><tr><th style="width:18%;">대분류</th><th style="width:25%;">중분류</th><th style="width:57%;">주요 기능</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="3"><strong>대시보드</strong></td><td>매출 현황</td><td>일/주/월별 매출, 주문 건수, 카테고리별 매출 비율</td></tr>
+      <tr><td>주문 현황</td><td>단계별 건수 요약, 미처리 알림</td></tr>
+      <tr><td>셀러 현황</td><td>가입 심사 대기, 활성 셀러 수</td></tr>
+      <tr><td rowspan="4"><strong>상품관리</strong></td><td>상품 목록</td><td>전체/카테고리별/입점사별 필터, 상태별 조회</td></tr>
+      <tr><td>승인관리</td><td>승인대기 심사, 1차승인/보류/거절, 마진율 설정</td></tr>
+      <tr><td>카테고리 관리</td><td>추가/수정/삭제/순서변경, 다중 선택 이동</td></tr>
+      <tr><td>브랜드 관리</td><td>브랜드 등록/수정, 로고 이미지, 상품 연결</td></tr>
+      <tr><td rowspan="3"><strong>주문관리</strong></td><td>주문 목록</td><td>4단계 프로세스별 조회, 상세 팝업, 메모</td></tr>
+      <tr><td>발주 관리</td><td>발주신청내역, 입점사별 발주 현황</td></tr>
+      <tr><td>배송 관리</td><td>운송장 관리, 배송추적, 반송 처리</td></tr>
+      <tr><td rowspan="3"><strong>CS관리</strong></td><td>취소관리</td><td>취소 요청/승인/거부/환불, 자동이관(48h)</td></tr>
+      <tr><td>반품관리</td><td>반품 요청/수거확인/환불, 입점사 1차 처리</td></tr>
+      <tr><td>교환관리</td><td>교환 요청/수거/재발송</td></tr>
+      <tr><td rowspan="3"><strong>정산관리</strong></td><td>공급정산</td><td>셀러별 정산내역, 공급가+부가세+배송비 합산</td></tr>
+      <tr><td>판매정산</td><td>PG입금내역, 수수료, 입금예정액</td></tr>
+      <tr><td>세금계산서</td><td>팝빌 연동 자동발행, ERP 연동</td></tr>
+      <tr><td rowspan="4"><strong>전시관리</strong></td><td>메인배너</td><td>PC/모바일 이미지, 노출 기간, 링크</td></tr>
+      <tr><td>MD PICK</td><td>수동 큐레이션, 노출 순서</td></tr>
+      <tr><td>베스트100</td><td>자동집계 + 수동 조정</td></tr>
+      <tr><td>기획전/이벤트</td><td>할인/증정, 배너, 기간 설정</td></tr>
+      <tr><td rowspan="3"><strong>회원관리</strong></td><td>셀러 관리</td><td>가입심사, 승인/반려, 이용중지, PW 초기화</td></tr>
+      <tr><td>고객 관리</td><td>일반/기업 회원, 여신한도, 등급</td></tr>
+      <tr><td>관리자 권한</td><td>메뉴별 접근 권한 개별 부여/해제</td></tr>
+      <tr><td rowspan="2"><strong>B2B관리</strong></td><td>견적관리</td><td>견적서 발급/승인/전환, 엑셀 일괄</td></tr>
+      <tr><td>여신관리</td><td>기업별 한도, 잔여, 미수금, 채권현황</td></tr>
+      <tr><td rowspan="2"><strong>게시판</strong></td><td>공지사항</td><td>등록/수정/삭제, 노출 설정</td></tr>
+      <tr><td>FAQ</td><td>카테고리별 등록/수정, 순서 변경</td></tr>
+      <tr><td><strong>통계</strong></td><td>매출/상품/셀러</td><td>기간별, 카테고리별, 입점사별 통계 리포트</td></tr>
+      <tr><td><strong>설정</strong></td><td>시스템 설정</td><td>구매확정 기간, 배송비 정책, PG 설정, 약관</td></tr>
+    </tbody>
+  </table>
+
+  <div class="exp-box">
+    위 메뉴 구조는 KT alpha 판촉몰의 최종 BO 메뉴를 기반으로 애드피아몰에 맞게 재구성한 것입니다. 초기 기획 40개 → 운영 후 60개 이상으로 확장된 경험을 반영하여, <strong>처음부터 확장 가능한 구조</strong>로 설계합니다.
+  </div>
+
+  <div class="page-number">- 12 -</div>
+</div>
+
+<!-- ====== SCM 메뉴 전체 구조 ====== -->
+<div class="page">
+  <h3 class="sub-title">참고: SCM(셀러센터) 메뉴 전체 구조</h3>
+
+  <table class="compact" style="font-size:8.5pt;">
+    <thead><tr><th style="width:18%;">대분류</th><th style="width:25%;">중분류</th><th style="width:57%;">주요 기능</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="2"><strong>대시보드</strong></td><td>주문 현황</td><td>단계별 건수 요약, 오늘의 할 일</td></tr>
+      <tr><td>정산 현황</td><td>이번 달 정산 예정액, 미정산 건수</td></tr>
+      <tr><td rowspan="5"><strong>상품관리</strong></td><td>상품 등록</td><td>기본정보/공급정보/옵션/칼선/상세페이지 5탭</td></tr>
+      <tr><td>임시저장</td><td>작성 중 상품 목록, 수정/삭제/승인요청</td></tr>
+      <tr><td>승인대기</td><td>심사 중 상품 목록 (수정 불가)</td></tr>
+      <tr><td>거절/보류</td><td>사유 확인, 보류 건 수정 후 재심사 요청</td></tr>
+      <tr><td>대용량 등록</td><td>엑셀 양식 다운로드/업로드, 검증 결과 확인</td></tr>
+      <tr><td rowspan="2"><strong>주문관리</strong></td><td>주문 목록</td><td>7단계 파이프라인 탭, 기간 검색, 메모</td></tr>
+      <tr><td>주문서 상세</td><td>기본정보/변경이력, 시안 다운로드, 인쇄</td></tr>
+      <tr><td><strong>정산관리</strong></td><td>정산내역</td><td>주문번호/세금계산서번호/전표번호/상품명 검색</td></tr>
+      <tr><td rowspan="2"><strong>CS관리</strong></td><td>취소/반품/교환</td><td>고객 요청 확인, 1차 승인/거부 처리</td></tr>
+      <tr><td>이벤트 참여관리</td><td>기획전 참여 신청/현황 (추후 확장)</td></tr>
+      <tr><td rowspan="2"><strong>회원관리</strong></td><td>서브회원 관리</td><td>등록/조회, 토글 이용중지, 일괄 변경</td></tr>
+      <tr><td>비밀번호 변경</td><td>기존 비밀번호 확인 후 재설정</td></tr>
+      <tr><td rowspan="3"><strong>마이페이지</strong></td><td>업체정보 수정</td><td>주소/출고지/회수지/연락처 (일부 SRM 경유)</td></tr>
+      <tr><td>1:1 문의</td><td>유형 선택, 에디터, 첨부, 답변 확인/댓글</td></tr>
+      <tr><td>알림 설정</td><td>주문/정산/CS 알림 수신 설정</td></tr>
+      <tr><td rowspan="2"><strong>게시판</strong></td><td>공지사항</td><td>기간/키워드 검색, 상세 조회</td></tr>
+      <tr><td>FAQ</td><td>배송/상품/회원/시안/정산/기타 탭별 조회</td></tr>
+    </tbody>
+  </table>
+
+  <div class="exp-box">
+    SCM 목차에는 'CS관리'와 '이벤트 참여관리'가 있으나 KT alpha Ver 0.1.1 기준으로는 상세 화면이 미구현 상태였습니다. 애드피아몰에서는 <strong>CS관리(취소/반품/교환 입점사 1차 처리)를 초기 범위에 포함</strong>하고, 이벤트 참여관리는 전시관리 시스템 완성 후 연결합니다.
+  </div>
+
+  <div class="page-number">- 13 -</div>
+</div>
+
+<!-- ====== 3. 의견이 필요한 영역 ====== -->
+<div class="page">
+  <div class="section-title"><span class="section-num">3</span> 의견이 필요한 영역</div>
+
+  <h3 class="sub-title">3.1 사방넷 연동 — 구조적 미스매치</h3>
+  <table>
+    <thead><tr><th>구분</th><th>사방넷의 설계 철학</th><th>애드피아몰이 필요한 구조</th></tr></thead>
+    <tbody>
+      <tr><td style="font-weight:600;">관계 구조</td><td><strong>1 셀러 : N 쇼핑몰</strong><br>하나의 판매자가 여러 채널 주문을 한 곳에서 관리</td><td><strong>N 셀러 : 1 쇼핑몰</strong><br>여러 입점사가 하나의 몰에 상품을 올리는 마켓플레이스</td></tr>
+      <tr><td style="font-weight:600;">재고 관리</td><td>SKU 기반 재고 추적이 핵심</td><td>판촉물/실사출력은 주문제작(make-to-order)이 대부분으로 SKU 재고 추적이 무의미</td></tr>
+    </tbody>
+  </table>
+  <div class="recommendation">
+    사방넷 연동은 Phase 2로 분리하고, Phase 1에서는 자체 재고관리(유통 카테고리) + 주문제작 프로세스 관리(판촉/실사출력)로 구조를 잡는 것이 현실적입니다.
+  </div>
+
+  <h3 class="sub-title">3.2 다국어(한/영/일) — 결제까지 포함인지 확인 필요</h3>
+  <table class="compact">
+    <thead><tr><th style="width:15%;">구분</th><th style="width:42%;">시나리오 A: 국내 외국인 UI 지원</th><th style="width:43%;">시나리오 B: 해외 거주 외국인 결제</th></tr></thead>
+    <tbody>
+      <tr><td><strong>결제</strong></td><td>국내 PG 일반결제 + 간편결제 그대로</td><td>해외특약 별도 계약, 3DS 인증 해외카드</td></tr>
+      <tr><td><strong>간편결제</strong></td><td>네이버페이, 카카오페이 사용 가능</td><td>사실상 불가 (한국 휴대폰 필수)</td></tr>
+      <tr><td><strong>수수료</strong></td><td>국내 일반 수수료</td><td>해외카드 3.8~4% 수준</td></tr>
+      <tr><td><strong>난이도</strong></td><td>UI만 i18n → 낮음</td><td>PG 해외특약 + 일본어 결제창 별도 확인 → 높음</td></tr>
+    </tbody>
+  </table>
+  <div class="recommendation">시나리오 A는 기본 범위, 시나리오 B는 해외특약 조건 확인 후 추가 범위로 분리합니다.</div>
+
+  <h3 class="sub-title">3.3 셀러센터 다국어</h3>
+  <p>FO(고객용) 다국어는 당연합니다. 그런데 <strong>셀러센터 다국어는 다른 문제입니다.</strong> 옵션 설정, 칼선 등록, 가격 매트릭스만으로도 충분히 복잡한 SCM에 다국어 입력 필드까지 붙이면 등록 이탈률이 높아집니다.</p>
+  <div class="recommendation">FO만 다국어 처리, SCM/BO는 한국어. 상품 데이터 구조는 다국어 필드를 미리 설계해두되, 입력 화면은 한국어로 시작하고 번역은 관리자 측에서 처리합니다.</div>
+
+  <div class="page-number">- 14 -</div>
 </div>
 
 <!-- ====== 4. 기술 아키텍처 ====== -->
 <div class="page">
   <div class="section-title"><span class="section-num">4</span> 기술 아키텍처</div>
 
-  <h3 class="sub-title">4.1 시스템 구성</h3>
-  <table>
-    <thead>
-      <tr><th>시스템</th><th>역할</th><th>사용자</th></tr>
-    </thead>
-    <tbody>
-      <tr><td><strong>FO</strong> (Front Office)</td><td>고객용 쇼핑몰 (PC/모바일 반응형)</td><td>일반/기업/입점사 회원</td></tr>
-      <tr><td><strong>BO</strong> (Back Office)</td><td>관리자용 운영 시스템</td><td>본사 운영팀</td></tr>
-      <tr><td><strong>SCM</strong> (Seller Center)</td><td>입점사용 판매 관리</td><td>입점 셀러</td></tr>
-      <tr><td><strong>SRM</strong> (Supplier Mgmt)</td><td>공급사 관리</td><td>본사 구매/공급 담당</td></tr>
-    </tbody>
-  </table>
-
-  <h3 class="sub-title">4.2 기술 스택</h3>
+  <h3 class="sub-title">4.1 기술 스택</h3>
   <p style="margin-bottom:16px;">
-    <span class="stack-tag stack-fe">React 18</span>
+    <span class="stack-tag stack-fe">Next.js 15 (App Router)</span>
     <span class="stack-tag stack-fe">TypeScript</span>
-    <span class="stack-tag stack-fe">Vite</span>
+    <span class="stack-tag stack-fe">React 19</span>
+    <span class="stack-tag stack-fe">TanStack Query</span>
     <span class="stack-tag stack-be">Spring Boot</span>
     <span class="stack-tag stack-be">Node.js</span>
     <span class="stack-tag stack-db">PostgreSQL</span>
@@ -728,43 +771,59 @@
     <span class="stack-tag stack-ext">에디터 API</span>
     <span class="stack-tag stack-ext">팝빌</span>
     <span class="stack-tag stack-ext">ERP</span>
-    <span class="stack-tag stack-ext">사방넷 (Phase 2)</span>
   </p>
 
-  <h3 class="sub-title">4.3 데이터 마이그레이션</h3>
-  <ul>
-    <li>회원 <strong>19만 건</strong> (유형 재분류 필요: 일반/기업/입점사)</li>
-    <li>상품 <strong>1만 건</strong> (카테고리 재매핑 필요)</li>
-    <li>기존 시스템에서 넘어오는 거라 매핑 룰 정의가 선행되어야 합니다</li>
-  </ul>
-
-  <h3 class="sub-title">4.4 보안 고려사항</h3>
-  <p>KT alpha 판촉몰 ISMS-P 대응 경험에서 확인된 필수 사항:</p>
-  <table>
-    <thead>
-      <tr><th>항목</th><th>내용</th></tr>
-    </thead>
+  <h4 class="sub2-title">FO: Next.js App Router 선택 이유</h4>
+  <table class="compact">
+    <thead><tr><th>기능</th><th>적용 방식</th><th>효과</th></tr></thead>
     <tbody>
-      <tr><td><strong>DB 개인정보 암호화</strong></td><td>주문정보 테이블의 이름/주소/전화번호는 반드시 암호화 저장. KT alpha에서 평문 저장으로 지적받은 이력이 있어, 설계 단계부터 적용.</td></tr>
-      <tr><td><strong>API HTTP Method</strong></td><td>GET/POST 외 PUT/DELETE 사용 시 보안 검토 대상. RESTful 설계하되 보안 검토 통과 방안을 사전 준비.</td></tr>
-      <tr><td><strong>인증 체계</strong></td><td>FO는 Cookie 기반 JWT, SCM/BO는 Local Storage 기반 JWT로 분리.</td></tr>
+      <tr><td><strong>상품 상세 페이지</strong></td><td>Server Components (SSR)</td><td>SEO 최적화 · 검색엔진 노출 · 초기 로딩 속도</td></tr>
+      <tr><td><strong>카테고리/목록</strong></td><td>ISR (Incremental Static Regen)</td><td>정적 생성 + 주기적 갱신 · 서버 부하 최소화</td></tr>
+      <tr><td><strong>장바구니/결제</strong></td><td>Client Components</td><td>실시간 상태 관리 · PG 연동</td></tr>
+      <tr><td><strong>에디터(시안)</strong></td><td>Dynamic Import (ssr: false)</td><td>Canvas 기반 에디터 클라이언트 전용 로드</td></tr>
+      <tr><td><strong>다국어</strong></td><td>next-intl + Middleware</td><td>/ko, /en, /ja URL 기반 i18n</td></tr>
+      <tr><td><strong>이미지 최적화</strong></td><td>next/image</td><td>상품 이미지 자동 리사이징 · WebP 변환</td></tr>
     </tbody>
   </table>
 
-  <div class="page-number">- 11 -</div>
+  <div class="key-point">
+    <strong>쇼핑몰에서 Next.js를 선택하는 핵심 이유는 SEO입니다.</strong> 판촉물 상품이 검색엔진에 노출되어야 신규 고객 유입이 발생합니다. React SPA(CSR)로는 검색엔진 크롤링이 불완전하고, 소셜 공유 시 OG 메타태그 렌더링도 안 됩니다. Next.js의 Server Components는 이 문제를 근본적으로 해결합니다.
+  </div>
+
+  <h4 class="sub2-title">SCM/BO: Next.js Pages Router 또는 Vite React</h4>
+  <p>관리자용 시스템은 SEO가 불필요하므로 CSR(Client-Side Rendering)로 충분합니다. 다만 FO와 디자인 시스템/컴포넌트를 공유하기 위해 <strong>동일 Next.js 프로젝트 내 별도 앱</strong>으로 구성하거나, Turborepo 모노레포로 관리하는 것을 권장합니다.</p>
+
+  <h3 class="sub-title">4.2 데이터 마이그레이션</h3>
+  <ul>
+    <li>회원 <strong>19만 건</strong> (유형 재분류 필요: 일반/기업/입점사)</li>
+    <li>상품 <strong>1만 건</strong> (카테고리 재매핑, 옵션 구조 변환)</li>
+    <li>주문/정산 이력 — 범위 협의 필요 (최근 N년)</li>
+  </ul>
+
+  <h3 class="sub-title">4.3 보안 고려사항 (ISMS-P 대응)</h3>
+  <table class="compact">
+    <thead><tr><th>항목</th><th>적용 방안</th><th>KT alpha 경험</th></tr></thead>
+    <tbody>
+      <tr><td><strong>DB 개인정보 암호화</strong></td><td>이름/주소/전화번호 AES-256 암호화 저장</td><td>평문 저장으로 지적받은 이력 → 설계 단계부터 적용</td></tr>
+      <tr><td><strong>API 보안</strong></td><td>GET/POST 위주, PUT/DELETE 보안 검토 사전 준비</td><td>PUT/DELETE 사용 시 보안 검토 대상</td></tr>
+      <tr><td><strong>인증 체계</strong></td><td>FO: Cookie JWT / SCM·BO: Local Storage JWT</td><td>시스템별 분리로 세션 간섭 방지</td></tr>
+      <tr><td><strong>XSS 방지</strong></td><td>Next.js 기본 이스케이핑 + CSP 헤더</td><td>에디터 HTML 입력 시 별도 sanitize 필수</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-number">- 15 -</div>
 </div>
 
-<!-- ====== 5~6 수행 조직, 일정 ====== -->
+<!-- ====== 5. 수행 조직 / 일정 / 비용 ====== -->
 <div class="page">
-  <div class="section-title"><span class="section-num">5</span> 수행 조직</div>
+  <div class="section-title"><span class="section-num">5</span> 수행 조직 · 일정 · 비용</div>
 
+  <h3 class="sub-title">5.1 수행 조직</h3>
   <table>
-    <thead>
-      <tr><th>역할</th><th>인원</th><th>담당</th></tr>
-    </thead>
+    <thead><tr><th>역할</th><th>인원</th><th>담당</th></tr></thead>
     <tbody>
       <tr><td><strong>PM / 기획</strong></td><td>1명</td><td>프로젝트 관리, 요구사항 정의, 일정 관리</td></tr>
-      <tr><td><strong>프론트엔드</strong></td><td>2~3명</td><td>FO(PC/모바일), SCM, BO UI 개발</td></tr>
+      <tr><td><strong>프론트엔드</strong></td><td>2~3명</td><td>FO(Next.js SSR), SCM, BO UI 개발</td></tr>
       <tr><td><strong>백엔드</strong></td><td>3~4명</td><td>API, 정산, 연동, 배치</td></tr>
       <tr><td><strong>퍼블리셔</strong></td><td>1명</td><td>반응형 마크업, 다국어 UI</td></tr>
       <tr><td><strong>QA</strong></td><td>1~2명</td><td>통합테스트, 데이터 마이그레이션 검증</td></tr>
@@ -772,70 +831,64 @@
     </tbody>
   </table>
 
-  <div class="section-title" style="margin-top:36px;"><span class="section-num">6</span> 일정 계획</div>
-
+  <h3 class="sub-title">5.2 일정 계획</h3>
   <table>
-    <thead>
-      <tr><th>단계</th><th>기간</th><th>주요 산출물</th></tr>
-    </thead>
+    <thead><tr><th>단계</th><th>기간</th><th>주요 산출물</th></tr></thead>
     <tbody>
       <tr><td><strong>기획 / 설계</strong></td><td>2개월</td><td>화면설계서, DB설계, API 정의, 외부연동 규격</td></tr>
       <tr><td><strong>개발 Phase 1</strong></td><td>3개월</td><td>FO 기본, SCM 상품등록/주문관리, BO 핵심</td></tr>
       <tr><td><strong>개발 Phase 2</strong></td><td>2~3개월</td><td>정산, B2B, 다국어, 외부연동</td></tr>
-      <tr><td><strong>테스트 / 안정화</strong></td><td>1~2개월</td><td>통합테스트, 데이터 마이그레이션, 보안점검</td></tr>
+      <tr><td><strong>테스트 / 안정화</strong></td><td>1~2개월</td><td>통합테스트, 마이그레이션, 보안점검</td></tr>
       <tr style="background:#f0f4ff;"><td style="font-weight:700;">합계</td><td style="font-weight:700;">8~10개월</td><td></td></tr>
     </tbody>
   </table>
 
-  <div class="page-number">- 12 -</div>
-</div>
-
-<!-- ====== 7~8 비용, 왜 우리인가 ====== -->
-<div class="page">
-  <div class="section-title"><span class="section-num">7</span> 비용 제안</div>
-
+  <h3 class="sub-title">5.3 비용 제안</h3>
   <table>
-    <thead>
-      <tr><th>항목</th><th>금액</th><th>비고</th></tr>
-    </thead>
+    <thead><tr><th>항목</th><th>금액</th><th>비고</th></tr></thead>
     <tbody>
       <tr><td><strong>개발비</strong></td><td style="text-align:right;">8억 원</td><td>PM, 프론트엔드, 백엔드, QA 포함</td></tr>
       <tr><td><strong>UX/UI</strong></td><td style="text-align:right;">1.5억 원</td><td>RFP 요구에 따라 별도 산정</td></tr>
       <tr style="background:#f0f4ff;"><td style="font-weight:700;">합계</td><td style="text-align:right; font-weight:700;"><span class="amount-highlight">9.5</span>억 원</td><td>VAT 별도</td></tr>
     </tbody>
   </table>
+  <p style="font-size:9.5pt; color:#666; margin-top:8px;">위시켓 수수료(20%) 감안 시 클라이언트 지불 기준 약 11억 내외. 풀스크래치 + 온프레미스 + 외부 연동 6종 규모 대비 최저 마지노선. 솔루션 커스텀 불가 명시(RFP)이므로 저가 경쟁사는 후반 추가비용 구조일 가능성이 높습니다.</p>
 
-  <p style="font-size:9.5pt; color:#666; margin-top:8px;">위시켓 수수료(20%) 감안 시 클라이언트 지불 기준 약 11억 내외. 실수령 약 8억으로 인당 월 800만 원 수준. 프로젝트 규모 대비 최저 마지노선.<br>풀스크래치에 온프레미스, 외부 연동 6종이면 6억 아래로는 무리. 솔루션 커스텀이거나 후반 추가비용 구조일 가능성 높음. RFP에 솔루션 불가 명시되어 있으므로 그 점은 유리.</p>
+  <div class="page-number">- 16 -</div>
+</div>
 
-  <div class="section-title" style="margin-top:36px;"><span class="section-num">8</span> 왜 우리인가 — 경험 기반의 구체적 근거</div>
+<!-- ====== 6. 왜 우리인가 ====== -->
+<div class="page">
+  <div class="section-title"><span class="section-num">6</span> 왜 우리인가 — 경험 기반의 구체적 근거</div>
 
   <div class="lead">
     단순히 "경험이 많습니다"가 아니라, <strong>KT alpha 기프티쇼비즈 판촉몰을 직접 구축·운영한 경험에서 나온 구체적 설계를 적용합니다.</strong>
   </div>
 
   <table class="simple">
-    <thead>
-      <tr><th>근거</th><th>구체적 내용</th></tr>
-    </thead>
+    <thead><tr><th style="width:20%;">근거</th><th>구체적 내용</th></tr></thead>
     <tbody>
-      <tr><td><strong>동일 도메인</strong></td><td>판촉물/실사출력 입점몰 — 상품등록(옵션 매트릭스, 칼선, 시안), 주문제작 프로세스, 이중 정산(판매정산+공급정산), 셀러센터/BO/SRM 전체 시스템을 풀스크래치로 구축</td></tr>
-      <tr><td><strong>운영 검증 설계</strong></td><td>코드정의서 기준 17건 이상의 기획-구현 간 차이 조율. "승인대기" 대신 "임시저장" 도입, CS 메뉴 구조 변경, 구매확정 단계 삭제, 정산 시스템 분리 등 실운영 개선 사항</td></tr>
-      <tr><td><strong>보안 대응</strong></td><td>ISMS-P 기준 DB 암호화, API 보안, 소스코드 품질점검, 취약점 진단 대응 경험. 설계 단계부터 보안 요구사항 반영</td></tr>
-      <tr><td><strong>기술 스택 동일</strong></td><td>React 18 + TypeScript + Vite 기반, 동일 라이브러리(axios, exceljs, tanstack/react-query 등)로 개발 생산성 극대화</td></tr>
+      <tr><td><strong>동일 도메인<br>풀스크래치 구축</strong></td><td>판촉물/실사출력 입점몰 — FO/BO/SCM/SRM 4개 시스템을 처음부터 끝까지 직접 설계·개발.<br>상품등록(옵션 매트릭스, 칼선, 시안), 주문제작 7단계 프로세스, 이중 정산(판매정산+공급정산), 셀러 가입심사·서브회원·권한체계까지 전체 범위 구현.</td></tr>
+      <tr><td><strong>운영에서<br>검증된 설계</strong></td><td>코드정의서 기준 17건 이상의 기획-구현 간 차이 조율:<br>• "승인대기" 대신 "임시저장" 도입 → 셀러 이탈률 감소<br>• CS 메뉴를 상태 중심 → 처리 유형 중심으로 구조 변경<br>• 출금정산관리를 판매정산/공급정산으로 분리 → 운영 명확성 향상<br>• 브랜드관리/메인배너/MDPICK 등 운영 필수 메뉴 추가<br>• FAQ에 '시안' 카테고리 분리 (전체 문의의 40% 차지)</td></tr>
+      <tr><td><strong>화면 단위<br>디테일 설계 역량</strong></td><td>SCM 매뉴얼 기준 25개 이상의 화면, BO 매뉴얼 기준 60개 이상의 메뉴를 직접 기획·개발. 각 화면의 필드 구성, 유효성 검증 규칙, 상태별 UI 동작(버튼 활성화/비활성화, 팝업 조건 등)까지 실운영에서 검증된 설계 패턴을 보유.</td></tr>
+      <tr><td><strong>보안 대응<br>ISMS-P</strong></td><td>DB 암호화(평문 저장 지적 후 수정), API 보안 검토, 소스코드 품질점검, 취약점 진단 대응 경험. 설계 단계부터 보안 요구사항 반영.</td></tr>
+      <tr><td><strong>기술 스택<br>연속성</strong></td><td>동일 프론트엔드 생태계 (React/TypeScript/TanStack Query/axios/exceljs)에 Next.js SSR을 추가하여 SEO까지 확보. 검증된 라이브러리 조합으로 개발 생산성 극대화.</td></tr>
     </tbody>
   </table>
 
-  <div class="page-number">- 13 -</div>
+  <div class="key-point">
+    <strong>이 제안서에 포함된 모든 화면 구성, 필드 명세, 상태별 동작 규칙은 실제로 구축·운영한 시스템에서 추출한 것입니다.</strong> "만들어 본 적 있다"와 "만들어서 운영까지 해봤다"는 전혀 다릅니다. 초기 기획에서 빠졌다가 운영에서 필수로 밝혀진 기능들(브랜드관리, 임시저장, FAQ 시안 카테고리, 이중 정산 분리 등)을 처음부터 설계에 반영할 수 있는 것이 핵심 차별점입니다.
+  </div>
+
+  <div class="page-number">- 17 -</div>
 </div>
 
-<!-- ====== 9. 발주사 확인 필요 사항 ====== -->
+<!-- ====== 7. 발주사 확인 필요 사항 ====== -->
 <div class="page">
-  <div class="section-title"><span class="section-num">9</span> 발주사 확인 필요 사항 정리</div>
+  <div class="section-title"><span class="section-num">7</span> 발주사 확인 필요 사항 정리</div>
 
   <table style="font-size:9pt;">
-    <thead>
-      <tr><th style="width:5%;">#</th><th style="width:13%;">항목</th><th style="width:47%;">질문</th><th style="width:35%;">당사 기본안</th></tr>
-    </thead>
+    <thead><tr><th style="width:5%;">#</th><th style="width:13%;">항목</th><th style="width:47%;">질문</th><th style="width:35%;">당사 기본안</th></tr></thead>
     <tbody>
       <tr><td>1</td><td>결제 분리</td><td>본사+A입점사+B입점사 혼합 장바구니에서 PG 결제 1회 후 내부 분리인지, 판매자별 결제 분리인지</td><td>PG 1회 + 내부 분리</td></tr>
       <tr><td>2</td><td>다국어 범위</td><td>FO만 다국어인지, SCM/BO까지 다국어인지</td><td>FO만 다국어, SCM/BO는 한국어</td></tr>
@@ -849,7 +902,7 @@
     </tbody>
   </table>
 
-  <div style="margin-top:48px; padding:24px 28px; background:#f8f9fa; border-radius:8px; border: 1px solid #e0e0e0;">
+  <div style="margin-top:48px; padding:24px 28px; background:#f8f9fa; border-radius:8px; border:1px solid #e0e0e0;">
     <p style="font-size:10pt; color:#555; text-align:center; margin-bottom:0;">
       <em>본 제안서는 KT alpha 기프티쇼비즈 판촉몰 구축·운영 경험을 기반으로 작성되었으며,<br>발주사 확인 사항 반영 후 상세 설계를 확정합니다.</em>
     </p>
@@ -860,7 +913,7 @@
     <p style="font-size:9pt; color:#999; margin-bottom:0;">서울시 강남구 봉은사로105길 54-5, 4층 402호 · 02-563-1271 · contact@tensoftworks.com</p>
   </div>
 
-  <div class="page-number">- 14 -</div>
+  <div class="page-number">- 18 -</div>
   <div class="footer-bar"></div>
 </div>
 
