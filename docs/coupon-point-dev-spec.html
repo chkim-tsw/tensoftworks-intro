@@ -793,11 +793,16 @@
       <tr><td>EMX-006</td><td>포인트 결제 수단</td><td>이맥스 결제 수단에 "포인트" 항목 추가, 실결제금액 분리</td><td><span class="pri pri-must">필수</span></td></tr>
       <tr><td>EMX-007</td><td>취소 시 포인트 복원</td><td>취소 유형별 포인트 복원 룰 사전 정의 및 자동 처리</td><td><span class="pri pri-must">필수</span></td></tr>
       <tr><td>EMX-008</td><td>관리자 차감 기능</td><td>이맥스 어드민에서 사유 입력 필수 + 승인 프로세스</td><td><span class="pri pri-high">높음</span></td></tr>
+      <tr class="cat-row cat-red"><td colspan="4">정산 시스템 수정 (PG 금액 불일치 대응)</td></tr>
+      <tr><td>EMX-009</td><td>결제 금액 분리 구조</td><td>주문금액 = PG승인금액 + 쿠폰할인 + 포인트사용. 기존 PG 단일 금액 구조에서 3원 분리 구조로 전환</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-010</td><td>정산 대사 로직 수정</td><td>PG 승인금액과 이맥스 판매금액 차이(=쿠폰+포인트)를 정산 시 자동 보정, 차액 항목 분리 표기</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-011</td><td>정산 리포트 개편</td><td>정산서에 쿠폰할인(운영사/공급사 부담 구분), 포인트사용, 실 PG결제, 순매출 컬럼 추가</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-012</td><td>취소 시 정산 역보정</td><td>취소/환불 시 쿠폰 복원·포인트 반환에 따른 정산 데이터 역산 처리</td><td><span class="pri pri-must">필수</span></td></tr>
       <tr class="cat-row cat-blue"><td colspan="4">공통 연동</td></tr>
-      <tr><td>EMX-009</td><td>데이터 정합성 검증</td><td>정기 교차검증 배치 (쿠폰/포인트 잔액 vs 이맥스 데이터)</td><td><span class="pri pri-must">필수</span></td></tr>
-      <tr><td>EMX-010</td><td>동시성 처리</td><td>비관적 잠금 또는 큐 기반 처리로 데이터 충돌 방지</td><td><span class="pri pri-must">필수</span></td></tr>
-      <tr><td>EMX-011</td><td>트랜잭션 롤백</td><td>결제/취소 과정 트랜잭션 보장, 실패 시 전체 롤백</td><td><span class="pri pri-must">필수</span></td></tr>
-      <tr><td>EMX-012</td><td>로그 보관</td><td>최소 3년 보관 (전자상거래법 준수)</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-013</td><td>데이터 정합성 검증</td><td>정기 교차검증 배치 (쿠폰/포인트 잔액 vs 이맥스 데이터)</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-014</td><td>동시성 처리</td><td>비관적 잠금 또는 큐 기반 처리로 데이터 충돌 방지</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-015</td><td>트랜잭션 롤백</td><td>결제/취소 과정 트랜잭션 보장, 실패 시 전체 롤백</td><td><span class="pri pri-must">필수</span></td></tr>
+      <tr><td>EMX-016</td><td>로그 보관</td><td>최소 3년 보관 (전자상거래법 준수)</td><td><span class="pri pri-must">필수</span></td></tr>
     </tbody>
   </table>
 
@@ -953,9 +958,10 @@
       <tr><td>포인트 시스템</td><td>14개</td><td>8개</td><td>4개</td><td>2개</td><td>5개 엔드포인트</td></tr>
       <tr><td>정책 엔진</td><td>9개</td><td>8개</td><td>1개</td><td>-</td><td>3개 엔드포인트</td></tr>
       <tr><td>이맥스 연동</td><td>12개</td><td>9개</td><td>3개</td><td>-</td><td>3개 엔드포인트</td></tr>
+      <tr><td>정산 시스템 수정</td><td>4개</td><td>4개</td><td>-</td><td>-</td><td>기존 API 수정</td></tr>
       <tr><td>삼성 연동</td><td>4개</td><td>-</td><td>2개</td><td>2개</td><td>별도 협의</td></tr>
       <tr style="font-weight:700; background:var(--bg);">
-        <td style="color:var(--navy);">합계</td><td>52개</td><td>34개</td><td>14개</td><td>4개</td><td>16개 엔드포인트</td></tr>
+        <td style="color:var(--navy);">합계</td><td>56개</td><td>38개</td><td>14개</td><td>4개</td><td>16개+ 엔드포인트</td></tr>
     </tbody>
   </table>
 
@@ -980,7 +986,7 @@
 
   <div class="total-box">
     <div class="total-label">총 견적 금액<small>부가가치세(VAT) 별도</small></div>
-    <div class="total-amount">&#8361; <span id="total-display">46,000,000</span><small>원</small></div>
+    <div class="total-amount">&#8361; <span id="total-display">45,300,000</span><small>원</small></div>
   </div>
 
   <table class="est-table">
@@ -1027,10 +1033,17 @@
       </tr>
       <tr>
         <td>이맥스 연동</td>
-        <td>쿠폰/포인트 데이터 동기화, 웹훅, 정산 반영, 동시성 처리, 롤백 보장</td>
+        <td>쿠폰/포인트 데이터 동기화, 웹훅, 동시성 처리, 롤백 보장</td>
         <td class="tc"><span class="grade-badge grade-high">고급</span></td>
         <td class="tc">2주</td>
         <td class="tr">5,000</td>
+      </tr>
+      <tr>
+        <td>정산 시스템<br>수정</td>
+        <td>기존 PG 단일 정산 → 3원 분리 구조(PG승인+쿠폰+포인트) 전환, 정산 대사 로직·리포트 개편, 취소 역보정</td>
+        <td class="tc"><span class="grade-badge grade-top">특급</span></td>
+        <td class="tc">2주</td>
+        <td class="tr">4,000</td>
       </tr>
       <tr>
         <td>어드민 개발</td>
@@ -1048,17 +1061,17 @@
       </tr>
       <tr class="est-subtotal">
         <td colspan="4">필수 소계</td>
-        <td class="tr">38,000</td>
+        <td class="tr">42,000</td>
       </tr>
       <tr class="est-section-row">
         <td colspan="5"><span class="section-badge badge-optional">선택</span>확장 기능 — 체크 해제 시 견적에서 제외</td>
       </tr>
-      <tr class="opt-row" data-amount="5000">
+      <tr class="opt-row" data-amount="300">
         <td><label><input type="checkbox" class="opt-check" checked> 삼성 연동</label></td>
         <td>삼성 구독 서비스 유입 태그, 확정 데이터 후적립, CSV 업로드, 적립 지연 안내</td>
         <td class="tc"><span class="grade-badge grade-high">고급</span></td>
-        <td class="tc">2주</td>
-        <td class="tr">5,000</td>
+        <td class="tc">1주</td>
+        <td class="tr">300</td>
       </tr>
       <tr class="opt-row" data-amount="3000">
         <td><label><input type="checkbox" class="opt-check" checked> 소멸 예고 알림</label></td>
@@ -1069,13 +1082,13 @@
       </tr>
       <tr class="est-subtotal">
         <td colspan="4">선택 소계</td>
-        <td class="tr" id="opt-subtotal">8,000</td>
+        <td class="tr" id="opt-subtotal">3,300</td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
         <td colspan="4">합 계</td>
-        <td class="tr" id="est-total">46,000</td>
+        <td class="tr" id="est-total">45,300</td>
       </tr>
     </tfoot>
   </table>
@@ -1106,7 +1119,7 @@
 
 <script>
 (function() {
-  var BASE = 38000;
+  var BASE = 42000;
   var rows = document.querySelectorAll('.opt-row');
   var optSub = document.getElementById('opt-subtotal');
   var total = document.getElementById('est-total');
