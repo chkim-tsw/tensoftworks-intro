@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[제안서] (주)이맥스 그룹 듀얼 웹사이트 브랜딩 및 디지털 세일즈 플랫폼 전략서</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @page { size: A4 portrait; margin: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #e8e8e8;
+    color: #1a1a2e;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+
+  @media print {
+    body { background: none; }
+    .page { margin: 0; box-shadow: none; page-break-after: always; }
+  }
+
+  :root {
+    --navy: #0B2545;
+    --navy-mid: #134074;
+    --accent: #13A8BD;
+    --accent-light: #E0F7FA;
+    --warm: #F57C00;
+    --warm-light: #FFF3E0;
+    --green: #2E7D32;
+    --green-light: #E8F5E9;
+    --silver: #90A4AE;
+    --cyan: #00ACC1;
+    --bg: #F7F9FC;
+    --border: #E0E6ED;
+    --text: #1a1a2e;
+    --text-sub: #4a5568;
+    --text-muted: #718096;
+  }
+
+  /* ══════════════════════════════════════
+     PAGE 1: 표지
+     ══════════════════════════════════════ */
+  .page-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 297mm;
+    background: linear-gradient(160deg, var(--navy) 0%, #0d3b66 40%, var(--navy-mid) 100%);
+    color: #fff;
+  }
+
+  .cover-top { padding: 48px 52px 0; }
+
+  .cover-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 30px;
+    padding: 7px 18px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+
+  .cover-badge::before {
+    content: '';
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  .cover-main {
+    padding: 0 52px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cover-tag {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .cover-main h1 {
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .cover-main h1 .h1-accent {
+    display: block;
+    color: var(--accent);
+    font-size: 26px;
+    font-weight: 700;
+    margin-top: 6px;
+  }
+
+  .cover-divider {
+    width: 60px; height: 3px;
+    background: var(--accent);
+    margin: 22px 0;
+    border-radius: 2px;
+  }
+
+  .cover-desc {
+    font-size: 12.5px;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    font-weight: 300;
+  }
+
+  .cover-desc strong { color: rgba(255,255,255,0.95); font-weight: 600; }
+
+  .cover-meta-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 30px;
+    max-width: 480px;
+  }
+
+  .cover-meta-item {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .cover-meta-item .cm-label {
+    font-size: 8.5px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .cover-meta-item .cm-value {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .cover-highlights {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    max-width: 520px;
+  }
+
+  .cover-hl {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 13px 12px;
+    text-align: center;
+  }
+
+  .cover-hl.hl-accent {
+    border-color: rgba(19,168,189,0.3);
+    background: rgba(19,168,189,0.08);
+  }
+
+  .cover-hl-icon { font-size: 18px; margin-bottom: 6px; }
+
+  .cover-hl-value {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .cover-hl-value .big-num {
+    display: block;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: 1px;
+  }
+
+  .cover-bottom {
+    padding: 0 52px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .cover-bottom-meta {
+    font-size: 10px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.8;
+  }
+
+  .cover-bottom-meta strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+
+  .cover-logo { text-align: right; }
+
+  .cover-logo-text {
+    font-size: 20px; font-weight: 900;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .cover-logo-sub {
+    font-size: 8px; letter-spacing: 4px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 3px;
+    text-transform: uppercase;
+  }
+
+  .cover-deco {
+    position: absolute;
+    right: -90px; top: 50%;
+    transform: translateY(-50%);
+    width: 380px; height: 380px;
+    border-radius: 50%;
+    border: 1px solid rgba(19,168,189,0.1);
+    pointer-events: none;
+  }
+
+  .cover-deco::after {
+    content: '';
+    position: absolute;
+    right: 45px; top: 45px;
+    width: 290px; height: 290px;
+    border-radius: 50%;
+    border: 1px solid rgba(19,168,189,0.06);
+  }
+
+  /* ══════════════════════════════════════
+     공통 본문 스타일
+     ══════════════════════════════════════ */
+  .page-body { padding: 36px 44px 32px; min-height: 297mm; position: relative; }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--navy);
+  }
+
+  .page-header-title {
+    font-size: 9px; font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .page-header-num {
+    font-size: 9px; color: var(--text-muted); font-weight: 500;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    margin-top: 20px;
+  }
+
+  .page-header + .section-title { margin-top: 0; }
+
+  .section-num {
+    background: var(--navy);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .section-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .section-subtitle {
+    font-size: 9.5px;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-left: 4px;
+  }
+
+  .body-text {
+    font-size: 10px;
+    line-height: 1.8;
+    color: var(--text-sub);
+    margin-bottom: 12px;
+  }
+
+  .body-text strong { color: var(--text); font-weight: 600; }
+
+  /* Part 헤더 */
+  .part-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+    padding: 14px 18px;
+    border-radius: 12px;
+  }
+
+  .part-header.part-system {
+    background: linear-gradient(135deg, #0B2545 0%, #1A3A5C 100%);
+    color: #fff;
+  }
+
+  .part-header.part-power {
+    background: linear-gradient(135deg, #0B2545 0%, #1B5E20 100%);
+    color: #fff;
+  }
+
+  .part-num {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0.6;
+  }
+
+  .part-brand {
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+  }
+
+  .part-concept {
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.75;
+    margin-top: 2px;
+  }
+
+  .part-target {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .part-target .pt-label {
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+
+  .part-target .pt-value {
+    font-size: 9px;
+    font-weight: 400;
+    opacity: 0.8;
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+
+  /* 컬러 시스템 */
+  .color-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .color-chip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 9px;
+    color: var(--text-sub);
+  }
+
+  .color-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .color-chip strong { color: var(--text); font-weight: 600; }
+
+  /* 슬라이드 카드 */
+  .slide-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .slide-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 14px 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .slide-card.sc-navy::before { background: linear-gradient(90deg, var(--navy), var(--cyan)); }
+  .slide-card.sc-green::before { background: linear-gradient(90deg, var(--green), #66BB6A); }
+
+  .slide-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  .slide-num {
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .slide-keyword {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+
+  .slide-keyword.kw-navy { color: var(--navy); }
+  .slide-keyword.kw-green { color: var(--green); }
+
+  .slide-msg {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 5px;
+  }
+
+  .slide-desc {
+    font-size: 9px;
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+
+  .slide-visual {
+    font-size: 8.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    padding: 6px 8px;
+    background: rgba(0,0,0,0.02);
+    border-radius: 6px;
+    border-left: 2px solid var(--border);
+  }
+
+  .slide-visual strong {
+    font-weight: 600;
+    color: var(--text-sub);
+  }
+
+  .page-image {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+  }
+
+  /* UX 설명 */
+  .ux-note {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    font-size: 9px;
+    color: var(--text-sub);
+    line-height: 1.65;
+  }
+
+  .ux-note strong { color: var(--navy); font-weight: 700; }
+
+  /* 기술 카드 */
+  .tech-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .tech-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tech-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .tech-card.card-hub::before { background: linear-gradient(90deg, var(--accent), #4dd0e1); }
+  .tech-card.card-3d::before { background: linear-gradient(90deg, var(--warm), #FFB74D); }
+
+  .tech-card-title { font-size: 11px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+  .tech-card-sub { font-size: 8.5px; color: var(--text-muted); margin-bottom: 8px; font-weight: 500; }
+
+  .tech-card-item {
+    font-size: 9.5px;
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-bottom: 4px;
+    padding-left: 12px;
+    position: relative;
+  }
+
+  .tech-card-item::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--accent); font-weight: 700;
+  }
+
+  .card-3d .tech-card-item::before { color: var(--warm); }
+
+  .tech-label { font-size: 8px; font-weight: 700; margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--border); }
+  .tech-label.tl-hub { color: var(--accent); }
+  .tech-label.tl-3d { color: var(--warm); }
+
+  /* 로드맵 */
+  .roadmap-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+    font-size: 9.5px;
+  }
+
+  .roadmap-table thead th {
+    background: var(--navy);
+    color: #fff;
+    padding: 7px 8px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 8.5px;
+  }
+
+  .roadmap-table thead th:first-child { border-radius: 7px 0 0 0; }
+  .roadmap-table thead th:last-child { border-radius: 0 7px 0 0; }
+
+  .roadmap-table tbody td {
+    padding: 8px 8px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-sub);
+    line-height: 1.5;
+    vertical-align: top;
+  }
+
+  .roadmap-table tbody tr:nth-child(even) { background: var(--bg); }
+
+  .week-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    padding: 2px 9px;
+    border-radius: 10px;
+    font-size: 8.5px;
+    font-weight: 700;
+  }
+
+  .week-badge.w2 { background: #2196F3; }
+  .week-badge.w3 { background: var(--warm); }
+  .week-badge.w4 { background: var(--green); }
+
+  .phase-name { font-weight: 700; color: var(--navy); }
+
+  .grade-badge {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 8px;
+    font-size: 8px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .grade-top { background: #E8EAF6; color: #283593; }
+  .grade-high { background: #E0F2F1; color: #00695C; }
+
+  /* 결론 박스 */
+  .conclusion-box {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: 10px;
+    padding: 16px 18px;
+    color: #fff;
+    margin-top: 4px;
+  }
+
+  .conclusion-box .con-title {
+    font-size: 11.5px; font-weight: 700; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .conclusion-box .con-title::before {
+    content: ''; width: 16px; height: 3px;
+    background: var(--accent); border-radius: 2px;
+  }
+
+  .conclusion-box p {
+    font-size: 9.5px; line-height: 1.75;
+    color: rgba(255,255,255,0.85); font-weight: 300;
+  }
+
+  .conclusion-box .hl { color: var(--accent); font-weight: 600; }
+
+  /* 인용 블록 */
+  .quote-block {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.65;
+    text-align: center;
+  }
+
+  .quote-block .qa { color: var(--accent); font-weight: 700; }
+
+  /* 푸터 */
+  .page-footer {
+    position: absolute;
+    bottom: 24px; left: 44px; right: 44px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+
+  .page-footer span { font-size: 8px; color: var(--text-muted); }
+
+  /* ══════════════════════════════════════
+     PAGE 5: 견적서
+     ══════════════════════════════════════ */
+  .estimate-header { text-align: center; margin-bottom: 18px; }
+
+  .estimate-header h2 {
+    font-size: 20px; font-weight: 900;
+    color: var(--navy); letter-spacing: 6px; margin-bottom: 4px;
+  }
+
+  .estimate-header .est-divider {
+    width: 44px; height: 3px;
+    background: var(--accent);
+    margin: 10px auto; border-radius: 2px;
+  }
+
+  .estimate-header .est-sub {
+    font-size: 10px; color: var(--text-muted); font-weight: 400;
+  }
+
+  .total-box {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: 16px 22px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .total-box .total-label { font-size: 12px; font-weight: 600; }
+  .total-box .total-label small { display: block; font-size: 9px; font-weight: 400; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .total-box .total-amount { font-size: 24px; font-weight: 900; letter-spacing: 1px; }
+  .total-box .total-amount small { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.65); margin-left: 3px; }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px; margin-bottom: 14px;
+  }
+
+  .overview-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+
+  .overview-item .ov-label {
+    font-size: 8px; font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .overview-item .ov-value {
+    font-size: 10px; font-weight: 600;
+    color: var(--navy); line-height: 1.45;
+  }
+
+  .est-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+    font-size: 9px;
+  }
+
+  .est-table thead th {
+    background: var(--navy);
+    color: #fff;
+    padding: 7px 7px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 8.5px;
+  }
+
+  .est-table thead th:first-child { border-radius: 7px 0 0 0; text-align: left; }
+  .est-table thead th:last-child { border-radius: 0 7px 0 0; }
+
+  .est-table tbody td {
+    padding: 6px 7px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-sub);
+    line-height: 1.45;
+    vertical-align: top;
+  }
+
+  .est-table tbody tr:nth-child(even) { background: var(--bg); }
+  .est-table tbody td:first-child { font-weight: 700; color: var(--navy); white-space: nowrap; }
+  .est-table tbody td.tc { text-align: center; }
+  .est-table tbody td.tr { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .est-table tfoot td {
+    padding: 8px 7px;
+    font-weight: 700;
+    color: var(--navy);
+    border-top: 2px solid var(--navy);
+    font-size: 10px;
+  }
+
+  .est-table tfoot td.tr { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .terms-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px; margin-bottom: 12px;
+  }
+
+  .term-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+
+  .term-card .tc-label {
+    font-size: 8px; font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .term-card .tc-value {
+    font-size: 9.5px; font-weight: 500;
+    color: var(--text-sub); line-height: 1.55;
+  }
+
+  .term-card .tc-value strong { color: var(--text); font-weight: 600; }
+
+  .note-box {
+    background: var(--warm-light);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 9px;
+    color: var(--text-sub);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .note-box .note-title { font-size: 9px; font-weight: 700; color: var(--warm); margin-bottom: 3px; }
+
+  .roi-footer {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: 10px;
+    padding: 14px 18px;
+    color: #fff;
+  }
+
+  .roi-footer .rf-title { font-size: 10px; font-weight: 700; margin-bottom: 5px; color: var(--accent); }
+
+  .roi-footer p {
+    font-size: 9px; line-height: 1.7;
+    color: rgba(255,255,255,0.82); font-weight: 300;
+  }
+
+  .roi-footer .rfh { color: #fff; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 1: 표지 ═══════════ -->
+<div class="page page-cover">
+  <div class="cover-deco"></div>
+
+  <div class="cover-top">
+    <div class="cover-badge">Proposal &middot; Strategic Briefing 2026</div>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-tag">제안서</div>
+    <h1>
+      (주)이맥스 그룹<br>듀얼 웹사이트 브랜딩 및
+      <span class="h1-accent">디지털 세일즈 플랫폼 전략서</span>
+    </h1>
+    <div class="cover-divider"></div>
+    <p class="cover-desc">
+      <strong>(주)이맥스파워 &amp; (주)이맥스시스템</strong> 각각 독립 웹사이트 2벌을 한 팀이 동시 구축하는 브랜드 포지셔닝 및 메인 비주얼 기획안<br><br>
+      홈페이지가 아닌, <strong style="color:#13A8BD;">영업사원 10명 몫을 해낼 디지털 세일즈 플랫폼</strong> —<br>
+      스플릿 스크린 타이포그래피 UI + AI·3D 영업 지원 시스템 결합
+    </p>
+
+    <div class="cover-meta-row">
+      <div class="cover-meta-item">
+        <div class="cm-label">Scope</div>
+        <div class="cm-value">독립 사이트 2벌<br>한 팀 동시 구축</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cm-label">Tech Edge</div>
+        <div class="cm-value">AI Knowledge Hub<br>+ Space-Fit 3D</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cm-label">Crew</div>
+        <div class="cm-value">상위 1% 특급<br>전담팀 투입</div>
+      </div>
+    </div>
+
+    <div class="cover-highlights">
+      <div class="cover-hl">
+        <div class="cover-hl-icon">S</div>
+        <div class="cover-hl-value">이맥스시스템<br>프리미엄 공간</div>
+      </div>
+      <div class="cover-hl">
+        <div class="cover-hl-icon">P</div>
+        <div class="cover-hl-value">이맥스파워<br>탄소중립 인프라</div>
+      </div>
+      <div class="cover-hl">
+        <div class="cover-hl-icon">4W</div>
+        <div class="cover-hl-value">4주 애자일<br>초단기 구축</div>
+      </div>
+      <div class="cover-hl hl-accent">
+        <div class="cover-hl-value"><span class="big-num">5,400</span>만원 투자</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-bottom-meta">
+      <strong>Confidential</strong><br>
+      2026. 03<br>
+      제안: (주)텐소프트웍스 &middot; tsw.im
+    </div>
+    <div class="cover-logo">
+      <div class="cover-logo-text">E-MAX</div>
+      <div class="cover-logo-sub">GROUP</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 2: Part 1 — 이맥스시스템 ═══════════ -->
+<div class="page page-body">
+  <div class="page-header">
+    <span class="page-header-title">이맥스 그룹 — 듀얼 웹사이트 브랜딩 및 디지털 세일즈 플랫폼 전략서</span>
+    <span class="page-header-num">02 / 05</span>
+  </div>
+
+  <div class="part-header part-system">
+    <div>
+      <div class="part-num">PART 1</div>
+      <div class="part-brand">(주)이맥스시스템 EMAX System</div>
+      <div class="part-concept">"Premium Space Integrator" — 프리미엄 공간 통합 설계자</div>
+    </div>
+    <div class="part-target">
+      <div class="pt-label">Target</div>
+      <div class="pt-value">아파트 조합, 시행사<br>인테리어 업체, 하이엔드 B2C</div>
+    </div>
+  </div>
+
+  <!-- Color System -->
+  <div class="color-row">
+    <div class="color-chip"><div class="color-dot" style="background:#0B2545;"></div><strong>EMAX Trust Navy</strong> 프리미엄 신뢰</div>
+    <div class="color-chip"><div class="color-dot" style="background:linear-gradient(135deg,#B0BEC5,#CFD8DC);"></div><strong>Premium Silver</strong> 메탈릭 질감</div>
+    <div class="color-chip"><div class="color-dot" style="background:#00ACC1;"></div><strong>Smart Cyan Blue</strong> 첨단 IoT</div>
+  </div>
+
+  <!-- UX 설명 -->
+  <div class="ux-note">
+    <strong>Split-Screen UI 연출:</strong> 화면 스크롤 시 좌측의 키워드·메시지는 Sticky 고정, 우측 공간 이미지가 트랜지션되며 이성적 메시지와 감성적 이미지를 동시에 전달합니다.
+  </div>
+
+  <!-- 4 Slides -->
+  <div class="slide-grid">
+    <div class="slide-card sc-navy">
+      <div class="slide-top">
+        <span class="slide-num">SLIDE 01</span>
+        <span class="slide-keyword kw-navy">Lifestyle</span>
+      </div>
+      <div class="slide-msg">프리미엄이 스며든 완벽한 공간</div>
+      <div class="slide-desc">삼성 비스포크와 데이코 라인업으로 당신의 일상과 공간에 변치 않는 품격을 더합니다.</div>
+      <div class="slide-visual"><strong>Visual:</strong> 인피니트 라인 냉장고가 완벽히 빌트인 된 최고급 모던 주방. 메탈릭 질감 + 따뜻한 간접 조명으로 하이엔드 라이프스타일 극대화.</div>
+    </div>
+
+    <div class="slide-card sc-navy">
+      <div class="slide-top">
+        <span class="slide-num">SLIDE 02</span>
+        <span class="slide-keyword kw-navy">Comfort</span>
+      </div>
+      <div class="slide-msg">보이지 않는 곳에서 완성되는 쾌적함</div>
+      <div class="slide-desc">360도 무풍 기술과 고효율 시스템으로 주거~상업 공간까지 최적의 공조 솔루션을 제안합니다.</div>
+      <div class="slide-visual"><strong>Visual:</strong> 갤러리형 거실 천장에 무풍 시스템 에어컨 설치. 공기 흐름이 빛·안개처럼 은은하게 느껴지는 감각적 컷.</div>
+    </div>
+
+    <div class="slide-card sc-navy">
+      <div class="slide-top">
+        <span class="slide-num">SLIDE 03</span>
+        <span class="slide-keyword kw-navy">Safety</span>
+      </div>
+      <div class="slide-msg">24시간 연결된 지능형 안전망</div>
+      <div class="slide-desc">무선 IoT 기술 기반의 지능형 화재경보 시스템으로 소중한 공간을 빈틈없이 지킵니다.</div>
+      <div class="slide-visual"><strong>Visual:</strong> 세련된 천장의 무선 화재 감지기. 스마트 네트워크 라인이 푸른빛으로 퍼져나가는 CG 합성으로 첨단 보안 시각화.</div>
+    </div>
+
+    <div class="slide-card sc-navy">
+      <div class="slide-top">
+        <span class="slide-num">SLIDE 04</span>
+        <span class="slide-keyword kw-navy">Energy</span>
+      </div>
+      <div class="slide-msg">내일을 설계하는 친환경 인프라</div>
+      <div class="slide-desc">건물일체형 태양광(BIPV)으로 심미성과 에너지 효율을 동시에 충족하는 지속가능 공간을 실현합니다.</div>
+      <div class="slide-visual"><strong>Visual:</strong> 햇빛을 반사하며 빛나는 BIPV 패널이 적용된 현대적 건축물의 세련된 파사드(외관).</div>
+    </div>
+  </div>
+
+  <img class="page-image" src="../img/emaxsys.png" alt="이맥스시스템 참고 이미지">
+
+  <div class="page-footer">
+    <span>Confidential — (주)이맥스 그룹 &nbsp;|&nbsp; 제안: (주)텐소프트웍스 tsw.im</span>
+    <span>Page 2</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 3: Part 2 — 이맥스파워 ═══════════ -->
+<div class="page page-body">
+  <div class="page-header">
+    <span class="page-header-title">이맥스 그룹 — 듀얼 웹사이트 브랜딩 및 디지털 세일즈 플랫폼 전략서</span>
+    <span class="page-header-num">03 / 05</span>
+  </div>
+
+  <div class="part-header part-power">
+    <div>
+      <div class="part-num">PART 2</div>
+      <div class="part-brand">(주)이맥스파워 EMAX Power</div>
+      <div class="part-concept">"The Net-Zero Infrastructure Builder" — 탄소중립 인프라 빌더</div>
+    </div>
+    <div class="part-target">
+      <div class="pt-label">Target</div>
+      <div class="pt-value">대형 건설사, 발전 사업자<br>관공서, 플랜트 B2B</div>
+    </div>
+  </div>
+
+  <!-- Color System -->
+  <div class="color-row">
+    <div class="color-chip"><div class="color-dot" style="background:#0B2545;"></div><strong>Industrial Deep Navy</strong> 산업적 스케일</div>
+    <div class="color-chip"><div class="color-dot" style="background:#2E7D32;"></div><strong>Eco Vibrant Green</strong> 신재생 에너지</div>
+  </div>
+
+  <div class="ux-note">
+    <strong>Split-Screen UI 연출:</strong> 이맥스시스템이 '공간 안(Space)'을 보여준다면, 이맥스파워는 '거대한 산업 인프라(Scale)'를 다이내믹하게 연출합니다.
+  </div>
+
+  <!-- 4 Slides -->
+  <div class="slide-grid">
+    <div class="slide-card sc-green">
+      <div class="slide-top">
+        <span class="slide-num">SLIDE 01</span>
+        <span class="slide-keyword kw-green">Infrastructure</span>
+      </div>
+      <div class="slide-msg">산업의 심장을 움직이는 거대한 쿨링 솔루션</div>
+      <div class="slide-desc">고효율 원심 냉동기부터 흡수식 칠러까지, 대형 건축물과 산업 시설에 최적화된 압도적 규모의 중앙공조 시스템.</div>
+      <div class="slide-visual"><strong>Visual:</strong> 거대한 칠러 설비가 가동 중인 첨단 플랜트·대형 기계실의 시네마틱 3D 렌더링 뷰. 차가운 금속 질감 + 압도적 크기 강조.</div>
+    </div>
+
+    <div class="slide-card sc-green">
+      <div class="slide-top">
+        <span class="slide-num">SLIDE 02</span>
+        <span class="slide-keyword kw-green">Renewable</span>
+      </div>
+      <div class="slide-msg">무한한 에너지를 향한 끝없는 혁신</div>
+      <div class="slide-desc">태양광, 태양열, 대규모 ESS 연계 시스템으로 에너지 생산과 저장의 패러다임을 전환합니다.</div>
+      <div class="slide-visual"><strong>Visual:</strong> 끝없이 펼쳐진 MW급 태양광 발전소 + ESS 컨테이너를 드론 뷰(항공 촬영)로 포착한 장엄한 풍경.</div>
+    </div>
+
+    <div class="slide-card sc-green">
+      <div class="slide-top">
+        <span class="slide-num">SLIDE 03</span>
+        <span class="slide-keyword kw-green">Protection</span>
+      </div>
+      <div class="slide-msg">타협할 수 없는 절대적 안전 기준</div>
+      <div class="slide-desc">국내 유일 더블 블레이드 댐퍼 특허 기술로 대형 시설의 화재 확산을 원천 차단하여 인명·자산 보호.</div>
+      <div class="slide-visual"><strong>Visual:</strong> 불길을 완벽히 차단하는 더블 블레이드 댐퍼 단면 CG. 붉은 불꽃 vs 차가운 강철 댐퍼의 극적 온도 대비.</div>
+    </div>
+
+    <div class="slide-card sc-green">
+      <div class="slide-top">
+        <span class="slide-num">SLIDE 04</span>
+        <span class="slide-keyword kw-green">Net-Zero</span>
+      </div>
+      <div class="slide-msg">지속가능한 내일을 짓는 탄소중립 파트너</div>
+      <div class="slide-desc">기후 위기 시대, 고효율 기기와 신재생에너지 융합으로 기업의 ESG 경영과 넷제로 비전을 실현합니다.</div>
+      <div class="slide-visual"><strong>Visual:</strong> 태양광 에너지 팩토리와 대형 인프라가 유기적으로 연결된 미래 지향적 에코 시티 전경.</div>
+    </div>
+  </div>
+
+  <img class="page-image" src="../img/emaxpw.png" alt="이맥스파워 참고 이미지">
+
+  <div class="page-footer">
+    <span>Confidential — (주)이맥스 그룹 &nbsp;|&nbsp; 제안: (주)텐소프트웍스 tsw.im</span>
+    <span>Page 3</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 4: Part 3 — Tech Edge + 로드맵 + 결론 ═══════════ -->
+<div class="page page-body">
+  <div class="page-header">
+    <span class="page-header-title">이맥스 그룹 — 듀얼 웹사이트 브랜딩 및 디지털 세일즈 플랫폼 전략서</span>
+    <span class="page-header-num">04 / 05</span>
+  </div>
+
+  <!-- Part 3 -->
+  <div class="section-title">
+    <div class="section-num">3</div>
+    <div class="section-label">Tech-Edge: 시스템을 넘어선 세일즈 플랫폼</div>
+  </div>
+
+  <p class="body-text">단순 디자인 개편을 넘어, <strong>EMAX의 수주율을 극대화</strong>하는 텐소프트웍스만의 2대 핵심 기술을 연동합니다. 일반 홈페이지에서는 불가능한 고난도 기술이 4주 안에 구현되는 이유는 <strong>당사 자체 AI 모델과 특급 데이터 아키텍트</strong>가 투입되기 때문입니다.</p>
+
+  <div class="tech-cards">
+    <div class="tech-card card-hub">
+      <div class="tech-card-title">E-Max Knowledge Hub</div>
+      <div class="tech-card-sub">AI 온톨로지 지식 허브</div>
+      <div class="tech-card-item">시방서·도면·카탈로그 PDF 업로드 시 AI가 자동 분류 및 키워드 태깅</div>
+      <div class="tech-card-item">검색 시 문서 + 연관 실적(포트폴리오)을 유기적으로 매핑</div>
+      <div class="tech-card-item">B2B 고객 신뢰도 즉각 확보 (예: 서울시교육청 신청사)</div>
+      <div class="tech-label tl-hub">당사 자체 AI 모델 활용</div>
+    </div>
+    <div class="tech-card card-3d">
+      <div class="tech-card-title">Space-Fit 3D</div>
+      <div class="tech-card-sub">웹 기반 실시간 3D 설비 시뮬레이터</div>
+      <div class="tech-card-item">별도 설치 없이 웹에서 기계실 도면 위에 칠러·에어컨 3D 가상 배치</div>
+      <div class="tech-card-item">현장 미팅 시 태블릿으로 즉각 시뮬레이션 → 계약 성사율 극대화</div>
+      <div class="tech-card-item">대형 설비 도입 시 고객의 공간적 불확실성 해소</div>
+      <div class="tech-label tl-3d">3D 렌더링 최적화 비용 포함</div>
+    </div>
+  </div>
+
+  <!-- 4. 로드맵 -->
+  <div class="section-title">
+    <div class="section-num">4</div>
+    <div class="section-label">실행 로드맵</div>
+    <span class="section-subtitle">4주 초단기 애자일 · 부문별 상위 1% 특급 전담팀(Task Force) 투입</span>
+  </div>
+
+  <table class="roadmap-table">
+    <thead>
+      <tr><th style="width:58px;">주차</th><th style="width:75px;">단계</th><th>주요 과업</th><th style="width:80px;">투입 인력</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="week-badge">1주차</span></td>
+        <td class="phase-name">Foundation</td>
+        <td>UI/UX 프로토타입, 스플릿 스크린 모션 기획, 스토리보드, AI DB 트리 설계</td>
+        <td><span class="grade-badge grade-top">특급 기획자</span></td>
+      </tr>
+      <tr>
+        <td><span class="week-badge w2">2주차</span></td>
+        <td class="phase-name">Build</td>
+        <td>Split-Screen 타이포그래피 비주얼, 디지털 룩북, 반응형 퍼블리싱, AI 파이프라인</td>
+        <td><span class="grade-badge grade-top">특급 디자이너</span></td>
+      </tr>
+      <tr>
+        <td><span class="week-badge w3">3주차</span></td>
+        <td class="phase-name">Integration</td>
+        <td>AI 자동 태깅, Space-Fit 3D 엔진 연동, B2B 견적/장바구니, 커머스 시스템</td>
+        <td><span class="grade-badge grade-top">특급 FE·BE</span></td>
+      </tr>
+      <tr>
+        <td><span class="week-badge w4">4주차</span></td>
+        <td class="phase-name">Launch</td>
+        <td>크로스 브라우징·모바일 최적화, 속도 개선, QA 안정화, 관리자 교육·오픈</td>
+        <td><span class="grade-badge grade-high">QA·안정화</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 5. 결론 -->
+  <div class="section-title">
+    <div class="section-num">5</div>
+    <div class="section-label">결론 및 기대 효과</div>
+  </div>
+
+  <div class="conclusion-box">
+    <div class="con-title">비용이 아닌 '전략적 투자' — 수주를 견인하는 디지털 영업 무기</div>
+    <p>
+      본 제안은 단순히 정보를 전달하는 홈페이지가 아닌, <span class="hl">"디지털 기술이 실제 수주를 견인하는 영업 무기"</span>입니다.
+      이맥스 영업사원 10명 몫을 해낼 디지털 세일즈 플랫폼으로, 스플릿 스크린 UI가 브랜드 가치를 극적으로 각인시키고, AI 지식 허브와 3D 시뮬레이터가 현장에서 계약을 성사시킵니다.
+    </p>
+    <p style="margin-top: 6px;">
+      <span class="hl">플랫폼 오픈 후 단 몇 건의 B2B 대형 수주만으로 수십 배의 가치로 회수</span>될 것이며, (주)이맥스 그룹의 듀얼 브랜드 전략을 통해 B2B·B2C를 아우르는 독보적 시장 지위를 공고히 합니다.
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <span>Confidential — (주)이맥스 그룹 &nbsp;|&nbsp; 제안: (주)텐소프트웍스 tsw.im</span>
+    <span>Page 4</span>
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 5: 견적서 ═══════════ -->
+<div class="page page-body">
+  <div class="page-header">
+    <span class="page-header-title">이맥스 그룹 — 듀얼 웹사이트 브랜딩 및 디지털 세일즈 플랫폼 전략서</span>
+    <span class="page-header-num">05 / 05</span>
+  </div>
+
+  <div class="estimate-header">
+    <h2>견 적 서</h2>
+    <div class="est-divider"></div>
+    <div class="est-sub">(주)이맥스파워 / (주)이맥스시스템 독립 웹사이트 2벌 동시 구축</div>
+  </div>
+
+  <div class="total-box">
+    <div class="total-label">총 견적 금액<small>부가가치세(VAT) 별도</small></div>
+    <div class="total-amount">&#8361; 54,000,000<small>원</small></div>
+  </div>
+
+  <div class="overview-grid">
+    <div class="overview-item">
+      <div class="ov-label">프로젝트명</div>
+      <div class="ov-value">(주)이맥스파워 / 이맥스시스템<br>독립 웹사이트 2벌 동시 구축</div>
+    </div>
+    <div class="overview-item">
+      <div class="ov-label">개발 기간</div>
+      <div class="ov-value">계약일로부터 4주<br>(1개월 초단기 애자일)</div>
+    </div>
+    <div class="overview-item">
+      <div class="ov-label">투입 인력</div>
+      <div class="ov-value">부문별 상위 1%<br>특급 전담팀(Task Force)</div>
+    </div>
+  </div>
+
+  <div style="font-size:9px; font-weight:700; color:var(--navy); margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+    <span>세부 산출 내역</span>
+    <span style="font-weight:400; color:var(--text-muted);">(단위: 천원)</span>
+  </div>
+
+  <table class="est-table">
+    <thead>
+      <tr>
+        <th style="width:80px;">구분</th>
+        <th>세부 항목 및 과업 내용</th>
+        <th style="width:65px;">인력 등급</th>
+        <th style="width:38px;">투입</th>
+        <th style="width:48px;">금액</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>기획 / PM</td>
+        <td>듀얼 포지셔닝 기획, 스플릿 스크린 UX/UI 뼈대·스토리보드, 프로젝트 총괄·공정 관리</td>
+        <td class="tc"><span class="grade-badge grade-top">특급</span></td>
+        <td class="tc">1.0</td>
+        <td class="tr">9,000</td>
+      </tr>
+      <tr>
+        <td>디자인</td>
+        <td>Split-Screen 타이포그래피 메인 비주얼, 디지털 룩북·실적 갤러리, 디바이스별 반응형 UI</td>
+        <td class="tc"><span class="grade-badge grade-top">특급</span></td>
+        <td class="tc">1.0</td>
+        <td class="tr">8,000</td>
+      </tr>
+      <tr>
+        <td>퍼블리싱 &<br>프론트엔드</td>
+        <td>스플릿 스크린 스크롤 모션·인터랙션, 3D 리소스 웹 렌더링 최적화, 크로스 브라우징·반응형</td>
+        <td class="tc"><span class="grade-badge grade-top">특급</span></td>
+        <td class="tc">1.5</td>
+        <td class="tr">13,500</td>
+      </tr>
+      <tr>
+        <td>백엔드 &<br>커머스</td>
+        <td>이맥스시스템 B2B 견적/장바구니, 폐쇄몰 세일즈 시스템, 통합 관리자(Admin) 페이지</td>
+        <td class="tc"><span class="grade-badge grade-high">고급</span></td>
+        <td class="tc">1.0</td>
+        <td class="tr">8,500</td>
+      </tr>
+      <tr>
+        <td>AI 온톨로지<br>지식 허브</td>
+        <td>AI 문서(PDF) 자동 태깅 알고리즘, 제품 스펙 ↔ 실적 유기적 매핑, 대용량 지식 DB 설계</td>
+        <td class="tc"><span class="grade-badge grade-top">특급</span></td>
+        <td class="tc">1.0</td>
+        <td class="tr">12,000</td>
+      </tr>
+      <tr>
+        <td>인프라·기타</td>
+        <td>Space-Fit 3D 뷰어 라이선스/세팅, 서버(AWS/Cloud) 세팅·보안, QA 및 안정화 테스트</td>
+        <td class="tc">-</td>
+        <td class="tc">-</td>
+        <td class="tr">3,000</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4">합 계</td>
+        <td class="tr">54,000</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="terms-cards">
+    <div class="term-card">
+      <div class="tc-label">결제 조건</div>
+      <div class="tc-value"><strong>선금 50%</strong> — 계약 시<br><strong>잔금 50%</strong> — 검수 및 사이트 오픈 시</div>
+    </div>
+    <div class="term-card">
+      <div class="tc-label">무상 하자보수</div>
+      <div class="tc-value">검수 완료일로부터 <strong>1년</strong><br>(서버 장애 및 기능 오류 대응)</div>
+    </div>
+  </div>
+
+  <div class="note-box">
+    <div class="note-title">참고 사항</div>
+    본 견적은 1개월 초단기 구축을 위해 특급 인력을 집중 투입하는 조건으로 산출되었으며, 3D 모델링 원본 파일(obj, gltf 등)은 고객사에서 제공하는 것을 원칙으로 합니다. (모델링 신규 제작 필요 시 별도 협의)
+  </div>
+
+  <div class="roi-footer">
+    <div class="rf-title">이 견적은 '비용'이 아닌 '전략적 투자'입니다</div>
+    <p>
+      일반적인 홈페이지 구축 비용은 1~2천만 원이면 충분할 수 있습니다. 하지만 본 프로젝트는 <span class="rfh">'홈페이지'가 아니라 이맥스 영업사원 10명 몫을 해낼 '디지털 세일즈 플랫폼'</span>입니다.
+      AI 문서 자동 분류, 웹 기반 3D 설비 시뮬레이션 등 고난도 기술을 단 4주 만에 구현하기 위해 텐소프트웍스 특급 인력 전담팀이 투입됩니다.
+      <span class="rfh">5,400만 원의 투자는 플랫폼 오픈 후 단 몇 건의 B2B 대형 수주만으로 수십 배의 가치로 회수</span>될 것입니다.
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <span>Confidential — (주)이맥스 그룹 &nbsp;|&nbsp; 제안: (주)텐소프트웍스 tsw.im</span>
+    <span>Page 5</span>
+  </div>
+</div>
+
+</body>
+</html>
