@@ -986,7 +986,7 @@
 
   <div class="total-box">
     <div class="total-label">총 견적 금액<small>부가가치세(VAT) 별도</small></div>
-    <div class="total-amount">&#8361; <span id="total-display">45,300,000</span><small>원</small></div>
+    <div class="total-amount">&#8361; <span id="total-display">50,000,000</span><small>원</small></div>
   </div>
 
   <table class="est-table">
@@ -1008,28 +1008,28 @@
         <td>정책 엔진 설계, DB 스키마 설계, 할인 중첩 규칙 정의, 프로젝트 총괄·공정 관리</td>
         <td class="tc"><span class="grade-badge grade-top">특급</span></td>
         <td class="tc">2주</td>
-        <td class="tr">5,000</td>
+        <td class="tr">6,000</td>
       </tr>
       <tr>
         <td>쿠폰 시스템</td>
         <td>쿠폰 발행/배포/사용/소멸 전주기, 4개 유형, 취소/환불 로직, 코드 체계</td>
         <td class="tc"><span class="grade-badge grade-top">특급</span></td>
         <td class="tc">3주</td>
-        <td class="tr">8,000</td>
+        <td class="tr">9,000</td>
       </tr>
       <tr>
         <td>포인트 시스템</td>
         <td>적립/사용/차감/소멸 전주기, 마이너스 발행, FIFO 소멸, 잔액 조회 API</td>
         <td class="tc"><span class="grade-badge grade-top">특급</span></td>
         <td class="tc">3주</td>
-        <td class="tr">8,000</td>
+        <td class="tr">9,000</td>
       </tr>
       <tr>
         <td>정책 엔진</td>
         <td>할인 중첩 정책, 6단계 적용 파이프라인, 손해 방지 트리거, 한도 관리</td>
         <td class="tc"><span class="grade-badge grade-top">특급</span></td>
         <td class="tc">2주</td>
-        <td class="tr">6,000</td>
+        <td class="tr">7,000</td>
       </tr>
       <tr>
         <td>이맥스 연동</td>
@@ -1061,17 +1061,17 @@
       </tr>
       <tr class="est-subtotal">
         <td colspan="4">필수 소계</td>
-        <td class="tr">42,000</td>
+        <td class="tr">46,000</td>
       </tr>
       <tr class="est-section-row">
         <td colspan="5"><span class="section-badge badge-optional">선택</span>확장 기능 — 체크 해제 시 견적에서 제외</td>
       </tr>
-      <tr class="opt-row" data-amount="300">
+      <tr class="opt-row" data-amount="1000">
         <td><label><input type="checkbox" class="opt-check" checked> 삼성 연동</label></td>
         <td>삼성 구독 서비스 유입 태그, 확정 데이터 후적립, CSV 업로드, 적립 지연 안내</td>
         <td class="tc"><span class="grade-badge grade-high">고급</span></td>
         <td class="tc">1주</td>
-        <td class="tr">300</td>
+        <td class="tr">1,000</td>
       </tr>
       <tr class="opt-row" data-amount="3000">
         <td><label><input type="checkbox" class="opt-check" checked> 소멸 예고 알림</label></td>
@@ -1082,13 +1082,13 @@
       </tr>
       <tr class="est-subtotal">
         <td colspan="4">선택 소계</td>
-        <td class="tr" id="opt-subtotal">3,300</td>
+        <td class="tr" id="opt-subtotal">4,000</td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
         <td colspan="4">합 계</td>
-        <td class="tr" id="est-total">45,300</td>
+        <td class="tr" id="est-total">50,000</td>
       </tr>
     </tfoot>
   </table>
@@ -1119,7 +1119,7 @@
 
 <script>
 (function() {
-  var BASE = 42000;
+  var BASE = 46000;
   var rows = document.querySelectorAll('.opt-row');
   var optSub = document.getElementById('opt-subtotal');
   var total = document.getElementById('est-total');
